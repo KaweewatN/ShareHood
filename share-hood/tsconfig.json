@@ -17,10 +17,18 @@
         "name": "next"
       }
     ],
+    "baseUrl": "./",
     "paths": {
-      "@components/*": ["./*"]
+      "@components/*": ["components/*"],
+      "@types/*": ["types/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    "app/api/auth/[...nextauth]/route.js"
+  ],
   "exclude": ["node_modules"]
 }

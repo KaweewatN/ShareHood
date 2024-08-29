@@ -1,0 +1,6 @@
+. "$(dirname -- "$0")/_/husky.sh"
+
+npm run prettier:format
+npm run prettier:check
+npm run lint:fix
+npm run build
