@@ -1,3 +1,5 @@
+# run Postgres and pgAdmin4 locally
+
 version: "3.8"
 services:
   postgres:
