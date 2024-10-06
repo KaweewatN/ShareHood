@@ -5,8 +5,9 @@ import prisma from "@libs/prisma";
 // Files
 import {StatusCode} from "constants/statusCode";
 
-export async function GET({params}: {params: {userId: string}}) {
-  const {userId} = params;
+export async function GET(request: Request) {
+  const url = new URL(request.url);
+  const userId = url.pathname.split("/").pop();
   if (!userId) {
     return NextResponse.json(
       {error: "Missing required parameter 'userId'."},
