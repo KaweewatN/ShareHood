@@ -1,4 +1,4 @@
-// Prisma schema file
+// Prisma schema
 generator client {
   provider = "prisma-client-js"
 }
@@ -6,4 +6,44 @@ generator client {
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model User {
+  user_id       String   @id @default(cuid())
+  firstName String
+  lastName  String
+  email     String   @unique
+  phone     String   @unique
+  password  String 
+  role     Role
+  address   Address[]
+  payment   Payment[]
+}    
+
+enum Role {
+  Developer
+  Admin
+  Renter
+  Customer
+}
+
+model Address {
+  address_id String @id @default(cuid())
+  user_id    String
+  addressLine     String
+  subProvince       String
+  province      String
+  zip        String
+  user       User   @relation(fields: [user_id], references: [user_id])
+}
+
+model Payment {
+  payment_id String @id @default(cuid())
+  user_id    String
+  cardNumber String
+  cardHolderName String
+  expirationDate String
+  cvv String
+  user       User   @relation(fields: [user_id], references: [user_id])
 }
