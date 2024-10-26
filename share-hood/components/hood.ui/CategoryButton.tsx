@@ -4,8 +4,8 @@ interface CategoryButtonProps {
 
 export default function CategoryButton({icons}: CategoryButtonProps) {
   return (
-    <div className="border-defaultGrayBorder rounded-full border-[.1rem] p-3">
-      <span className="text-defaultBlue text-xl">{icons}</span>
+    <div className="rounded-full border-[.1rem] border-defaultGrayBorder p-3">
+      <span className="text-xl text-defaultBlue">{icons}</span>
     </div>
   );
 }

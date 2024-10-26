@@ -25,7 +25,7 @@ export function HomeCarousel({text, description, image}: HomeSliderProps) {
           <CarouselItem key={index}>
             <div className="p-1">
               <Card>
-                <CardContent className="bg-defaultBgBlue flex items-center justify-center rounded-lg p-5">
+                <CardContent className="flex items-center justify-center rounded-lg bg-defaultBgBlue p-5">
                   <div className="flex flex-col space-y-2 text-white">
                     <span className="text-sm font-semibold">{text}</span>
                     <span className="text-xs">{description}</span>

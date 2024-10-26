@@ -43,7 +43,6 @@
     "no-param-reassign": "error",
     "no-new-wrappers": "error",
     "no-empty-function": "error",
-    "id-length": ["error", {"min": 2}],
     "guard-for-in": "error",
     "eqeqeq": "error",
     "default-case": "error",

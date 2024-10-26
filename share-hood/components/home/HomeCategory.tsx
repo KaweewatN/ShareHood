@@ -14,7 +14,7 @@ export default function HomeCategory() {
     <div className="mt-5 flex w-full flex-col space-y-3">
       <div className="flex justify-between">
         <p className="text-sm font-semibold">Category</p>
-        <p className="text-defaultBlue cursor-pointer text-sm font-semibold hover:underline">
+        <p className="cursor-pointer text-sm font-semibold text-defaultBlue hover:underline">
           More
         </p>
       </div>
