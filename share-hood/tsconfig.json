@@ -20,7 +20,9 @@
     "baseUrl": "./",
     "paths": {
       "@components/*": ["components/*"],
-      "@types/*": ["types/*"]
+      "@types/*": ["types/*"],
+      "@services/*": ["services/*"],
+      "@libs/*": ["lib/*"]
     }
   },
   "include": [
