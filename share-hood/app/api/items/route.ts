@@ -3,13 +3,64 @@ import {NextResponse} from "next/server";
 
 // Files
 import {StatusCode} from "constants/statusCode";
-import {ClientQuery} from "@service/db/ClientQuery";
+import {sql} from "@vercel/postgres";
+import {ItemType} from "../../../types/api/itemApiType";
 
 export async function GET() {
   try {
-    const data = await ClientQuery('SELECT * FROM "Item"');
-    return NextResponse.json(data);
+    const data = await sql<ItemType[]>`SELECT * FROM "Item"`;
+    return NextResponse.json(data.rows, {status: StatusCode.SUCCESS_OK.code});
   } catch (error: unknown) {
     return NextResponse.json({error: error as string}, {status: StatusCode.ERROR_NOT_FOUND.code});
+  }
+}
+
+export async function POST(request: Request) {
+  try {
+    const {
+      itemID,
+      userID,
+      itemName,
+      itemDescription,
+      itemPrice,
+      itemQuantity,
+      itemStatus,
+      category,
+      itemReturnDuration,
+      dateAdded,
+      pickupLocation,
+    }: ItemType = await request.json();
+
+    const result = await sql`
+      INSERT INTO "Item" (
+        "itemID",
+        "userID",
+        "itemName",
+        "itemDescription",
+        "itemPrice",
+        "itemQuantity",
+        "itemStatus",
+        "category",
+        "itemReturnDuration",
+        "dateAdded",
+        "pickupLocation"
+      ) VALUES (
+        ${itemID},
+        ${userID},
+        ${itemName},
+        ${itemDescription},
+        ${itemPrice},
+        ${itemQuantity},
+        ${itemStatus},
+        ${category},
+        ${itemReturnDuration},
+        ${dateAdded},
+        ${pickupLocation}
+      )
+      RETURNING *;
+    `;
+    return NextResponse.json(result.rows[0], {status: StatusCode.SUCCESS_OK.code});
+  } catch (error: unknown) {
+    return NextResponse.json({error: error as string}, {status: StatusCode.ERROR_BAD_REQUEST.code});
   }
 }
