@@ -10,16 +10,102 @@ datasource db {
 }
 
 model User {
-  user_id       String   @id @default(cuid())
-  firstName String
-  lastName  String
+  userID       String   @id @default(cuid())
   email     String   @unique
-  phone     String   @unique
   password  String 
   role     Role
+  verified Boolean? @default(false)
+  personalInfo PersonalInfo[]
   address   Address[]
   payment   Payment[]
-}    
+  wishlist  Wishlist[]
+  item      Item[]
+  review    Review[]
+  transaction Transaction[]
+} 
+
+model PersonalInfo {
+  personalInfoID String @id @default(cuid())
+  userID    String
+  firstName String @db.VarChar(100)
+  lastName  String @db.VarChar(100)
+  phone     String   @unique
+  dateOfBirth DateTime
+  user       User   @relation(fields: [userID], references: [userID], onDelete: Cascade)
+}
+
+model Address {
+  addressID String @id @default(cuid())
+  userID    String
+  addressLine     String
+  subProvince       String
+  province      String
+  zip        String
+  user       User   @relation(fields: [userID], references: [userID], onDelete: Cascade)
+}
+
+model Payment {
+  paymentID String @id @default(cuid())
+  userID    String
+  cardNumber String
+  cardHolderName String
+  expirationDate String
+  cvv String
+  user       User   @relation(fields: [userID], references: [userID], onDelete: Cascade)
+}
+
+model Wishlist {
+  wishListID String @id @default(cuid())
+  userID    String
+  dateAdded DateTime @default(now())
+  user       User   @relation(fields: [userID], references: [userID], onDelete: Cascade)
+}
+
+model Item {
+  itemID String @id @default(cuid())
+  userID    String
+  itemName String
+  itemDescription String
+  itemPrice Int
+  itemQuantity   Int
+  itemStatus ItemStatus
+  category String
+  itemReturnDuration String
+  dateAdded DateTime @default(now())
+  pickupLocation String
+  user       User   @relation(fields: [userID], references: [userID])
+  review     Review[]
+  Transaction Transaction[]
+}
+
+model Review {
+  reviewID String @id @default(cuid())
+  userID    String
+  itemID    String
+  reviewRating Int
+  reviewComment String
+  dateAdded DateTime @default(now())
+  user       User   @relation(fields: [userID], references: [userID], onDelete: Cascade)
+  item       Item   @relation(fields: [itemID], references: [itemID])
+}
+
+model Transaction {
+  transactionID String @id @default(cuid())
+  userID    String
+  itemID    String
+  transactionStatus String
+  transactionDate DateTime @default(now())
+  transactionReturnDate DateTime
+  user       User   @relation(fields: [userID], references: [userID], onDelete: Cascade)
+  item       Item   @relation(fields: [itemID], references: [itemID])
+}
+
+model Notification {
+  notificationID String @id @default(cuid())
+  notificationHeader String
+  notificationDetails String
+  notificationTimestamp DateTime @default(now())
+}
 
 enum Role {
   Developer
@@ -28,22 +114,8 @@ enum Role {
   Customer
 }
 
-model Address {
-  address_id String @id @default(cuid())
-  user_id    String
-  addressLine     String
-  subProvince       String
-  province      String
-  zip        String
-  user       User   @relation(fields: [user_id], references: [user_id])
-}
-
-model Payment {
-  payment_id String @id @default(cuid())
-  user_id    String
-  cardNumber String
-  cardHolderName String
-  expirationDate String
-  cvv String
-  user       User   @relation(fields: [user_id], references: [user_id])
+enum ItemStatus {
+  Available
+  Rented
+  Unavailable
 }
