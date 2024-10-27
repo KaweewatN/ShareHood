@@ -21,8 +21,11 @@
     "paths": {
       "@components/*": ["components/*"],
       "@types/*": ["types/*"],
-      "@services/*": ["services/*"],
-      "@libs/*": ["lib/*"]
+      "@libs/*": ["libs/*"],
+      "@service/*": ["service/*"],
+      "@views/*": ["views/*"],
+      "@prisma/*": ["prisma/*"],
+      "@constant/*": ["constant/*"]
     }
   },
   "include": [
