@@ -1,10 +1,8 @@
-import {FaHeadphones} from "react-icons/fa6";
+import {FaHeadphones, FaTag} from "react-icons/fa6";
 import {IoShirtSharp} from "react-icons/io5";
 import {MdSubscriptions} from "react-icons/md";
-import {FaCar} from "react-icons/fa";
+import {FaCar, FaUser} from "react-icons/fa";
 import {GiConverseShoe} from "react-icons/gi";
-import {FaUser} from "react-icons/fa";
-import {FaTag} from "react-icons/fa6";
 
 const Icons = {
   headphones: (className?: string) => <FaHeadphones className={className} />,

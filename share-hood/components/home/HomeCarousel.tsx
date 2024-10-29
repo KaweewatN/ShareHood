@@ -9,8 +9,8 @@ import {
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
+  type CarouselApi,
 } from "@components/shad.ui/carousel";
-import {type CarouselApi} from "@components/shad.ui/carousel";
 
 import Image from "next/image";
 
