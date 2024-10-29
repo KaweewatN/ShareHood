@@ -1,12 +1,12 @@
-import {NextResponse} from 'next/server';
-import {StatusCode} from 'constants/statusCode';
-import {sql} from '@vercel/postgres';
-import {ItemType} from '../../../../types/api/apiType';
+import {NextResponse} from "next/server";
+import {StatusCode} from "constants/statusCode";
+import {sql} from "@vercel/postgres";
+import {ItemType} from "../../../../types/api/apiType";
 
 export async function GET(request: Request) {
   try {
     const {pathname} = new URL(request.url);
-    const itemIDParam = pathname.split('/').pop();
+    const itemIDParam = pathname.split("/").pop();
     const data = await sql`
       SELECT * FROM "Item" WHERE "itemID" = ${itemIDParam};
     `;
@@ -19,7 +19,7 @@ export async function GET(request: Request) {
 export async function PUT(request: Request) {
   try {
     const {pathname} = new URL(request.url);
-    const itemIDParam = pathname.split('/').pop();
+    const itemIDParam = pathname.split("/").pop();
 
     const {
       userID,
@@ -60,7 +60,7 @@ export async function PUT(request: Request) {
 export async function DELETE(request: Request) {
   try {
     const {pathname} = new URL(request.url);
-    const itemIDParam = pathname.split('/').pop();
+    const itemIDParam = pathname.split("/").pop();
 
     await sql`
       DELETE FROM "Item"
