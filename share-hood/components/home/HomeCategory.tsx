@@ -1,6 +1,8 @@
 import CategoryButton from "@components/hood.ui/CategoryButton";
 import Icons from "@components/icons/icons";
 
+import {Button} from "@components/shad.ui/button";
+
 export default function HomeCategory() {
   const allIcons: React.ReactNode[] = [
     Icons.headphones(),
@@ -12,11 +14,11 @@ export default function HomeCategory() {
 
   return (
     <div className="mt-5 flex w-full flex-col space-y-3">
-      <div className="flex justify-between">
-        <p className="text-sm font-semibold">Category</p>
-        <p className="cursor-pointer text-sm font-semibold text-defaultBlue hover:underline">
+      <div className="flex items-center justify-between">
+        <p className="font-semibold">Category</p>
+        <Button variant="link" className="text-sm font-semibold text-defaultBlue">
           More
-        </p>
+        </Button>
       </div>
       <div className="flex justify-center space-x-3">
         {allIcons?.map((icons: React.ReactNode, index: number) => (

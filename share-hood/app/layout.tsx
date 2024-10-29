@@ -3,14 +3,16 @@ import type {Metadata} from "next";
 import {Inter} from "next/font/google";
 import "./globals.css";
 
+import ReactQueryProvider from "@libs/providers/ReactQueryProvider";
+
 const inter = Inter({subsets: ["latin"]});
 
 export const metadata: Metadata = {
-  title: "ShareHood",
-  description: "ShareHood is a digital platform for sharing your goods.",
+  title: "Sharehood",
+  description: "Sharehood is a platform for sharing items",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
@@ -18,7 +20,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <div className="mx-auto max-w-screen-sm">{children}</div>
+        <ReactQueryProvider>
+          <div className="bg-defaultBackground mx-auto min-h-screen max-w-screen-sm">
+            {children}
+          </div>
+        </ReactQueryProvider>
       </body>
     </html>
   );

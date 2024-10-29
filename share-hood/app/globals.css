@@ -27,3 +27,20 @@ body {
     text-wrap: balance;
   }
 }
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+::-webkit-scrollbar {
+  width: 20px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgb(212, 218, 212);
+  background-clip: content-box;
+  border: 5px solid transparent;
+  border-radius: 1.5rem;
+}

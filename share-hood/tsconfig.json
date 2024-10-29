@@ -20,12 +20,12 @@
     "baseUrl": "./",
     "paths": {
       "@components/*": ["components/*"],
-      "@types/*": ["types/*"],
       "@libs/*": ["libs/*"],
       "@service/*": ["service/*"],
       "@views/*": ["views/*"],
       "@prisma/*": ["prisma/*"],
-      "@constant/*": ["constant/*"]
+      "@constant/*": ["constant/*"],
+      "@types/*": ["types/*"]
     }
   },
   "include": [

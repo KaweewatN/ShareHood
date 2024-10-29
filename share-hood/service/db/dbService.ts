@@ -1,4 +1,4 @@
-import {sql} from '@vercel/postgres';
+import {sql} from "@vercel/postgres";
 
 /**
  * Fetch data from a specified table.
@@ -8,16 +8,16 @@ import {sql} from '@vercel/postgres';
 
 export async function QueryAll<T>(query: string): Promise<T[]> {
   if (!query) {
-    throw new Error('Missing required parameter: query');
+    throw new Error("Missing required parameter: query");
   }
   switch (query) {
-    case 'User':
+    case "User":
       const users = await sql<T[]>`SELECT * FROM "User"`;
       return users.rows as T[];
-    case 'Item':
+    case "Item":
       const items = await sql<T[]>`SELECT * FROM "Item"`;
       return items.rows as T[];
-    case 'Notification':
+    case "Notification":
       const notifications = await sql<T[]>`SELECT * FROM "Notification"`;
       return notifications.rows as T[];
     default:

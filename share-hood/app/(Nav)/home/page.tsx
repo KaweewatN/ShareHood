@@ -1,5 +1,7 @@
-import {HomeCarousel} from "@components/home/HomeCarousel";
+import HomeCarousel from "@components/home/HomeCarousel";
 import HomeCategory from "@components/home/HomeCategory";
+import HomeCardPopularContainer from "@components/home/HomeCardPopularContainer";
+import HomeCardRecomConatiner from "@components/home/HomeCardRecomContainer";
 
 export default function Home() {
   return (
@@ -11,6 +13,8 @@ export default function Home() {
         image="/images/home-noti-image.png"
       />
       <HomeCategory />
+      <HomeCardPopularContainer />
+      <HomeCardRecomConatiner />
     </>
   );
 }
