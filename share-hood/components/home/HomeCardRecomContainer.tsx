@@ -1,13 +1,13 @@
 "use client";
 
-import useFetchItems from "@service/hooks/home/useFetchData";
+import useFetchData from "@service/hooks/useFetchData";
 import {ItemType} from "../../types/api/apiType";
 
 import ItemCardLong from "@components/hood.ui/ItemCardLong";
 import ItemCardLongLoading from "@components/skeleton/ItemCardLongLoading";
 
 export default function HomeCardRecomConatiner() {
-  const {data: items, isLoading} = useFetchItems<ItemType[]>({
+  const {data: items, isLoading} = useFetchData<ItemType[]>({
     queryKey: "fetchItems",
     apiPath: "/api/items",
   });

@@ -3,9 +3,9 @@
 import Icons from "@components/icons/icons";
 import Image from "next/image";
 
-import {ItemType} from "../../types/api/apiType";
+import {ItemType, WishlistType} from "../../types/api/apiType";
 
-export default function ItemCardLong(item: ItemType) {
+export default function ItemCardLong(item: ItemType | WishlistType) {
   return (
     <div className="flex w-full space-x-3 rounded-lg border-[1px] p-3 shadow-sm">
       <Image
@@ -20,7 +20,7 @@ export default function ItemCardLong(item: ItemType) {
         <div className="flex space-x-2 text-xs">
           <p className="flex items-center space-x-1 text-defaultBlue">
             <span>{Icons.Users("text-gray-400")}</span>
-            <span>{item.userID}</span>
+            <span>{item.ownerName}</span>
           </p>
           <p className="flex items-center space-x-1 text-defaultBlue">
             <span>{Icons.Tag("text-gray-400")}</span>

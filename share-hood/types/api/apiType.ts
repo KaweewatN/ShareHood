@@ -26,6 +26,7 @@ export interface ItemType {
   itemReturnDuration: string;
   dateAdded: string;
   pickupLocation: string;
+  ownerName: string;
 }
 
 export interface NotificationType {
@@ -34,4 +35,15 @@ export interface NotificationType {
   description: string;
   dateCreated: string;
   status: string;
+}
+
+export interface WishlistType {
+  wishlistID: string;
+  userID: string;
+  itemID: string;
+  dateAdded: string;
+  itemName: string;
+  itemPrice: number;
+  category: string;
+  ownerName: string;
 }

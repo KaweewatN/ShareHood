@@ -5,12 +5,15 @@ import {NextResponse} from "next/server";
 import {StatusCode} from "constants/statusCode";
 import {sql} from "@vercel/postgres";
 import {ItemType} from "../../../types/api/apiType";
-import {QueryAll} from "@service/db/dbService";
 
 export async function GET() {
   try {
-    const data = await QueryAll<ItemType>("Item");
-    return NextResponse.json(data, {status: StatusCode.SUCCESS_OK.code});
+    const data = await sql<
+      ItemType[]
+    >`SELECT i.*, CONCAT(p."firstName", ' ', p."lastName") AS "ownerName" FROM "Item" i 
+    JOIN "User" u ON i."userID" = u."userID" 
+    JOIN "PersonalInfo" p ON u."userID" = p."userID" `;
+    return NextResponse.json(data.rows, {status: StatusCode.SUCCESS_OK.code});
   } catch (error: unknown) {
     return NextResponse.json({error: error as string}, {status: StatusCode.ERROR_NOT_FOUND.code});
   }
