@@ -41,27 +41,25 @@ export default function ItemsList() {
   }, [apiPath, debouncedRefetch]);
 
   return (
-    <div className="min-w-[22rem]">
-      <div className="w-full">
-        <div className="flex items-center space-x-2">
-          <div className="flex-grow">
-            <SearchBar />
-          </div>
-          <div className="flex-none">
-            <button onClick={() => setActiveTab((prev) => !prev)}>
-              <p className="mt-1 text-2xl text-gray-600">{Icons.Filter()}</p>
-            </button>
-          </div>
+    <div className="w-full">
+      <div className="flex items-center space-x-2">
+        <div className="flex-grow">
+          <SearchBar />
         </div>
-        {activeTab ? <BrowseTab refetch={refetch} /> : null}
-        <p className="mt-5">{items?.length} results founded</p>
-        <div className="mt-2 grid grid-cols-2 gap-5">
-          {isLoading
-            ? Array.from({length: 4}).map((_, index) => <ItemCardDefaultLoading key={index} />)
-            : items?.map((item: ItemType, index: number) => (
-                <ItemCardDefault key={index} {...item} />
-              ))}
+        <div className="flex-none">
+          <button onClick={() => setActiveTab((prev) => !prev)}>
+            <p className="mt-1 text-2xl text-gray-600">{Icons.Filter()}</p>
+          </button>
         </div>
+      </div>
+      {activeTab ? <BrowseTab refetch={refetch} /> : null}
+      <p className="mt-5">{items?.length} results founded</p>
+      <div className="mt-2 grid grid-cols-2 gap-5 lg:grid-cols-3">
+        {isLoading
+          ? Array.from({length: 4}).map((_, index) => <ItemCardDefaultLoading key={index} />)
+          : items?.map((item: ItemType, index: number) => (
+              <ItemCardDefault key={index} {...item} />
+            ))}
       </div>
     </div>
   );

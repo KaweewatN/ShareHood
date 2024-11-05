@@ -1,4 +1,4 @@
-// db.js
+// Purpose: Establish a connection to the database.
 import postgres from "postgres";
 
 const connectionString = process.env.SUPABASE_DATABASE_URL;
