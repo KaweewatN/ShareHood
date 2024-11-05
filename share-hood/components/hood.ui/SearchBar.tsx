@@ -2,10 +2,10 @@
 
 import {Input} from "@components/shad.ui/input";
 
-// interface SearchBarProps {
-//   query: string;
-//   setQuery: (query: string) => void;
-//   className?: string;
+// Interface SearchBarProps {
+//   Query: string;
+//   SetQuery: (query: string) => void;
+//   ClassName?: string;
 // }
 
 export default function SearchBar() {
@@ -21,8 +21,8 @@ export default function SearchBar() {
       </svg>
       <Input
         type="text"
-        // value={query}
-        // onChange={(e) => setQuery(e.target.value.replace(/\s+/g, ""))}
+        // Value={query}
+        // OnChange={(e) => setQuery(e.target.value.replace(/\s+/g, ""))}
         placeholder="Search nearby things for rent"
         className="-ml-3 w-full min-w-52 max-w-sm rounded-3xl border-0 border-transparent bg-transparent text-gray-600 ring-0 focus-visible:ring-0 focus-visible:ring-offset-0"
       />
