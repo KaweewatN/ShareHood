@@ -9,7 +9,7 @@ import {EXAMPLE_ITEM_IMAGES} from "constants/pageData";
 export default function ItemCardDefault(item: ItemType) {
   return (
     <div className="flex max-h-56 max-w-48 cursor-pointer flex-col justify-evenly rounded-lg border-[1px] p-3 shadow-sm md:max-h-60 md:max-w-52">
-      <div className="relative min-h-24 w-32 md:min-h-28 md:min-w-32 lg:min-w-36">
+      <div className="relative min-h-24 min-w-32 md:min-h-28 md:min-w-32 lg:min-w-36">
         <Image
           src={item.itemImage ?? EXAMPLE_ITEM_IMAGES}
           alt={item.itemName}
