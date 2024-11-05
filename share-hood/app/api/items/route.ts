@@ -3,8 +3,13 @@ import {NextResponse} from "next/server";
 
 // Files
 import {StatusCode} from "constants/statusCode";
-import {sql} from "@vercel/postgres";
 import {ItemType} from "../../../types/api/apiType";
+
+// DB
+import sql from "@libs/db/db";
+
+//Logger
+import {getLogger} from "@service/logger/logger";
 
 export async function GET(request: Request) {
   const searchParams = new URL(request.url).searchParams.get("tag");
@@ -26,9 +31,13 @@ export async function GET(request: Request) {
 
   try {
     const data = await query;
-    return NextResponse.json(data.rows, {status: StatusCode.SUCCESS_OK.code});
+    getLogger("GET", request.url, "info", `data: ${JSON.stringify(data).replace(/"/g, " ")}`);
+    return NextResponse.json(data, {status: StatusCode.SUCCESS_OK.code});
   } catch (error: unknown) {
-    return NextResponse.json({error: error as string}, {status: StatusCode.ERROR_NOT_FOUND.code});
+    return NextResponse.json(
+      {error: error instanceof Error ? error.message : "An unknown error occurred"},
+      {status: StatusCode.ERROR_BAD_REQUEST.code},
+    );
   }
 }
 
@@ -48,7 +57,7 @@ export async function POST(request: Request) {
       pickupLocation,
     }: ItemType = await request.json();
 
-    const result = await sql`
+    const result = await sql<ItemType[]>`
       INSERT INTO "Item" (
         "itemID",
         "userID",
@@ -76,8 +85,13 @@ export async function POST(request: Request) {
       )
       RETURNING *;
     `;
-    return NextResponse.json(result.rows[0], {status: StatusCode.SUCCESS_OK.code});
+    getLogger("POST", request.url, "info", `result: ${JSON.stringify(result).replace(/"/g, " ")}`);
+
+    return NextResponse.json(result, {status: StatusCode.SUCCESS_OK.code});
   } catch (error: unknown) {
-    return NextResponse.json({error: error as string}, {status: StatusCode.ERROR_BAD_REQUEST.code});
+    return NextResponse.json(
+      {error: error instanceof Error ? error.message : "An unknown error occurred"},
+      {status: StatusCode.ERROR_BAD_REQUEST.code},
+    );
   }
 }

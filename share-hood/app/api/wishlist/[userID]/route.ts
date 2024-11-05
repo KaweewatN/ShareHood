@@ -3,7 +3,12 @@ import {NextResponse} from "next/server";
 
 // Files
 import {StatusCode} from "constants/statusCode";
-import {sql} from "@vercel/postgres";
+
+// DB
+import sql from "@libs/db/db";
+
+// Logger
+import {getLogger} from "@service/logger/logger";
 
 // Types
 import {WishlistType} from "types/api/apiType";
@@ -12,8 +17,14 @@ export async function GET(request: Request) {
   try {
     const url = new URL(request.url);
     const userID = url.pathname.split("/").pop();
+    if (!userID) {
+      return NextResponse.json(
+        {error: "User ID is missing"},
+        {status: StatusCode.ERROR_BAD_REQUEST.code},
+      );
+    }
 
-    const data = await sql<WishlistType>`
+    const data = await sql<WishlistType[]>`
       SELECT w.*, 
              CONCAT(p."firstName", ' ', p."lastName") AS "ownerName",
              i."itemName", 
@@ -25,9 +36,14 @@ export async function GET(request: Request) {
              JOIN "PersonalInfo" p ON u."userID" = p."userID"  
              WHERE w."userID" = ${userID}`;
 
-    return NextResponse.json(data.rows, {status: StatusCode.SUCCESS_OK.code});
+    getLogger("GET", request.url, "info", `data: ${JSON.stringify(data).replace(/"/g, " ")}`);
+
+    return NextResponse.json(data, {status: StatusCode.SUCCESS_OK.code});
   } catch (error: unknown) {
-    return NextResponse.json({error: error as string}, {status: StatusCode.ERROR_NOT_FOUND.code});
+    return NextResponse.json(
+      {error: error instanceof Error ? error.message : "An unknown error occurred"},
+      {status: StatusCode.ERROR_BAD_REQUEST.code},
+    );
   }
 }
 
@@ -35,7 +51,7 @@ export async function POST(request: Request) {
   try {
     const {wishlistID, userID, itemID}: WishlistType = await request.json();
 
-    const result = await sql`
+    const result = await sql<WishlistType[]>`
       INSERT INTO "Wishlist" (
         "wishlistID",
         "userID",
@@ -48,9 +64,14 @@ export async function POST(request: Request) {
         NOW()
       )
     `;
+    getLogger("POST", request.url, "info", `result: ${JSON.stringify(result).replace(/"/g, " ")}`);
+
     return NextResponse.json(result, {status: StatusCode.SUCCESS_CREATED.code});
   } catch (error: unknown) {
-    return NextResponse.json({error: error as string}, {status: StatusCode.ERROR_BAD_REQUEST.code});
+    return NextResponse.json(
+      {error: error instanceof Error ? error.message : "An unknown error occurred"},
+      {status: StatusCode.ERROR_BAD_REQUEST.code},
+    );
   }
 }
 
@@ -60,13 +81,22 @@ export async function DELETE(request: Request) {
     const url = new URL(request.url);
     const userIDUrl = url.pathname.split("/").pop();
 
-    const result = await sql`
+    if (!userIDUrl) {
+      return NextResponse.json(
+        {error: "User ID is missing"},
+        {status: StatusCode.ERROR_BAD_REQUEST.code},
+      );
+    }
+
+    const result = await sql<WishlistType[]>`
       DELETE FROM "Wishlist"
-      WHERE "wishlistID" = ${wishlistID}
-      WHERE "userID" = ${userIDUrl}
+      WHERE "wishlistID" = ${wishlistID} AND "userID" = ${userIDUrl}
     `;
     return NextResponse.json(result, {status: StatusCode.SUCCESS_OK.code});
   } catch (error: unknown) {
-    return NextResponse.json({error: error as string}, {status: StatusCode.ERROR_BAD_REQUEST.code});
+    return NextResponse.json(
+      {error: error instanceof Error ? error.message : "An unknown error occurred"},
+      {status: StatusCode.ERROR_BAD_REQUEST.code},
+    );
   }
 }
