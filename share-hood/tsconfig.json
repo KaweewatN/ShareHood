@@ -26,8 +26,7 @@
       "@prisma/*": ["prisma/*"],
       "@constant/*": ["constant/*"],
       "@types/*": ["types/*"]
-    },
-    "target": "ES2017"
+    }
   },
   "include": [
     "next-env.d.ts",

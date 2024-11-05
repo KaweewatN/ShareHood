@@ -6,7 +6,7 @@ import {ItemType} from "../../types/api/apiType";
 
 export default function ItemCardDefault(item: ItemType) {
   return (
-    <div className="flex max-h-56 max-w-48 flex-col justify-evenly rounded-lg border-[1px] p-3 shadow-sm">
+    <div className="flex max-h-56 max-w-48 cursor-pointer flex-col justify-evenly rounded-lg border-[1px] p-3 shadow-sm">
       <div className="flex object-cover">
         <Image
           src={"/images/example-items.jpg"}

@@ -7,7 +7,7 @@ import {ItemType, WishlistType} from "../../types/api/apiType";
 
 export default function ItemCardLong(item: ItemType | WishlistType) {
   return (
-    <div className="flex w-full space-x-3 rounded-lg border-[1px] p-3 shadow-sm">
+    <div className="flex w-full cursor-pointer space-x-3 rounded-lg border p-3 shadow-sm">
       <Image
         src="/images/example-items.jpg"
         alt="items-image"
