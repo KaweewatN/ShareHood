@@ -2,7 +2,6 @@
 
 import {useRouter} from "next/navigation";
 
-import {ScrollArea} from "@radix-ui/react-scroll-area";
 import CategoryButton from "@components/hood.ui/CategoryButton";
 import {FEATURE_CATEGORIES, CATEGORIES} from "constants/pageData";
 
@@ -31,7 +30,7 @@ export default function BrowseTab({refetch}: BrowseTabProps) {
     <div className="z-50 mt-6 h-full w-full bg-white pb-8">
       <div className="flex flex-col space-y-3 pb-14">
         <p className="ml-5 font-semibold">Featured</p>
-        <ScrollArea className="grid w-full grid-cols-4 gap-y-10 whitespace-nowrap rounded-md border border-none">
+        <div className="grid w-full grid-cols-4 gap-y-10 whitespace-nowrap rounded-md border border-none">
           {FEATURE_CATEGORIES?.map((category, index) => (
             <CategoryButton
               key={index}
@@ -40,11 +39,11 @@ export default function BrowseTab({refetch}: BrowseTabProps) {
               onClick={() => handleClick(category.name)}
             />
           ))}
-        </ScrollArea>
+        </div>
       </div>
       <div className="flex flex-col space-y-3">
         <p className="ml-5 font-semibold">Categories</p>
-        <ScrollArea className="grid w-full grid-cols-4 gap-y-10 whitespace-nowrap rounded-md border border-none">
+        <div className="grid w-full grid-cols-4 gap-y-10 whitespace-nowrap rounded-md border border-none">
           {CATEGORIES?.map((category, index) => (
             <CategoryButton
               key={index}
@@ -53,7 +52,7 @@ export default function BrowseTab({refetch}: BrowseTabProps) {
               onClick={() => handleClick(category.name)}
             />
           ))}
-        </ScrollArea>
+        </div>
       </div>
     </div>
   );

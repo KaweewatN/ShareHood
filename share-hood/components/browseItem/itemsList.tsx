@@ -1,6 +1,8 @@
 "use client";
 
-import {useState} from "react";
+import {useState, useEffect} from "react";
+
+import {debounce} from "@service/functions/debounce";
 
 import useFetchData from "@service/hooks/useFetchData";
 import {ItemType} from "../../types/api/apiType";
@@ -13,10 +15,13 @@ import BrowseTab from "./browseTab";
 import SearchBar from "../hood.ui/SearchBar";
 
 export default function ItemsList() {
-  const searchParams = new URLSearchParams(window.location.search);
+  const [activeTab, setActiveTab] = useState<boolean>(false);
 
-  const tag = searchParams.get("tag");
-  const apiPath = tag ? `/api/items?tag=${tag}` : "/api/items";
+  const searchParams =
+    typeof window !== "undefined" ? new URLSearchParams(window.location.search) : null;
+
+  const tag = searchParams ? searchParams.get("tag") : null;
+  const apiPath: string = tag ? `/api/items?tag=${tag}` : "/api/items";
 
   const {
     data: items,
@@ -27,7 +32,13 @@ export default function ItemsList() {
     apiPath,
   });
 
-  const [activeTab, setActiveTab] = useState<boolean>(false);
+  const debouncedRefetch = debounce(() => {
+    refetch();
+  }, 15);
+
+  useEffect(() => {
+    debouncedRefetch();
+  }, [apiPath, debouncedRefetch]);
 
   return (
     <div className="min-w-[22rem]">
