@@ -20,7 +20,7 @@ export default function ItemCardDefault(item: ItemType) {
       <div className="flex space-x-2 text-xs">
         <p className="flex items-center space-x-1 text-defaultBlue">
           <span>{Icons.Users("text-gray-400")}</span>
-          <span>{item.userID}</span>
+          <span>{item.ownerName}</span>
         </p>
         <p className="flex items-center space-x-1 text-defaultBlue">
           <span>{Icons.Tag("text-gray-400")}</span>

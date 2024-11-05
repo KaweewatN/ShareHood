@@ -1,6 +1,6 @@
 "use client";
 
-import useFetchItems from "@service/hooks/home/useFetchData";
+import useFetchData from "@service/hooks/useFetchData";
 import {ItemType} from "../../types/api/apiType";
 
 import "slick-carousel/slick/slick.css";
@@ -9,7 +9,7 @@ import ItemCardDefault from "@components/hood.ui/ItemCardDefault";
 import ItemCardDefaultLoading from "@components/skeleton/ItemCardDefaultLoading";
 
 export default function HomeCardContainer() {
-  const {data: items = [], isLoading} = useFetchItems<ItemType[]>({
+  const {data: items = [], isLoading} = useFetchData<ItemType[]>({
     queryKey: "fetchItems",
     apiPath: "/api/items",
   });
