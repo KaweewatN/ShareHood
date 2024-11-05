@@ -17,6 +17,9 @@ const config: Config = {
         defaultBlue: "#007AFF",
         defaultGrayBorder: "#EBF0FF",
       },
+      fontSize: {
+        tiny: ".65rem",
+      },
     },
   },
   plugins: [],

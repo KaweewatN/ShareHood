@@ -1,6 +1,6 @@
 import WishListContainer from "@components/wishlist/WishlistContainer";
 
-export default function WistList() {
+export default async function WistList() {
   return (
     <>
       <WishListContainer />

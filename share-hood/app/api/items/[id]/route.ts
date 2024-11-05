@@ -7,7 +7,7 @@ export async function GET(request: Request) {
   try {
     const {pathname} = new URL(request.url);
     const itemIDParam = pathname.split("/").pop();
-    const data = await sql`
+    const data = await sql<ItemType[]>`
       SELECT * FROM "Item" WHERE "itemID" = ${itemIDParam};
     `;
     return NextResponse.json(data.rows, {status: StatusCode.SUCCESS_OK.code});

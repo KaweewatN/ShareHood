@@ -1,17 +1,8 @@
 import CategoryButton from "@components/hood.ui/CategoryButton";
-import Icons from "@components/icons/icons";
-
+import {HOME_CATEGORIES} from "../../constants/pageData";
 import {Button} from "@components/shad.ui/button";
 
 export default function HomeCategory() {
-  const allIcons: React.ReactNode[] = [
-    Icons.headphones(),
-    Icons.Cloth(),
-    Icons.Subscription(),
-    Icons.Car(),
-    Icons.Shoes(),
-  ];
-
   return (
     <div className="mt-5 flex w-full flex-col space-y-3">
       <div className="flex items-center justify-between">
@@ -20,9 +11,9 @@ export default function HomeCategory() {
           More
         </Button>
       </div>
-      <div className="flex justify-center space-x-3">
-        {allIcons?.map((icons: React.ReactNode, index: number) => (
-          <CategoryButton icons={icons} key={index} />
+      <div className="flex justify-center space-x-7 pb-5">
+        {HOME_CATEGORIES?.map(({name, icon}, index: number) => (
+          <CategoryButton icons={icon} name={name} key={index} />
         ))}
       </div>
     </div>
