@@ -15,8 +15,9 @@ import {WishlistType} from "types/api/apiType";
 
 export async function GET(request: Request) {
   try {
-    const url = new URL(request.url);
-    const userID = url.pathname.split("/").pop();
+    // const url = new URL(request.url);
+    // Const userID = url.pathname.split("/").pop();
+    const userID = "d33b09e0-6bf7-4f66-be1d-a8fe059ff9e2";
     if (!userID) {
       return NextResponse.json(
         {error: "User ID is missing"},

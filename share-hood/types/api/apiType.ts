@@ -26,6 +26,7 @@ export interface ItemType {
   itemReturnDuration: string;
   dateAdded: string;
   pickupLocation: string;
+  itemImage: string;
   ownerName: string;
 }
 
