@@ -11,7 +11,10 @@ export const HOME_CATEGORIES: Array<{
   {name: "Shoes", icon: Icons.Shoes()},
 ];
 
-export const FEATURE_CATEGORIES = [
+export const FEATURE_CATEGORIES: Array<{
+  name: string;
+  icon: JSX.Element;
+}> = [
   {name: "Gadgets", icon: Icons.Mobile()},
   {name: "Clothes", icon: Icons.Tshirt()},
   {name: "Costumes", icon: Icons.Tie()},
@@ -22,4 +25,9 @@ export const FEATURE_CATEGORIES = [
   {name: "Automotive", icon: Icons.Car()},
 ];
 
-export const CATEGORIES = [{name: "Photography", icon: Icons.Camera()}];
+export const CATEGORIES: Array<{
+  name: string;
+  icon: JSX.Element;
+}> = [{name: "Photography", icon: Icons.Camera()}];
+
+export const EXAMPLE_ITEM_IMAGES: string = "/images/example-items.jpg";

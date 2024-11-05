@@ -44,6 +44,7 @@ export async function PUT(request: Request) {
       itemReturnDuration,
       dateAdded,
       pickupLocation,
+      itemImage,
     }: ItemType = await request.json();
 
     if (!itemIDParam) {
@@ -66,7 +67,8 @@ export async function PUT(request: Request) {
           "itemReturnDuration" = ${itemReturnDuration},
           "dateAdded" = ${dateAdded},
           "pickupLocation" = ${pickupLocation}
-        WHERE "itemID" = ${itemIDParam}
+          "itemImage" = ${itemImage}
+          WHERE "itemID" = ${itemIDParam}
       `;
 
     getLogger("PUT", request.url, "info", `data: ${JSON.stringify(data).replace(/"/g, " ")}`);

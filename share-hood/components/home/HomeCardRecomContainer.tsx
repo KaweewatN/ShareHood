@@ -8,7 +8,7 @@ import ItemCardLongLoading from "@components/skeleton/ItemCardLongLoading";
 
 export default function HomeCardRecomConatiner() {
   const {data: items, isLoading} = useFetchData<ItemType[]>({
-    queryKey: "fetchItems",
+    queryKey: "fetchItemsRecommended",
     apiPath: "/api/items",
   });
 

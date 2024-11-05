@@ -55,6 +55,7 @@ export async function POST(request: Request) {
       itemReturnDuration,
       dateAdded,
       pickupLocation,
+      itemImage,
     }: ItemType = await request.json();
 
     const result = await sql<ItemType[]>`
@@ -70,6 +71,7 @@ export async function POST(request: Request) {
         "itemReturnDuration",
         "dateAdded",
         "pickupLocation"
+        "ItemImage"
       ) VALUES (
         ${itemID},
         ${userID},
@@ -82,6 +84,7 @@ export async function POST(request: Request) {
         ${itemReturnDuration},
         ${dateAdded},
         ${pickupLocation}
+        ${itemImage}
       )
       RETURNING *;
     `;

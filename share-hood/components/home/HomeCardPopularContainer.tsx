@@ -9,8 +9,8 @@ import ItemCardDefault from "@components/hood.ui/ItemCardDefault";
 import ItemCardDefaultLoading from "@components/skeleton/ItemCardDefaultLoading";
 
 export default function HomeCardContainer() {
-  const {data: items = [], isLoading} = useFetchData<ItemType[]>({
-    queryKey: "fetchItems",
+  const {data: items, isLoading} = useFetchData<ItemType[]>({
+    queryKey: "fetchItemsPopular",
     apiPath: "/api/items",
   });
 
