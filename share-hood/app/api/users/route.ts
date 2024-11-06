@@ -3,7 +3,7 @@ import {NextResponse} from "next/server";
 
 // Files
 import {StatusCode} from "constants/statusCode";
-import {UserType} from "../../../types/api/apiType";
+import {UserType} from "../../../types/apiType";
 
 // DB
 import sql from "@libs/db/db";

@@ -11,7 +11,7 @@ import sql from "@libs/db/db";
 import {getLogger} from "@service/logger/logger";
 
 // Types
-import {WishlistType} from "types/api/apiType";
+import {WishlistType} from "../../../../types/apiType";
 
 export async function GET(request: Request) {
   try {

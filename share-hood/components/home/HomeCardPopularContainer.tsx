@@ -1,7 +1,7 @@
 "use client";
 
 import useFetchData from "@service/hooks/useFetchData";
-import {ItemType} from "../../types/api/apiType";
+import {ItemType} from "../../types/apiType";
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";

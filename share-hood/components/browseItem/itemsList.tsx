@@ -5,7 +5,7 @@ import {useState, useEffect} from "react";
 import {debounce} from "@service/functions/debounce";
 
 import useFetchData from "@service/hooks/useFetchData";
-import {ItemType} from "../../types/api/apiType";
+import {ItemType} from "../../types/apiType";
 
 import Icons from "@components/icons/icons";
 

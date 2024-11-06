@@ -4,7 +4,7 @@
 import useFetchData from "@service/hooks/useFetchData";
 
 // Types
-import {WishlistType} from "../../types/api/apiType";
+import {WishlistType} from "../../types/apiType";
 
 // Components
 import ItemCardLong from "@components/hood.ui/ItemCardLong";

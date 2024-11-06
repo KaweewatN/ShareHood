@@ -3,7 +3,7 @@ import {NextResponse} from "next/server";
 
 // Files
 import {StatusCode} from "constants/statusCode";
-import {NotificationType} from "../../../types/api/apiType";
+import {NotificationType} from "../../../types/apiType";
 
 // DB
 import sql from "@libs/db/db";
@@ -43,7 +43,7 @@ export async function POST(request: Request) {
           ${status}
         )
       `;
-    getLogger("GET", request.url, "info", `data: ${JSON.stringify(data).replace(/"/g, " ")}`);
+    getLogger("POST", request.url, "info", `data: ${JSON.stringify(data).replace(/"/g, " ")}`);
 
     return NextResponse.json("Insert Notiication succeed", {status: StatusCode.SUCCESS_OK.code});
   } catch (error: unknown) {

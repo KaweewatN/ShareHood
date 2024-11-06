@@ -1,7 +1,7 @@
 "use client";
 
 import useFetchData from "@service/hooks/useFetchData";
-import {ItemType} from "../../types/api/apiType";
+import {ItemType} from "../../types/apiType";
 
 import ItemCardLong from "@components/hood.ui/ItemCardLong";
 import ItemCardLongLoading from "@components/skeleton/ItemCardLongLoading";

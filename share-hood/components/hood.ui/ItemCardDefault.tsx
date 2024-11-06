@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Icons from "@components/icons/icons";
-import {ItemType} from "../../types/api/apiType";
+import {ItemType} from "../../types/apiType";
 
 import {EXAMPLE_ITEM_IMAGES} from "constants/pageData";
 

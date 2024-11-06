@@ -5,7 +5,7 @@ import Image from "next/image";
 
 import {EXAMPLE_ITEM_IMAGES} from "constants/pageData";
 
-import {ItemType, WishlistType} from "../../types/api/apiType";
+import {ItemType, WishlistType} from "../../types/apiType";
 
 export default function ItemCardLong(item: ItemType | WishlistType) {
   return (

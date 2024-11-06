@@ -1,7 +1,7 @@
 import {NextResponse} from "next/server";
 import {StatusCode} from "constants/statusCode";
 import sql from "@libs/db/db";
-import {ItemType} from "../../../../types/api/apiType";
+import {ItemType} from "../../../../types/apiType";
 import {getLogger} from "@service/logger/logger";
 
 export async function GET(request: Request) {

@@ -1,7 +1,7 @@
 import z from "zod";
 
-import {USER} from "../../constants/constVariable";
-import {ITEM_STATUS} from "../../constants/constVariable";
+import {USER} from "../constants/constVariable";
+import {ITEM_STATUS} from "../constants/constVariable";
 
 type ItemStatusType = z.infer<typeof ITEM_STATUS>;
 type UserRole = z.infer<typeof USER>;

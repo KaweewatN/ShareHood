@@ -1,11 +1,14 @@
 import {useQuery, UseQueryResult} from "@tanstack/react-query";
 import {fetchData} from "@service/api-service/fetchData";
-import {UseFetchDataProps} from "../../types/hookType";
+import {UseFetchDataCustomProps} from "../../types/hookType";
 
 const useFetchData = <T,>({
   queryKey,
   apiPath,
-}: Omit<UseFetchDataProps<T>, "data">): UseQueryResult<T> => {
+  staleTime,
+  gcTime,
+  refetchOnWindowFocus,
+}: Omit<UseFetchDataCustomProps<T>, "data">): UseQueryResult<T> => {
   return useQuery<T>({
     queryKey: [queryKey],
     queryFn: async () => {
@@ -14,10 +17,12 @@ const useFetchData = <T,>({
         return data;
       } catch (error) {
         console.error("Error fetching data:", error);
-        throw error; // Re-throw to let TanStack Query handle the error state
+        throw error;
       }
     },
-    refetchOnWindowFocus: true,
+    staleTime: staleTime,
+    gcTime: gcTime,
+    refetchOnWindowFocus: refetchOnWindowFocus,
   });
 };
 
