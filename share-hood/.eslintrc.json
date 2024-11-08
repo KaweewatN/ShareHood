@@ -62,6 +62,7 @@
     "@typescript-eslint/no-unused-vars": ["error", {"argsIgnorePattern": "^_"}],
     "no-unused-vars": "error",
     "jsx-a11y/heading-has-content": "off",
+    "jsx-a11y/click-events-have-key-events": "off",
     "padding-line-between-statements": [
       "error",
       {
@@ -82,5 +83,6 @@
     // Not need for React with Next.js
     "react/react-in-jsx-scope": "off",
     "no-duplicate-imports": "error"
-  }
+  },
+  "ignorePatterns": ["src/service/logger/logger.ts"]
 }
