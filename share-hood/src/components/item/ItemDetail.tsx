@@ -2,10 +2,14 @@
 
 import Image from "next/image";
 import useFetchDataCustom from "@service/hooks/useFetchDataCustom";
-import {ItemType} from "../../types/apiType";
+import {ItemType, ReviewType} from "../../types/apiType";
 import Icons from "@components/icons/icons";
 import BackButton from "@components/hood.ui/BackButton";
 import DefaultButton from "@components/hood.ui/DefaultButton";
+import PickupCard from "./PickupCard";
+import DeliveryCard from "./DeliveryCard";
+import {Avatar, AvatarFallback, AvatarImage} from "@components/shad.ui/avatar";
+import {convertToDate} from "@service/functions/convertToDate";
 
 export default function ItemDetail({itemId}: {itemId: string}) {
   const {
@@ -42,7 +46,7 @@ export default function ItemDetail({itemId}: {itemId: string}) {
           className="rounded-lg"
         />
       </div>
-      <div className="w-full space-y-3 px-2">
+      <div className="w-full space-y-4 px-2">
         <div className="flex w-full items-center justify-between">
           <p className="text-semibold text-lg">{itemDetail.itemName}</p>
           <p className="inline-flex">
@@ -50,7 +54,6 @@ export default function ItemDetail({itemId}: {itemId: string}) {
             <span className="text-black">&nbsp;/ Day</span>
           </p>
         </div>
-        <p className="text-gray-600">{itemDetail.itemDescription}</p>
         <p className="inline-flex items-baseline space-x-1">
           <span className="text-gray-500">{Icons?.Users()}</span>
           <span className="text-defaultBlue">{itemDetail.ownerName}</span>
@@ -58,10 +61,42 @@ export default function ItemDetail({itemId}: {itemId: string}) {
         <hr />
         <p className="text-sm text-gray-600">{itemDetail.itemDescription}</p>
         <hr />
-        <DefaultButton label="Order Now" />
-        <div className="mt-4">
+
+        <h3 className="text-lg font-semibold">Pickup</h3>
+        <div className="flex space-x-3">
+          <DeliveryCard price={39} />
+          <PickupCard
+            pickupLocation={itemDetail.pickupLocation || null}
+            pickupDate={itemDetail.pickupDate || undefined}
+          />
+        </div>
+        <div className="pt-3">
+          <DefaultButton label="Order now" />
+        </div>
+        <div className="pt-2">
           <h3 className="text-lg font-semibold">Reviews</h3>
         </div>
+        {itemDetail.reviews?.map((review: ReviewType, index: number) => (
+          <div key={index} className="flex w-full flex-col justify-between">
+            <div className="flex space-x-2">
+              <div className="relative max-w-fit">
+                <Avatar>
+                  <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
+                  <AvatarFallback>CN</AvatarFallback>
+                </Avatar>
+                <p className="absolute right-0 top-6 rounded-xl bg-yellow-400 px-1 py-[1px] text-xs text-white">
+                  {review?.reviewRating}
+                </p>
+              </div>
+
+              <div>
+                <p>{review?.users?.reviewerName}</p>
+                <p className="text-xs text-gray-600">{convertToDate(review?.dateCreated)}</p>
+              </div>
+            </div>
+            <p className="mx-5 mt-2 text-sm text-gray-500">{review?.reviewComment}</p>
+          </div>
+        ))}
       </div>
     </div>
   );

@@ -15,11 +15,13 @@ export interface UserType {
 
 export interface ReviewType {
   reviewID: string;
-  userID: string;
-  itemID: string;
-  reviewRating: string;
-  reviewComment: number;
-  dateAdded: string;
+  reviewRating: number;
+  reviewComment: string;
+  dateCreated: string;
+  users: {
+    userID: string;
+    reviewerName: string;
+  };
 }
 
 export interface ItemTypeInitial {
@@ -33,12 +35,15 @@ export interface ItemTypeInitial {
   category: string;
   itemReturnDuration: string;
   dateAdded: string;
-  pickupLocation: string;
+  pickupLocation?: string;
+  pickupDate?: string;
   itemImage?: string;
   ownerName: string;
   reviewID: string;
   reviewRating: string;
   reviewComment: number;
+  reviewerUserID?: string;
+  reviewerName?: string;
 }
 
 export interface ItemType {
@@ -52,10 +57,11 @@ export interface ItemType {
   category: string;
   itemReturnDuration: string;
   dateAdded: string;
-  pickupLocation: string;
+  pickupLocation?: string;
+  pickupDate?: string;
   itemImage: string;
   ownerName: string;
-  reviewID?: ReviewType[];
+  reviews?: ReviewType[];
 }
 
 export interface NotificationType {

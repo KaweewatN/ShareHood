@@ -55,6 +55,7 @@ export async function POST(request: Request) {
       itemReturnDuration,
       dateAdded,
       pickupLocation,
+      pickupDate,
       itemImage,
     }: ItemType = await request.json();
 
@@ -71,6 +72,7 @@ export async function POST(request: Request) {
         "itemReturnDuration",
         "dateAdded",
         "pickupLocation"
+        "pickUpDate",
         "ItemImage"
       ) VALUES (
         ${itemID},
@@ -83,7 +85,8 @@ export async function POST(request: Request) {
         ${category},
         ${itemReturnDuration},
         ${dateAdded},
-        ${pickupLocation}
+        ${pickupLocation ?? null}
+        ${pickupDate ?? null}
         ${itemImage ?? null}
       )
       RETURNING *;

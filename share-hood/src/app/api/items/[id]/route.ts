@@ -18,11 +18,14 @@ export async function GET(request: Request) {
 
     const data = await sql<ItemTypeInitial[]>`
       SELECT i.*, CONCAT(p."firstName", ' ', p."lastName") AS "ownerName",
-             r."reviewID", r."reviewRating", r."reviewComment"
+             r."reviewID", r."reviewRating", r."reviewComment",
+             u2."userID" AS "reviewerUserID", CONCAT(p2."firstName", ' ', p2."lastName") AS "reviewerName"
       FROM "Item" i
       JOIN "User" u ON i."userID" = u."userID"
       JOIN "PersonalInfo" p ON u."userID" = p."userID"
       LEFT JOIN "Review" r ON i."itemID" = r."itemID"
+      LEFT JOIN "User" u2 ON r."userID" = u2."userID"
+      LEFT JOIN "PersonalInfo" p2 ON u2."userID" = p2."userID"
       WHERE i."itemID" = ${itemIDParam}`;
 
     if (data.length === 0) {
@@ -39,6 +42,10 @@ export async function GET(request: Request) {
           reviewID: row.reviewID,
           reviewRating: row.reviewRating,
           reviewComment: row.reviewComment,
+          dateCreated: row.dateAdded,
+          users: row.reviewerUserID
+            ? {userID: row.reviewerUserID, reviewerName: row.reviewerName}
+            : null,
         }))
         .filter((review) => review.reviewID),
     };
@@ -70,6 +77,7 @@ export async function PUT(request: Request) {
       itemReturnDuration,
       dateAdded,
       pickupLocation,
+      pickupDate,
       itemImage,
     }: ItemTypeInitial = await request.json();
 
@@ -91,8 +99,9 @@ export async function PUT(request: Request) {
           "category" = ${category},
           "itemReturnDuration" = ${itemReturnDuration},
           "dateAdded" = ${dateAdded},
-          "pickupLocation" = ${pickupLocation},
-          "itemImage" = ${itemImage ?? ""}
+          "pickupLocation" = ${pickupLocation ?? null},
+          "pickUpDate" = ${pickupDate ?? null},
+          "itemImage" = ${itemImage ?? null}
       WHERE "itemID" = ${itemIDParam}
       RETURNING *`;
 
