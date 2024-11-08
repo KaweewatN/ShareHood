@@ -19,13 +19,13 @@
     ],
     "baseUrl": "./",
     "paths": {
-      "@components/*": ["components/*"],
-      "@libs/*": ["libs/*"],
-      "@service/*": ["service/*"],
-      "@views/*": ["views/*"],
-      "@prisma/*": ["prisma/*"],
-      "@constant/*": ["constant/*"],
-      "@types/*": ["types/*"]
+      "@components/*": ["src/components/*"],
+      "@libs/*": ["src/libs/*"],
+      "@service/*": ["src/service/*"],
+      "@views/*": ["src/views/*"],
+      "@prisma/*": ["src/prisma/*"],
+      "@constant/*": ["src/constant/*"],
+      "@types/*": ["src/types/*"]
     },
     "target": "ES2017"
   },
