@@ -11,7 +11,7 @@ export default function Menubar() {
   const pathname: string = usePathname();
 
   return (
-    <nav className="fixed bottom-0 left-0 z-50 w-full">
+    <nav className="fixed bottom-0 left-1/2 z-50 w-full max-w-screen-sm -translate-x-1/2 transform">
       <ul className="flex w-full items-center justify-around bg-white p-5">
         <li>
           <Link
