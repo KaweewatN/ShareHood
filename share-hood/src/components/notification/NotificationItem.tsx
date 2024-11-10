@@ -1,7 +1,7 @@
 "use client";
 
-import React from 'react';
-import { IconType } from 'react-icons'; // Import the icon library of choice (e.g., react-icons)
+import React from "react";
+import {IconType} from "react-icons"; // Import the icon library of choice (e.g., react-icons)
 
 interface NotificationItemProps {
   icon: IconType;
@@ -10,9 +10,14 @@ interface NotificationItemProps {
   timestamp: string;
 }
 
-const NotificationItem: React.FC<NotificationItemProps> = ({ icon: Icon, title, message, timestamp }) => {
+const NotificationItem: React.FC<NotificationItemProps> = ({
+  icon: Icon,
+  title,
+  message,
+  timestamp,
+}) => {
   return (
-    <div className="flex items-start space-x-4 p-4 border-b border-gray-200">
+    <div className="flex items-start space-x-4 border-b border-gray-200 p-4">
       <Icon className="text-yellow-500" size={24} />
       <div className="flex-1">
         <h4 className="text-sm font-semibold">{title}</h4>
