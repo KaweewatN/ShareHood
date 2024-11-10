@@ -1,8 +1,8 @@
 "use client";
 
-import React from 'react';
-import NotificationItem from './NotificationItem';
-import { FaBell, FaBox, FaComment } from 'react-icons/fa';
+import React from "react";
+import NotificationItem from "./NotificationItem";
+import {FaBell, FaBox, FaComment} from "react-icons/fa";
 
 const NotificationList: React.FC = () => {
   return (
