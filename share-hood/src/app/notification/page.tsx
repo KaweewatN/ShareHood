@@ -1,19 +1,8 @@
-import React from "react";
-import NotificationItem from "../../components/notification/NotificationItem";
+import React from 'react';
+import NotificationPage from './notifications/NotificationPage';
 
-import {FaBell} from "react-icons/fa";
-
-const NotificationPage: React.FC = () => {
-  return (
-    <div>
-      <NotificationItem
-        icon={FaBell}
-        title="Sample Title"
-        message="Sample Message"
-        timestamp="Just now"
-      />
-    </div>
-  );
+const Page: React.FC = () => {
+  return <NotificationPage />;
 };
 
-export default NotificationPage;
+export default Page;
