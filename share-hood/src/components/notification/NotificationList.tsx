@@ -1,15 +1,15 @@
 "use client";
 
-import React from 'react';
-import NotificationItem from './NotificationItem';
-import { FaBell, FaBox, FaComment } from 'react-icons/fa';
+import React from "react";
+import NotificationItem from "./NotificationItem";
+import {FaBell, FaBox, FaComment} from "react-icons/fa";
 
 const NotificationList: React.FC = () => {
   return (
-    <div className="space-y-6 mt-4">
+    <div className="mt-4 space-y-6">
       {/* Today Section */}
       <div>
-        <h3 className="text-lg font-semibold text-gray-800 mb-2">Today</h3>
+        <h3 className="mb-2 text-lg font-semibold text-gray-800">Today</h3>
         <NotificationItem
           icon={FaBell}
           title="Your item ‘GoPro Camera’ was successfully borrowed!"
@@ -17,7 +17,7 @@ const NotificationList: React.FC = () => {
           timestamp="10m ago"
           type="alert"
         />
-        <div className="border-t border-gray-200 my-2"></div> {/* Divider */}
+        <div className="my-2 border-t border-gray-200"></div> {/* Divider */}
         <NotificationItem
           icon={FaBox}
           title="Item Pickup Scheduled"
@@ -29,7 +29,7 @@ const NotificationList: React.FC = () => {
 
       {/* Yesterday Section */}
       <div>
-        <h3 className="text-lg font-semibold text-gray-800 mb-2">Yesterday</h3>
+        <h3 className="mb-2 text-lg font-semibold text-gray-800">Yesterday</h3>
         <NotificationItem
           icon={FaComment}
           title="New Message from Lisa"
