@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import Image from "next/image";
 
@@ -5,13 +7,13 @@ const LatestReview: React.FC = () => {
   return (
     <div className="mt-4 rounded-lg border p-4 shadow-sm">
       <h3 className="text-lg font-semibold">Latest Review</h3>
-      <div className="flex items-center mt-4">
+      <div className="mt-4 flex items-center">
         <Image
           src="/images/Default-LINE-moon.JPG" // Correct path and extension
           alt="Reviewer"
           width={40}
           height={40}
-          className="w-10 h-10 rounded-full"
+          className="h-10 w-10 rounded-full"
         />
         <div className="ml-4">
           <h4 className="text-base font-semibold">Nunthaphak Boripunt</h4>
