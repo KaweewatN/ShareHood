@@ -12,7 +12,6 @@ export interface UserType {
   role: UserRole;
   verified: boolean;
 }
-
 export interface ReviewType {
   reviewID: string;
   reviewRating: number;
@@ -21,6 +20,7 @@ export interface ReviewType {
   users: {
     userID: string;
     reviewerName: string;
+    reviewerImage?: string; // Optional image path for reviewer
   };
 }
 
