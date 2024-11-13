@@ -1,44 +1,45 @@
 "use client";
 
 import React from "react";
-import {IconType} from "react-icons";
+
+// icons
+import Icons from "@components/icons/icons";
+
+// functions
+import {convertToDate} from "@service/functions/convertToDate";
 
 interface NotificationItemProps {
-  icon: IconType;
   title: string;
   message: string;
   timestamp: string;
   type: "alert" | "update" | "message"; // Define types for different colors
 }
 
-const NotificationItem: React.FC<NotificationItemProps> = ({
-  icon: Icon,
-  title,
-  message,
-  timestamp,
-  type,
-}) => {
+function NotificationItem({title, message, timestamp, type}: NotificationItemProps) {
   // Determine styles based on the notification type
   const typeStyles = {
     alert: {
       bg: "bg-yellow-100",
-      icon: "text-yellow-500",
+      text: "text-yellow-500",
+      icon: Icons.Bell(),
     },
     update: {
       bg: "bg-blue-100",
-      icon: "text-blue-500",
+      text: "text-blue-500",
+      icon: Icons.Box(),
     },
     message: {
       bg: "bg-green-100",
-      icon: "text-green-500",
+      text: "text-green-500",
+      icon: Icons.Message(),
     },
   };
 
   return (
-    <div className="flex items-start space-x-4 px-4 py-2">
+    <div className="flex items-start space-x-4 p-2">
       {/* Icon with dynamic color and background */}
       <div className={`flex-shrink-0 ${typeStyles[type].bg} rounded-full p-2`}>
-        <Icon className={`${typeStyles[type].icon}`} size={24} />
+        <div className={`${typeStyles[type].text}`}>{typeStyles[type].icon}</div>
       </div>
 
       {/* Text Content */}
@@ -48,9 +49,9 @@ const NotificationItem: React.FC<NotificationItemProps> = ({
       </div>
 
       {/* Timestamp */}
-      <span className="text-xs text-gray-400">{timestamp}</span>
+      <span className="text-xs text-gray-400">{convertToDate(timestamp)}</span>
     </div>
   );
-};
+}
 
 export default NotificationItem;

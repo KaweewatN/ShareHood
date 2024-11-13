@@ -2,44 +2,43 @@
 
 import React from "react";
 import NotificationItem from "./NotificationItem";
-import {FaBell, FaBox, FaComment} from "react-icons/fa";
+import useFetchData from "@service/hooks/useFetchData";
+import {NotificationType} from "src/types/apiType";
 
-const NotificationList: React.FC = () => {
+function NotificationList() {
+  const {data: NotiData, isLoading} = useFetchData<NotificationType[]>({
+    queryKey: "fetch-notifications",
+    apiPath: "api/notifications",
+  });
+
   return (
-    <div className="mt-4 space-y-6">
-      {/* Today Section */}
-      <div>
-        <h3 className="mb-2 text-lg font-semibold text-gray-800">Today</h3>
-        <NotificationItem
-          icon={FaBell}
-          title="Your item ‘GoPro Camera’ was successfully borrowed!"
-          message="John Doe has picked up the item. Your payment is held in escrow until return."
-          timestamp="10m ago"
-          type="alert"
-        />
-        <div className="my-2 border-t border-gray-200"></div> {/* Divider */}
-        <NotificationItem
-          icon={FaBox}
-          title="Item Pickup Scheduled"
-          message="Your pickup for ‘Camping Tent’ is scheduled for tomorrow at 10 AM."
-          timestamp="20m ago"
-          type="update"
-        />
-      </div>
-
-      {/* Yesterday Section */}
-      <div>
-        <h3 className="mb-2 text-lg font-semibold text-gray-800">Yesterday</h3>
-        <NotificationItem
-          icon={FaComment}
-          title="New Message from Lisa"
-          message="Lisa: Can I extend the rental period for the ‘GoPro Camera’?"
-          timestamp="1d ago"
-          type="message"
-        />
-      </div>
-    </div>
+    <>
+      {isLoading ? (
+        <div className="w-full pt-10">
+          <p>Loading..</p>
+        </div>
+      ) : (
+        <div className="mt-8 flex flex-col items-start space-y-5">
+          <div>
+            {NotiData?.map((noti: any) => (
+              <>
+                <NotificationItem
+                  key={noti.notificationID}
+                  title={noti.notificationHeader}
+                  message={noti.notificationDetails}
+                  timestamp={noti.notificationTimestamp}
+                  type={noti.notificationType}
+                />
+                {NotiData.indexOf(noti) !== NotiData.length - 1 && (
+                  <hr className="mb-2 border-gray-200" />
+                )}
+              </>
+            ))}
+          </div>
+        </div>
+      )}
+    </>
   );
-};
+}
 
 export default NotificationList;

@@ -1,21 +1,22 @@
 "use client";
 
-import React from 'react';
-import NotificationList from './NotificationList';
+import React from "react";
+import NotificationList from "./NotificationList";
+import BackButton from "@components/hood.ui/BackButton";
 
-const NotificationPage: React.FC = () => {
+function NotificationPage() {
   return (
-    <div className="max-w-md mx-auto p-4">
+    <div className="px-5 py-10">
       {/* Header */}
-      <header className="relative flex items-center justify-center mb-4">
-        <button className="absolute left-0 text-gray-600 text-lg">&larr;</button>
-        <h1 className="text-xl font-bold text-gray-800">Notifications</h1>
+      <header className="relative w-full">
+        <BackButton path="/home" className="absolute -top-1" />
+        <h1 className="text-center text-xl font-bold text-gray-800">Notifications</h1>
       </header>
 
       {/* Notification List */}
       <NotificationList />
     </div>
   );
-};
+}
 
 export default NotificationPage;
