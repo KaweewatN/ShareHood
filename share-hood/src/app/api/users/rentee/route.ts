@@ -3,24 +3,15 @@ import {StatusCode} from "src/constants/statusCode";
 import sql from "src/libs/db/db";
 import {getLogger} from "@service/logger/logger";
 import {v4 as uuidv4} from "uuid";
+import bcrypt from "bcrypt";
+import {SALTROUNDS} from "src/constants/constVariable";
 
 export async function POST(request: Request) {
   try {
     const {password, email, emailVerified, firstName, lastName, phone, dateOfBirth} =
       await request.json();
     const userID = uuidv4();
-
-    // Log the received values for debugging
-    getLogger("GET", "/api/users/rentee", "info", {
-      userID,
-      password,
-      email,
-      emailVerified,
-      firstName,
-      lastName,
-      phone,
-      dateOfBirth,
-    });
+    const hashedPassword = await bcrypt.hash(password, SALTROUNDS);
 
     if (!userID || !password || !email || !firstName || !lastName || !phone || !dateOfBirth) {
       return NextResponse.json(
@@ -38,7 +29,7 @@ export async function POST(request: Request) {
           "emailVerified"
         ) VALUES (
           ${userID},
-          ${password},
+          ${hashedPassword},
           ${email},
           'Rentee',
           ${emailVerified}
@@ -65,7 +56,9 @@ export async function POST(request: Request) {
       return {user: userInsert[0], personalInfo: personalInfoInsert[0]};
     });
 
-    return NextResponse.json(`Insert succeed ${result}`, {status: StatusCode.SUCCESS_OK.code});
+    return NextResponse.json(result, {
+      status: StatusCode.SUCCESS_OK.code,
+    });
   } catch (error) {
     getLogger("POST", "/api/users/rentee", "error", {
       error: error instanceof Error ? error.message : "An unknown error occurred",

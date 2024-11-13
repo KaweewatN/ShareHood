@@ -1,8 +1,10 @@
 "use client";
 
 // main
-import {useForm} from "react-hook-form";
+import {SubmitHandler, useForm} from "react-hook-form";
 import {zodResolver} from "@hookform/resolvers/zod";
+import {signIn} from "next-auth/react";
+import {useRouter} from "next/navigation";
 
 // components
 import {
@@ -23,6 +25,7 @@ import {SignInFormZod} from "../../types/form/authenticateZod";
 import {SignInFormZodType} from "../../types/form/authenticateZod";
 
 export default function SignInForm() {
+  const router = useRouter();
   const form = useForm<SignInFormZodType>({
     resolver: zodResolver(SignInFormZod), // revalidate the form schema
     defaultValues: {
@@ -31,8 +34,24 @@ export default function SignInForm() {
     },
   });
 
-  const handleSubmit = () => {
-    alert("Form submitted");
+  const handleSubmit: SubmitHandler<SignInFormZodType> = async (data) => {
+    try {
+      const result = await signIn("credentials", {
+        redirect: false,
+        email: data.email,
+        password: data.password,
+      });
+
+      if (result?.error) {
+        alert("Something went wrong, please try again");
+      } else {
+        alert("Sign in success");
+        router.push("/home");
+      }
+    } catch (error) {
+      alert("Sign in failed, please change your email or password");
+      throw new Error(`Sign-in failed: ${error}`);
+    }
   };
   return (
     <Form {...form}>

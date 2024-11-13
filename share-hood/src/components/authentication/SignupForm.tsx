@@ -1,7 +1,7 @@
 "use client";
 
 // main
-import {useForm} from "react-hook-form";
+import {SubmitHandler, useForm} from "react-hook-form";
 import {zodResolver} from "@hookform/resolvers/zod";
 
 // components
@@ -17,9 +17,13 @@ import {Input} from "@components/shad.ui/input";
 import {Checkbox} from "@components/shad.ui/checkbox";
 import DefaultButton from "@components/hood.ui/DefaultButton";
 
+// hooks
+import useMutationCreateUser from "@service/hooks/mutation/useMutationCreateUser";
+
 // types
-import {SignUpFormZod} from "../../types/form/authenticateZod";
-import {SignUpFormZodType} from "../../types/form/authenticateZod";
+import {SignUpFormZod} from "src/types/form/authenticateZod";
+import {SignUpFormZodType} from "src/types/form/authenticateZod";
+import {CreateUserInputType} from "src/types/apiType";
 import {DatePicker} from "@components/hood.ui/DatePicker";
 
 export default function SignUpForm() {
@@ -36,13 +40,48 @@ export default function SignUpForm() {
     },
   });
 
-  const handleSubmit = () => {
-    alert("Form submitted");
+  const transformFormData = (data: SignUpFormZodType) => {
+    return {
+      password: data.password,
+      email: data.email,
+      emailVerified: true,
+      firstName: data.firstName,
+      lastName: data.lastName,
+      phone: data.phoneNumber,
+      dateOfBirth: data.birthDate.toISOString(),
+    };
   };
+
+  const {
+    mutate: createUser,
+    isError,
+    isSuccess,
+  } = useMutationCreateUser({
+    role: "rentee",
+    onSuccess: () => {
+      alert("User created successfully, please sign in");
+    },
+    onError: () => {
+      alert("Error creating user (please change some value(s) and try again)");
+    },
+  });
+
+  const handleCreateUser: SubmitHandler<SignUpFormZodType> = async (data) => {
+    const transformedData: CreateUserInputType = transformFormData(data);
+    createUser(transformedData);
+    if (isSuccess) {
+      form.reset();
+    }
+    form.reset();
+    if (isError) {
+      form.reset();
+    }
+  };
+
   return (
     <Form {...form}>
       <form
-        onSubmit={form.handleSubmit(handleSubmit)}
+        onSubmit={form.handleSubmit(handleCreateUser)}
         className="scrollbar-hide flex max-h-96 w-full flex-col items-center justify-start space-y-5 overflow-y-auto pt-2 shadow-none"
       >
         <FormField
@@ -100,6 +139,21 @@ export default function SignUpForm() {
                 <FormLabel>Email</FormLabel>
                 <FormControl>
                   <Input placeholder="johndoe@email.com" type="email" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            );
+          }}
+        />
+        <FormField
+          name="phoneNumber"
+          control={form.control}
+          render={({field}) => {
+            return (
+              <FormItem className="w-full">
+                <FormLabel>phone</FormLabel>
+                <FormControl>
+                  <Input placeholder="098-624-1567" type="phone" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
