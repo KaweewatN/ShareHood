@@ -64,6 +64,16 @@ export interface ItemType {
   reviews?: ReviewType[];
 }
 
+export interface OwnerItemType {
+  itemID: string;
+  itemName: string;
+  itemImage: string;
+  itemPrice: number;
+  category: string;
+  itemStatus: string;
+  ownerName: string;
+}
+
 export interface NotificationType {
   notificationID: string;
   title: string;
