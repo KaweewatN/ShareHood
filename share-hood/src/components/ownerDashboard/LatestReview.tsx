@@ -1,5 +1,5 @@
 import ReviewCard from "@components/hood.ui/ReviewCard";
-import { ReviewType } from "../../types/apiType";
+import {ReviewType} from "../../types/apiType";
 
 const sampleReview: ReviewType = {
   reviewID: "123",

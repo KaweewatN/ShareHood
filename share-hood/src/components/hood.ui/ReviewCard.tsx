@@ -2,8 +2,8 @@
 
 import React from "react";
 import Image from "next/image";
-import { FaStar } from "react-icons/fa";
-import { ReviewType } from "../../types/apiType";
+import {FaStar} from "react-icons/fa";
+import {ReviewType} from "../../types/apiType";
 
 interface ReviewCardProps {
   review: ReviewType;
@@ -13,9 +13,9 @@ interface ReviewCardProps {
  * ReviewCard component displays a user's review with profile image, name, rating, date, and comment.
  * @param {ReviewType} review - Review data object.
  */
-const ReviewCard: React.FC<ReviewCardProps> = ({ review }) => {
-  const { reviewRating, reviewComment, dateCreated, users } = review;
-  const { reviewerName, reviewerImage = "/images/default-user.png" } = users; // Fallback to default image
+const ReviewCard: React.FC<ReviewCardProps> = ({review}) => {
+  const {reviewRating, reviewComment, dateCreated, users} = review;
+  const {reviewerName, reviewerImage = "/images/default-user.png"} = users; // Fallback to default image
 
   return (
     <div className="mx-auto max-w-sm">
