@@ -6,7 +6,7 @@ import {v4 as uuidv4} from "uuid";
 
 export async function POST(request: Request) {
   try {
-    const {password, email, emailVerified, role, firstName, lastName, phone, dateOfBirth} =
+    const {password, email, emailVerified, firstName, lastName, phone, dateOfBirth} =
       await request.json();
     const userID = uuidv4();
 
