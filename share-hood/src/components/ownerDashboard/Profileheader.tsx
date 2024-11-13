@@ -10,7 +10,7 @@ const ProfileHeader: React.FC = () => {
         {/* Profile Image Wrapper */}
         <div className="h-16 w-16 overflow-hidden rounded-full border-2 border-gray-200">
           <Image
-            src="/images/Default-LINE-moon.JPG" // Ensure this path is correct
+            src="/images/Default-LINE-moon.JPG"
             alt="Profile"
             width={64}
             height={64}

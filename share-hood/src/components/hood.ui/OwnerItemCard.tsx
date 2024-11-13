@@ -3,8 +3,8 @@
 
 import React from "react";
 import Image from "next/image";
-import { FaChartBar, FaHeart, FaStar, FaTag } from "react-icons/fa";
-import { OwnerItemType } from "../../types/apiType";
+import {FaChartBar, FaHeart, FaStar, FaTag} from "react-icons/fa";
+import {OwnerItemType} from "../../types/apiType";
 import CategoryTag from "@components/hood.ui/CategoryTag"; // Adjust path if necessary
 
 const OwnerItemCard: React.FC<OwnerItemType> = ({
