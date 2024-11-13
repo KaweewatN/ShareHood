@@ -14,6 +14,9 @@ import {
   FaHome,
   FaRegHeart,
   FaHeart,
+  FaBell,
+  FaBox,
+  FaComment,
 } from "react-icons/fa";
 import {GiConverseShoe} from "react-icons/gi";
 import {PiHighHeelFill, PiListMagnifyingGlass} from "react-icons/pi";
@@ -43,6 +46,9 @@ const Icons = {
   Activity: (className?: string) => <PiListMagnifyingGlass className={className} />,
   Notification: (className?: string) => <RiNotification3Line className={className} />,
   NotificationFill: (className?: string) => <RiNotification3Fill className={className} />,
+  Bell: (className?: string) => <FaBell className={className} />,
+  Box: (className?: string) => <FaBox className={className} />,
+  Message: (className?: string) => <FaComment className={className} />,
 };
 
 export default Icons;

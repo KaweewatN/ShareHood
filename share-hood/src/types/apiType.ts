@@ -76,10 +76,10 @@ export interface ItemType {
 
 export interface NotificationType {
   notificationID: string;
-  title: string;
-  description: string;
-  dateCreated: string;
-  status: string;
+  notificationHeader: string;
+  notificationDetails: string;
+  notificationTimestamp: string;
+  notificationType: string;
 }
 
 export interface WishlistType {
