@@ -13,6 +13,16 @@ export interface UserType {
   verified: boolean;
 }
 
+export interface CreateUserInputType {
+  password: string | Promise<string>;
+  email: string;
+  emailVerified: boolean;
+  firstName: string;
+  lastName: string;
+  phone: string;
+  dateOfBirth: string;
+}
+
 export interface ReviewType {
   reviewID: string;
   reviewRating: number;

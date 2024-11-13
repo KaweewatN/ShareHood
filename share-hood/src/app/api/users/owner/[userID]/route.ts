@@ -12,10 +12,16 @@ import {getLogger} from "@service/logger/logger";
 
 export async function GET(request: Request) {
   try {
+    const {pathname} = new URL(request.url);
+    const userIDParam = pathname.split("/").pop();
+    if (!userIDParam) {
+      throw new Error("User ID parameter is missing");
+    }
     const data = await sql<any[]>`SELECT * FROM "User" u  
     JOIN "PersonalInfo" p ON u."userID" = p."userID" 
     JOIN "Address" a ON u."userID" = a."userID"
-    JOIN "Payment" pay ON u."userID" = pay."userID"`;
+    JOIN "Payment" pay ON u."userID" = pay."userID"
+    WHERE u."userID" = ${userIDParam} AND u."role" = 'Owner'`;
 
     const result = data.map((user) => ({
       userID: user.userID,

@@ -41,7 +41,6 @@
     "no-console": "error",
     "no-var": "error",
     "no-useless-return": "error",
-    "camelcase": "error",
     "no-param-reassign": "error",
     "no-empty-function": "error",
     "eqeqeq": "error",
