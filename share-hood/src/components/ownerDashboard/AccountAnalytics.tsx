@@ -1,53 +1,70 @@
 "use client";
 
-import React from "react";
+import React from 'react';
+import { FaBox, FaClock, FaChartLine, FaUserFriends } from 'react-icons/fa';
 
 const analyticsData = [
   {
-    label: "Active Listing",
-    value: "8",
-    icon: "📦",
-    growth: "3% Up from yesterday",
-    color: "text-yellow-500",
+    label: 'Active Listing',
+    value: '8',
+    icon: FaBox,
+    growth: '3% Up from yesterday',
+    bgColor: 'bg-yellow-100',
+    iconColor: 'text-yellow-500',
+    growthColor: 'text-green-500',
   },
   {
-    label: "Pending Order",
-    value: "3",
-    icon: "⏳",
-    growth: "1.5% Up from past week",
-    color: "text-red-500",
+    label: 'Pending Order',
+    value: '3',
+    icon: FaClock,
+    growth: '1.5% Up from past week',
+    bgColor: 'bg-red-100',
+    iconColor: 'text-red-500',
+    growthColor: 'text-green-500',
   },
   {
-    label: "Total Earned",
-    value: "2.5K",
-    icon: "📈",
-    growth: "3% Up from yesterday",
-    color: "text-green-500",
+    label: 'Total Earned',
+    value: '2.5K',
+    icon: FaChartLine,
+    growth: '3% Up from yesterday',
+    bgColor: 'bg-green-100',
+    iconColor: 'text-green-500',
+    growthColor: 'text-green-500',
   },
   {
-    label: "Total Engaged",
-    value: "3.6K",
-    icon: "👥",
-    growth: "3% Up from yesterday",
-    color: "text-purple-500",
+    label: 'Total Engaged',
+    value: '3.6K',
+    icon: FaUserFriends,
+    growth: '3% Up from yesterday',
+    bgColor: 'bg-purple-100',
+    iconColor: 'text-purple-500',
+    growthColor: 'text-green-500',
   },
 ];
 
 const AccountAnalytics: React.FC = () => {
   return (
-    <div className="p-4">
-      <div className="mb-4 flex items-center justify-between">
-        <h3 className="text-xl font-semibold">Account Analytics</h3>
+    <div>
+      <div className="flex justify-between items-center mb-6">
+        <h3 className="text-xl font-semibold text-gray-800">Account Analytics</h3>
         <p className="text-sm text-gray-500">Last 28 days</p>
       </div>
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-2 gap-6">
         {analyticsData.map((data, index) => (
-          <div key={index} className="flex items-center space-x-3 rounded-lg border p-4 shadow-sm">
-            <div className={`${data.color} text-3xl`}>{data.icon}</div>
-            <div>
-              <h4 className="text-base font-semibold">{data.label}</h4>
-              <p className="text-2xl font-bold">{data.value}</p>
-              <p className="text-xs text-green-500">{data.growth}</p>
+          <div
+            key={index}
+            className="p-4 rounded-lg bg-white shadow-lg hover:shadow-xl transition-shadow duration-200"
+          >
+            <div className="flex items-center">
+              {/* Icon with background color */}
+              <div className={`p-3 rounded-full ${data.bgColor}`}>
+                <data.icon className={`text-2xl ${data.iconColor}`} />
+              </div>
+              <div className="ml-4">
+                <h4 className="text-sm font-medium text-gray-600">{data.label}</h4>
+                <p className="text-2xl font-bold text-gray-900 mt-1">{data.value}</p>
+                <p className={`text-xs ${data.growthColor} mt-1 font-medium`}>{data.growth}</p>
+              </div>
             </div>
           </div>
         ))}
