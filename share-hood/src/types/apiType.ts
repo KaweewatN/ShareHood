@@ -13,6 +13,16 @@ export interface UserType {
   verified: boolean;
 }
 
+export interface CreateUserInputType {
+  password: string | Promise<string>;
+  email: string;
+  emailVerified: boolean;
+  firstName: string;
+  lastName: string;
+  phone: string;
+  dateOfBirth: string;
+}
+
 export interface ReviewType {
   reviewID: string;
   reviewRating: number;
@@ -66,10 +76,10 @@ export interface ItemType {
 
 export interface NotificationType {
   notificationID: string;
-  title: string;
-  description: string;
-  dateCreated: string;
-  status: string;
+  notificationHeader: string;
+  notificationDetails: string;
+  notificationTimestamp: string;
+  notificationType: string;
 }
 
 export interface WishlistType {

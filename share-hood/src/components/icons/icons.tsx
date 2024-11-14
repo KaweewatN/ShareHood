@@ -20,6 +20,9 @@ import {
   FaEnvelope,
   FaSignOutAlt,
   FaExchangeAlt,
+  FaBell,
+  FaBox,
+  FaComment,
 } from "react-icons/fa";
 import {GiConverseShoe} from "react-icons/gi";
 import {PiHighHeelFill, PiListMagnifyingGlass} from "react-icons/pi";
@@ -55,6 +58,9 @@ const Icons = {
   QuestionCircle: (className?: string) => <FaQuestionCircle className={className} />,
   Signout: (className?: string) => <FaSignOutAlt className={className} />,
   Envelope: (className?: string) => <FaEnvelope className={className} />,
+  Bell: (className?: string) => <FaBell className={className} />,
+  Box: (className?: string) => <FaBox className={className} />,
+  Message: (className?: string) => <FaComment className={className} />,
 };
 
 export default Icons;
