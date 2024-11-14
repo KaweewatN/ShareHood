@@ -3,7 +3,7 @@
 import React from "react";
 import Image from "next/image";
 
-const ProfileHeader: React.FC = () => {
+function ProfileHeader() {
   return (
     <div className="relative mt-6 flex flex-col items-center">
       <div className="relative h-20 w-20">
@@ -21,6 +21,6 @@ const ProfileHeader: React.FC = () => {
       <p className="text-gray-500">nipunk0258@gmail.com</p>
     </div>
   );
-};
+}
 
 export default ProfileHeader;

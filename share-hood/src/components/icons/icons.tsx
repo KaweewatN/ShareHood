@@ -14,6 +14,12 @@ import {
   FaHome,
   FaRegHeart,
   FaHeart,
+  FaCog,
+  FaCreditCard,
+  FaQuestionCircle,
+  FaEnvelope,
+  FaSignOutAlt,
+  FaExchangeAlt,
 } from "react-icons/fa";
 import {GiConverseShoe} from "react-icons/gi";
 import {PiHighHeelFill, PiListMagnifyingGlass} from "react-icons/pi";
@@ -43,6 +49,12 @@ const Icons = {
   Activity: (className?: string) => <PiListMagnifyingGlass className={className} />,
   Notification: (className?: string) => <RiNotification3Line className={className} />,
   NotificationFill: (className?: string) => <RiNotification3Fill className={className} />,
+  Exchange: (className?: string) => <FaExchangeAlt className={className} />,
+  Cog: (className?: string) => <FaCog className={className} />,
+  CreditCard: (className?: string) => <FaCreditCard className={className} />,
+  QuestionCircle: (className?: string) => <FaQuestionCircle className={className} />,
+  Signout: (className?: string) => <FaSignOutAlt className={className} />,
+  Envelope: (className?: string) => <FaEnvelope className={className} />,
 };
 
 export default Icons;
