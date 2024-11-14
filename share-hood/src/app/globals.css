@@ -45,6 +45,7 @@ body {
   border-radius: 1.5rem;
 }
 
+/* Loader */
 .loader {
   width: fit-content;
   font-size: 40px;
@@ -74,4 +75,73 @@ body {
   to {
     background-position-y: -0.5em, 0;
   }
+}
+
+/* Landing Page */
+@keyframes bounceSmooth {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInDelay {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes buttonWiggle {
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(2deg);
+  }
+  75% {
+    transform: rotate(-2deg);
+  }
+}
+.animate-bounce-smooth {
+  animation: bounceSmooth 3s ease-in-out infinite;
+}
+
+.animate-fade-in {
+  animation: fadeIn 1.5s ease-out forwards;
+}
+
+.animate-fade-in-delay {
+  animation: fadeInDelay 1.8s ease-out forwards;
+}
+
+.hover\\:animate-button-wiggle:hover {
+  animation: buttonWiggle 0.4s ease-in-out;
+}
+
+.drop-shadow-lg {
+  filter: drop-shadow(0 10px 8px rgba(0, 0, 0, 0.3));
+}
+
+.drop-shadow-md {
+  filter: drop-shadow(0 4px 4px rgba(0, 0, 0, 0.25));
 }
