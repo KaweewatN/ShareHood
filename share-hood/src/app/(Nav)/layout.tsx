@@ -1,10 +1,17 @@
 import Menubar from "@components/hood.ui/MenuBar";
 
+import {authenticateUser} from "src/service/functions/NextAuthFunction";
+import {redirect} from "next/navigation";
+
 export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  await authenticateUser().catch(() => {
+    redirect("/authentication");
+  });
+
   return (
     <>
       <Menubar />
