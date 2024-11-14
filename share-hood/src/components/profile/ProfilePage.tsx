@@ -13,9 +13,9 @@ export function ProfilePage() {
   };
 
   return (
-    <div className="mx-auto max-w-md p-4">
+    <>
       <ProfileHeader />
-      <div className="mt-6 space-y-3">
+      <div className="mt-6 flex w-full flex-col space-y-3 p-2">
         <ProfileMenuItem label="Switch to Owner" icon={Icons.Exchange()} href="/owner/home" />
         <ProfileMenuItem label="Personal details" icon={Icons.User()} href="/profile" />
         <ProfileMenuItem label="Settings" icon={Icons.Cog()} href="/settings" />
@@ -24,7 +24,7 @@ export function ProfilePage() {
         <ProfileMenuItem label="Contact Us" icon={Icons.Envelope()} href="/contact" />
         <ProfileMenuItem label="Log out" icon={Icons.Signout()} onClick={handleLogout} />
       </div>
-    </div>
+    </>
   );
 }
 
