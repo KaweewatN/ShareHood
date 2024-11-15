@@ -63,13 +63,15 @@ export default function ItemDetail({itemId}: {itemId: string}) {
         <hr />
 
         <h3 className="text-lg font-semibold">Pickup</h3>
-        <div className="flex space-x-3">
-          <DeliveryCard price={39} />
-          <PickupCard
-            pickupLocation={itemDetail.pickupLocation || null}
-            pickupDate={itemDetail.pickupDate || undefined}
-          />
-        </div>
+        {itemDetail.pickupLocation && itemDetail.pickupDate && (
+          <div className="flex space-x-3">
+            <DeliveryCard price={39} />
+            <PickupCard
+              pickupLocation={itemDetail.pickupLocation || null}
+              pickupDate={itemDetail.pickupDate || undefined}
+            />
+          </div>
+        )}
         <div className="pt-3">
           <DefaultButton label="Order now" />
         </div>
