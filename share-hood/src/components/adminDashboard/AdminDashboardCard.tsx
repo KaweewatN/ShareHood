@@ -1,9 +1,8 @@
 "use client";
 
-import React from "react";
-import { IconType } from "react-icons";
+import {IconType} from "react-icons";
 
-interface AdminDashboardCardProps {
+type AdminDashboardCardProps = {
   label: string;
   value: string;
   icon: IconType;
@@ -11,9 +10,9 @@ interface AdminDashboardCardProps {
   iconColor: string;
   growth: string;
   growthColor: string;
-}
+};
 
-const AdminDashboardCard: React.FC<AdminDashboardCardProps> = ({
+export default function AdminDashboardCard({
   label,
   value,
   icon: Icon,
@@ -21,21 +20,19 @@ const AdminDashboardCard: React.FC<AdminDashboardCardProps> = ({
   iconColor,
   growth,
   growthColor,
-}) => {
+}: AdminDashboardCardProps) {
   return (
-    <div className="rounded-lg bg-white p-6 shadow-md transition-shadow duration-200 hover:shadow-lg">
+    <div className="rounded-lg bg-white p-5 shadow-md transition-shadow duration-200 hover:shadow-lg">
       <div className="flex items-center space-x-4">
-        <div className={`rounded-full p-4 ${bgColor}`}>
+        <div className={`rounded-full p-3 ${bgColor}`}>
           <Icon className={`text-2xl ${iconColor}`} />
         </div>
         <div>
           <h4 className="text-sm font-medium text-gray-600">{label}</h4>
-          <p className="mt-1 text-3xl font-extrabold text-gray-900">{value}</p>
+          <p className="mt-1 text-2xl font-bold text-gray-900">{value}</p>
           <p className={`text-xs font-medium ${growthColor} mt-1`}>{growth}</p>
         </div>
       </div>
     </div>
   );
-};
-
-export default AdminDashboardCard;
+}

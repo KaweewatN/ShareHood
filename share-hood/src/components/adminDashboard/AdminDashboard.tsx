@@ -1,11 +1,12 @@
 "use client";
 
-import React from "react";
+import {useMemo} from "react";
 import AdminDashboardCard from "./AdminDashboardCard";
 import ActivityLog from "./ActivityLog";
 import UserTable from "./UserTable";
-import { FaBox, FaClock, FaChartLine, FaUserFriends } from "react-icons/fa";
+import {FaBox, FaClock, FaChartLine, FaUserFriends} from "react-icons/fa";
 
+// Data for admin cards
 const analyticsData = [
   {
     label: "Active Users",
@@ -45,33 +46,34 @@ const analyticsData = [
   },
 ];
 
-const AdminDashboard: React.FC = () => {
+// Main Admin Dashboard Component
+export default function AdminDashboard() {
+  const cards = useMemo(
+    () =>
+      analyticsData.map((data, index) => (
+        <AdminDashboardCard
+          key={index}
+          label={data.label}
+          value={data.value}
+          icon={data.icon}
+          bgColor={data.bgColor}
+          iconColor={data.iconColor}
+          growth={data.growth}
+          growthColor={data.growthColor}
+        />
+      )),
+    [],
+  );
+
   return (
-    <div className="p-6 space-y-8">
-      <div className="space-y-1">
+    <div className="space-y-8 p-6">
+      <div>
         <h1 className="text-3xl font-bold text-gray-900">Welcome back, Nipun</h1>
-        <h2 className="text-xl font-semibold text-gray-700">Admin Dashboard</h2>
+        <h2 className="mt-1 text-xl font-semibold text-gray-700">Admin Dashboard</h2>
       </div>
-
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        {analyticsData.map((data, index) => (
-          <AdminDashboardCard
-            key={index}
-            label={data.label}
-            value={data.value}
-            icon={data.icon}
-            bgColor={data.bgColor}
-            iconColor={data.iconColor}
-            growth={data.growth}
-            growthColor={data.growthColor}
-          />
-        ))}
-      </div>
-
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">{cards}</div>
       <ActivityLog />
       <UserTable />
     </div>
   );
-};
-
-export default AdminDashboard;
+}

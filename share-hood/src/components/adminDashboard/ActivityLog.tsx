@@ -1,7 +1,6 @@
 "use client";
 
-import React from "react";
-import { FaExclamationCircle, FaCheckCircle } from "react-icons/fa";
+import {FaExclamationCircle, FaCheckCircle} from "react-icons/fa";
 
 const activityLogs = [
   {
@@ -16,10 +15,10 @@ const activityLogs = [
   },
 ];
 
-const ActivityLog: React.FC = () => {
+export default function ActivityLog() {
   return (
-    <div className="space-y-4">
-      <h3 className="text-xl font-semibold text-gray-800">Activity Log</h3>
+    <div>
+      <h3 className="mb-4 text-xl font-semibold text-gray-800">Activity Log</h3>
       <div className="space-y-3">
         {activityLogs.map((log, index) => (
           <div key={index} className="flex items-start space-x-3">
@@ -30,7 +29,9 @@ const ActivityLog: React.FC = () => {
             )}
             <div>
               <p className="text-sm text-gray-500">{log.time}</p>
-              <p className={`text-sm font-medium ${log.type === "alert" ? "text-red-600" : "text-gray-700"}`}>
+              <p
+                className={`text-sm font-medium ${log.type === "alert" ? "text-red-600" : "text-gray-700"}`}
+              >
                 {log.message}
               </p>
             </div>
@@ -39,6 +40,4 @@ const ActivityLog: React.FC = () => {
       </div>
     </div>
   );
-};
-
-export default ActivityLog;
+}
