@@ -24,7 +24,7 @@ import DefaultButton from "@components/hood.ui/DefaultButton";
 import BackButton from "@components/hood.ui/BackButton";
 import ItemCardLong from "@components/hood.ui/ItemCardLong";
 import PriceDetails from "./PriceDetails";
-import ItemFormSummary from "./itemFormSummary";
+import ItemFormSummary from "./ItemFormSummary";
 import {Button} from "@components/shad.ui/button";
 import {
   Select,

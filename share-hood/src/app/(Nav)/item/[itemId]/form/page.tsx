@@ -1,4 +1,4 @@
-import ItemFormInput from "@components/item/itemFormInput";
+import ItemFormInput from "@components/item/ItemFormInput";
 import {getUserID} from "src/app/api/auth/[...nextauth]/auth";
 
 export default async function ItemForm({

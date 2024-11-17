@@ -139,7 +139,15 @@ export default function ItemDetail({itemId}: {itemId: string}) {
         </div>
 
         <div className="py-4">
-          <DefaultButton label="Order now" onClick={navigateToItemForm} />
+          <DefaultButton
+            label="Order now"
+            onClick={navigateToItemForm}
+            disabled={
+              itemDetail?.itemQuantity === 0 ||
+              itemDetail?.itemStatus === "Unavailable" ||
+              itemDetail?.itemStatus === "Out of stock"
+            }
+          />
         </div>
         <div className="pt-2">
           <h3 className="text-lg font-semibold">Reviews</h3>

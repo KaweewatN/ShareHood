@@ -5,6 +5,6 @@ export const itemStatusColor = (status: string) => {
     case "Unavailable":
       return "text-yellow-600";
     default:
-      return "text-blue-600";
+      return "text-red-600";
   }
 };
