@@ -12,10 +12,14 @@ import {getLogger} from "@service/logger/logger";
 
 export async function GET(request: Request) {
   try {
-    const data = await sql<any[]>`SELECT * FROM "User" u  
-    JOIN "PersonalInfo" p ON u."userID" = p."userID" 
-    JOIN "Address" a ON u."userID" = a."userID"
-    JOIN "Payment" pay ON u."userID" = pay."userID"`;
+    const data = await sql<any[]>`SELECT u."userID" as "userID", u."email", u."role", u."password", 
+    p."firstName", p."lastName", p."phone", p."dateOfBirth",
+    a."addressID", a."addressLine", a."subProvince", a."province", a."zip",
+    pay."paymentID", pay."cardNumber", pay."cardHolderName", pay."expirationDate", pay."cvv"
+    FROM "User" u  
+    LEFT JOIN "PersonalInfo" p ON u."userID" = p."userID" 
+    LEFT JOIN "Address" a ON u."userID" = a."userID"
+    LEFT JOIN "Payment" pay ON u."userID" = pay."userID"`;
 
     const result = data.map((user) => ({
       userID: user.userID,
@@ -29,20 +33,20 @@ export async function GET(request: Request) {
         dateOfBirth: user.dateOfBirth,
       },
       address: {
-        addressId: user.addressID,
-        addressLine: user.addressLine,
-        subProvince: user.subProvince,
-        province: user.province,
-        zip: user.zip,
-        street: user.street,
-        city: user.city,
+        addressId: user.addressID ?? null,
+        addressLine: user.addressLine ?? null,
+        subProvince: user.subProvince ?? null,
+        province: user.province ?? null,
+        zip: user.zip ?? null,
+        street: user.stree ?? null,
+        city: user.city ?? null,
       },
       payment: {
-        paymentId: user.paymentID,
-        cardNumber: user.cardNumber,
-        cardName: user.cardHolderName,
-        cardExp: user.expirationDate,
-        cardCvv: user.cvv,
+        paymentId: user.paymentID ?? null,
+        cardNumber: user.cardNumber ?? null,
+        cardName: user.cardHolderName ?? null,
+        cardExp: user.expirationDate ?? null,
+        cardCvv: user.cvv ?? null,
       },
     }));
 

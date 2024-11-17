@@ -10,18 +10,6 @@ export async function POST(request: Request) {
       await request.json();
     const userID = uuidv4();
 
-    // Log the received values for debugging
-    getLogger("GET", "/api/users/rentee", "info", {
-      userID,
-      password,
-      email,
-      emailVerified,
-      firstName,
-      lastName,
-      phone,
-      dateOfBirth,
-    });
-
     if (!userID || !password || !email || !firstName || !lastName || !phone || !dateOfBirth) {
       return NextResponse.json(
         {error: "Missing required fields"},

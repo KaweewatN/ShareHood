@@ -23,6 +23,7 @@ import {
   FaBell,
   FaBox,
   FaComment,
+  FaInfoCircle,
 } from "react-icons/fa";
 import {GiConverseShoe} from "react-icons/gi";
 import {PiHighHeelFill, PiListMagnifyingGlass} from "react-icons/pi";
@@ -61,6 +62,7 @@ const Icons = {
   Bell: (className?: string) => <FaBell className={className} />,
   Box: (className?: string) => <FaBox className={className} />,
   Message: (className?: string) => <FaComment className={className} />,
+  Info: (className?: string) => <FaInfoCircle className={className} />,
 };
 
 export default Icons;
