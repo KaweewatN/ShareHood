@@ -1,12 +1,11 @@
 "use client";
 
-import {useMemo} from "react";
+import { useMemo } from "react";
 import AdminDashboardCard from "./AdminDashboardCard";
+import { FaBox, FaClock, FaChartLine, FaUserFriends } from "react-icons/fa";
 import ActivityLog from "./ActivityLog";
 import UserTable from "./UserTable";
-import {FaBox, FaClock, FaChartLine, FaUserFriends} from "react-icons/fa";
 
-// Data for admin cards
 const analyticsData = [
   {
     label: "Active Users",
@@ -46,7 +45,6 @@ const analyticsData = [
   },
 ];
 
-// Main Admin Dashboard Component
 export default function AdminDashboard() {
   const cards = useMemo(
     () =>
@@ -62,18 +60,33 @@ export default function AdminDashboard() {
           growthColor={data.growthColor}
         />
       )),
-    [],
+    []
   );
 
   return (
-    <div className="space-y-8 p-6">
+    <div className="p-4 sm:p-6 md:p-8 50 min-h-screen space-y-8">
+      {/* Header Section */}
       <div>
         <h1 className="text-3xl font-bold text-gray-900">Welcome back, Nipun</h1>
-        <h2 className="mt-1 text-xl font-semibold text-gray-700">Admin Dashboard</h2>
+        <h2 className="text-xl font-semibold text-gray-700 mt-1">Admin Dashboard</h2>
       </div>
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">{cards}</div>
-      <ActivityLog />
-      <UserTable />
+
+      {/* Responsive Grid for Dashboard Cards */}
+      <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-auto-fit auto-rows-min">
+        {cards}
+      </div>
+
+      {/* Activity Log Section */}
+      <div>
+        <h3 className="text-lg font-semibold text-gray-800 mb-4">Activity Log</h3>
+        <ActivityLog />
+      </div>
+
+      {/* User Management Section */}
+      <div>
+        <h3 className="text-lg font-semibold text-gray-800 mb-4">User Management</h3>
+        <UserTable />
+      </div>
     </div>
   );
 }

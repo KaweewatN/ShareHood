@@ -1,15 +1,10 @@
 "use client";
 
-import dynamic from "next/dynamic";
-
-// Dynamically import AdminDashboard for better performance if necessary
-const AdminDashboard = dynamic(() => import("@components/adminDashboard/AdminDashboard"), {
-  ssr: false, // Disables server-side rendering for this component if not required
-});
+import AdminDashboard from "@components/adminDashboard/AdminDashboard";
 
 export default function AdminDashboardPage() {
   return (
-    <div className="min-h-screen p-6">
+    <div className="p-4 sm:p-6 md:p-8 min-h-screen">
       <AdminDashboard />
     </div>
   );
