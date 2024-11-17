@@ -1,6 +1,6 @@
 "use client";
 
-import { IconType } from "react-icons";
+import {IconType} from "react-icons";
 
 type AdminDashboardCardProps = {
   label: string;
@@ -22,7 +22,7 @@ export default function AdminDashboardCard({
   growthColor,
 }: AdminDashboardCardProps) {
   return (
-    <div className="flex flex-col justify-between rounded-lg border bg-white p-4 shadow-md hover:shadow-lg transition-shadow duration-200">
+    <div className="flex flex-col justify-between rounded-lg border bg-white p-4 shadow-md transition-shadow duration-200 hover:shadow-lg">
       {/* Top Section */}
       <div className="flex items-center space-x-4">
         {/* Icon Container */}
@@ -31,7 +31,7 @@ export default function AdminDashboardCard({
         </div>
         {/* Text Section */}
         <div className="flex-1">
-          <h4 className="text-sm font-medium text-gray-600 truncate whitespace-nowrap">{label}</h4>
+          <h4 className="truncate whitespace-nowrap text-sm font-medium text-gray-600">{label}</h4>
           <p className="mt-1 text-2xl font-bold text-gray-900">{value}</p>
         </div>
       </div>
