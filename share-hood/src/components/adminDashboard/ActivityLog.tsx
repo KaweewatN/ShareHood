@@ -1,6 +1,6 @@
 "use client";
 
-import { FaExclamationCircle, FaCheckCircle } from "react-icons/fa";
+import {FaExclamationCircle, FaCheckCircle} from "react-icons/fa";
 
 const activityLogs = [
   {
@@ -20,19 +20,16 @@ export default function ActivityLog() {
     <div className="overflow-hidden">
       <div className="space-y-4">
         {activityLogs.map((log, index) => (
-          <div
-            key={index}
-            className="flex items-start space-x-3 rounded-md p-4 shadow-sm"
-          >
+          <div key={index} className="flex items-start space-x-3 rounded-md p-4 shadow-sm">
             {/* Icon */}
             {log.type === "alert" ? (
               <FaExclamationCircle
-                className="text-xl text-red-500 flex-shrink-0"
+                className="flex-shrink-0 text-xl text-red-500"
                 aria-label="Alert Icon"
               />
             ) : (
               <FaCheckCircle
-                className="text-xl text-blue-500 flex-shrink-0"
+                className="flex-shrink-0 text-xl text-blue-500"
                 aria-label="Info Icon"
               />
             )}

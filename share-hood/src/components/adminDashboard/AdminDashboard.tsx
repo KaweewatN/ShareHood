@@ -64,30 +64,30 @@ export default function AdminDashboard() {
   );
 
   return (
-    <div className="min-h-screen p-6 overflow-auto">
+    <div className="min-h-screen space-y-8">
       {/* Header Section */}
-      <div className="mb-6">
+      <div className="p-4">
         <h1 className="text-3xl font-bold text-gray-900">Welcome back, Nipun</h1>
         <h2 className="text-xl font-semibold text-gray-700 mt-1">Admin Dashboard</h2>
       </div>
 
       {/* Responsive Grid for Dashboard Cards */}
-      <div className="grid grid-cols-2 gap-6 justify-items-center">
+      <div className="grid grid-cols-2 gap-6 sm:grid-cols-2 lg:grid-cols-2 overflow-auto">
         {cards}
       </div>
 
       {/* Activity Log */}
-      <div className="mt-12">
+      <div className="mt-12 p-4">
         <h3 className="text-lg font-semibold text-gray-800 mb-4">Activity Log</h3>
-        <div className="overflow-auto max-h-60">
+        <div className="overflow-x-auto max-h-60">
           <ActivityLog />
         </div>
       </div>
 
       {/* User Management */}
-      <div className="mt-12">
+      <div className="mt-12 p-4">
         <h3 className="text-lg font-semibold text-gray-800 mb-4">User Management</h3>
-        <div className="overflow-auto max-h-80">
+        <div className="overflow-x-auto max-h-80">
           <UserTable />
         </div>
       </div>
