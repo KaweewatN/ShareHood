@@ -1,6 +1,6 @@
 "use client";
 
-import {FaExclamationCircle, FaCheckCircle} from "react-icons/fa";
+import { FaExclamationCircle, FaCheckCircle } from "react-icons/fa";
 
 const activityLogs = [
   {
@@ -17,20 +17,33 @@ const activityLogs = [
 
 export default function ActivityLog() {
   return (
-    <div>
-      <h3 className="mb-4 text-xl font-semibold text-gray-800">Activity Log</h3>
-      <div className="space-y-3">
+    <div className="overflow-hidden">
+      <div className="space-y-4">
         {activityLogs.map((log, index) => (
-          <div key={index} className="flex items-start space-x-3">
+          <div
+            key={index}
+            className="flex items-start space-x-3 rounded-md p-4 shadow-sm"
+          >
+            {/* Icon */}
             {log.type === "alert" ? (
-              <FaExclamationCircle className="text-red-500" />
+              <FaExclamationCircle
+                className="text-xl text-red-500 flex-shrink-0"
+                aria-label="Alert Icon"
+              />
             ) : (
-              <FaCheckCircle className="text-blue-500" />
+              <FaCheckCircle
+                className="text-xl text-blue-500 flex-shrink-0"
+                aria-label="Info Icon"
+              />
             )}
-            <div>
+
+            {/* Text Content */}
+            <div className="flex-1">
               <p className="text-sm text-gray-500">{log.time}</p>
               <p
-                className={`text-sm font-medium ${log.type === "alert" ? "text-red-600" : "text-gray-700"}`}
+                className={`text-sm font-medium ${
+                  log.type === "alert" ? "text-red-600" : "text-gray-700"
+                }`}
               >
                 {log.message}
               </p>

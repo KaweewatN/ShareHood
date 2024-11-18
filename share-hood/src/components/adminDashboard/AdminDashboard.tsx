@@ -1,8 +1,8 @@
 "use client";
 
-import {useMemo} from "react";
+import { useMemo } from "react";
 import AdminDashboardCard from "./AdminDashboardCard";
-import {FaBox, FaClock, FaChartLine, FaUserFriends} from "react-icons/fa";
+import { FaBox, FaClock, FaChartLine, FaUserFriends } from "react-icons/fa";
 import ActivityLog from "./ActivityLog";
 import UserTable from "./UserTable";
 
@@ -60,31 +60,36 @@ export default function AdminDashboard() {
           growthColor={data.growthColor}
         />
       )),
-    [],
+    []
   );
 
   return (
-    <div className="50 min-h-screen space-y-8 p-4 sm:p-6 md:p-8">
+    <div className="min-h-screen p-6 overflow-auto">
       {/* Header Section */}
-      <div>
+      <div className="mb-6">
         <h1 className="text-3xl font-bold text-gray-900">Welcome back, Nipun</h1>
-        <h2 className="mt-1 text-xl font-semibold text-gray-700">Admin Dashboard</h2>
+        <h2 className="text-xl font-semibold text-gray-700 mt-1">Admin Dashboard</h2>
       </div>
 
       {/* Responsive Grid for Dashboard Cards */}
-      <div className="lg:grid-cols-auto-fit grid auto-rows-min grid-cols-2 gap-4 sm:grid-cols-3">
+      <div className="grid grid-cols-2 gap-6 justify-items-center">
         {cards}
       </div>
 
-      {/* Activity Log Section */}
-      <div>
-        <ActivityLog />
+      {/* Activity Log */}
+      <div className="mt-12">
+        <h3 className="text-lg font-semibold text-gray-800 mb-4">Activity Log</h3>
+        <div className="overflow-auto max-h-60">
+          <ActivityLog />
+        </div>
       </div>
 
-      {/* User Management Section */}
-      <div>
-        <h3 className="mb-4 text-lg font-semibold text-gray-800">User Management</h3>
-        <UserTable />
+      {/* User Management */}
+      <div className="mt-12">
+        <h3 className="text-lg font-semibold text-gray-800 mb-4">User Management</h3>
+        <div className="overflow-auto max-h-80">
+          <UserTable />
+        </div>
       </div>
     </div>
   );
