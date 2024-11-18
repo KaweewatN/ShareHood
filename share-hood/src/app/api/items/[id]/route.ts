@@ -63,9 +63,9 @@ export async function GET(request: Request) {
 
 export async function PUT(request: Request) {
   try {
-    const {pathname} = new URL(request.url);
-    const itemIDParam = pathname.split("/").pop();
-    if (!itemIDParam) {
+    const {itemID, decrementValue} = await request.json();
+
+    if (!itemID || !decrementValue) {
       return NextResponse.json(
         {error: "Missing required fields"},
         {status: StatusCode.ERROR_BAD_REQUEST.code},
@@ -73,8 +73,8 @@ export async function PUT(request: Request) {
     }
     const result = await sql`
       UPDATE "Item"
-      SET "itemQuantity" = "itemQuantity" - 1
-      WHERE "itemID" = ${itemIDParam}
+      SET "itemQuantity" = "itemQuantity" - ${decrementValue}
+      WHERE "itemID" = ${itemID}
     `;
 
     return NextResponse.json(`Update Item Success ${result}`, {status: StatusCode.SUCCESS_OK.code});

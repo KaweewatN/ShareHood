@@ -10,6 +10,7 @@ import {useRouter} from "next/navigation";
 import useFetchItemDetail from "@service/hooks/query/useFetchItemDetail";
 import useFetchRenteeByID from "@service/hooks/query/useFetchRenteeByID";
 import useMutationCreateTransaction from "@service/hooks/mutation/useMutationCreateTransaction";
+import useUpdateItem from "@service/hooks/mutation/useUpdateItem";
 // components
 import {
   Form,
@@ -58,6 +59,32 @@ export default function ItemFormInput({itemId, userId}: {itemId: string; userId:
   } = useFetchRenteeByID(userId);
   const user = Array.isArray(userData) ? userData[0] : undefined;
   const userAddress = user?.address ? Object.values(user.address).slice(1).join(", ") : "";
+  const {
+    mutate: createTransaction,
+    isError: isCreateTransactionError,
+    isSuccess: isCreateTransactionSuccess,
+  } = useMutationCreateTransaction({
+    onSuccess: () => {
+      alert("Transaction created successfully");
+      router.push("/activity");
+    },
+    onError: () => {
+      alert("Error creating Transaction (please change some value(s) and try again)");
+    },
+  });
+  const {
+    mutate: updateItemQuantity,
+    isError: isUpdateItemError,
+    isSuccess: isUpdateItemSuccess,
+  } = useUpdateItem({
+    itemId,
+    onSuccess: () => {
+      alert("Quantity update successfully");
+    },
+    onError: () => {
+      alert("Quantity update failed");
+    },
+  });
 
   const itemDuration = useSearchParams().get("duration");
   const itemQuantity = useSearchParams().get("quantity");
@@ -106,34 +133,24 @@ export default function ItemFormInput({itemId, userId}: {itemId: string; userId:
     };
   };
 
-  const {
-    mutate: createTransaction,
-    isError,
-    isSuccess,
-  } = useMutationCreateTransaction({
-    onSuccess: () => {
-      alert("Transaction created successfully, please sign in");
-      router.push("/activity");
-    },
-    onError: () => {
-      alert("Error creating Transaction (please change some value(s) and try again)");
-    },
-  });
-
   const handleFormSubmit: SubmitHandler<ItemFormZodType> = async (data) => {
     const transformedData: any = transformFormData(data);
     createTransaction(transformedData);
-    if (isSuccess) {
+    updateItemQuantity({
+      itemID: itemDetail?.itemID,
+      decrementValue: newQuantity,
+    });
+    if (isCreateTransactionError || isUpdateItemError) {
       form.reset();
     }
     form.reset();
-    if (isError) {
+    if (isCreateTransactionSuccess || isUpdateItemSuccess) {
       form.reset();
     }
   };
 
   if (isLoadingItem || isLoadingUser) {
-    return <div>Loading...</div>;
+    return <div className="loaderDot"></div>;
   }
 
   if (fetchItemError || fetchUserError) {

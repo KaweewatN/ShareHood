@@ -28,7 +28,7 @@ export default function ItemDetail({itemId}: {itemId: string}) {
   };
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <div className="loaderDot"></div>;
   }
 
   if (error) {
