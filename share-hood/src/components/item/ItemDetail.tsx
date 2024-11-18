@@ -59,7 +59,7 @@ export default function ItemDetail({itemId}: {itemId: string}) {
             <span className="text-black">&nbsp;/ Day</span>
           </p>
         </div>
-        <div className="flex flex-col space-y-1">
+        <div className="flex items-center space-x-5">
           <p className="inline-flex items-baseline space-x-1">
             <span className="text-gray-500">{Icons?.Users()}</span>
             <span className="text-defaultBlue">{itemDetail.ownerName}</span>

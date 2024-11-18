@@ -94,16 +94,20 @@ export interface WishlistType {
 }
 
 export interface TransactionType {
-  transactionID?: string;
+  transactionID: string;
   userID: string;
-  itemID: string | undefined;
+  itemID: string;
   transactionStatus: string;
-  transactionDate: Date;
-  transactionReturnDate: Date;
+  transactionDate: string;
+  transactionReturnDate: string;
   paymentType: string;
   price: number;
   shippingLocation: string;
   itemRentedDuration: number;
   quantity: number;
   shippingMethod: string;
+  itemName: string;
+  itemImage: string;
+  ownerName: string;
+  category: string;
 }

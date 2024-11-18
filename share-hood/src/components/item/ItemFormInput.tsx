@@ -121,7 +121,7 @@ export default function ItemFormInput({itemId, userId}: {itemId: string; userId:
     return {
       userID: userId,
       itemID: itemDetail?.itemID,
-      transactionStatus: "Order Placed",
+      transactionStatus: "Order Confirmed",
       transactionDate: new Date().toISOString(),
       transactionReturnDate: calculateNewDateISO(newDuration, 2),
       paymentType: data.itemPaymentMethod,
