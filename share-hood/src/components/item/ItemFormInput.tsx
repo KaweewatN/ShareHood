@@ -66,7 +66,7 @@ export default function ItemFormInput({itemId, userId}: {itemId: string; userId:
   } = useMutationCreateTransaction({
     onSuccess: () => {
       alert("Transaction created successfully");
-      router.push("/activity");
+      router.push("/rentee/activity");
     },
     onError: () => {
       alert("Error creating Transaction (please change some value(s) and try again)");
@@ -123,7 +123,11 @@ export default function ItemFormInput({itemId, userId}: {itemId: string; userId:
       itemID: itemDetail?.itemID,
       transactionStatus: "Order Confirmed",
       transactionDate: new Date().toISOString(),
-      transactionReturnDate: calculateNewDateISO(newDuration, 2),
+      itemArrivalDate:
+        form.getValues("itemShippingMethod") === "self-pickup"
+          ? calculateNewDateISO(0, 2)
+          : calculateNewDateISO(0, 3),
+      itemReturnDate: calculateNewDateISO(newDuration, 2),
       paymentType: data.itemPaymentMethod,
       price: data.price,
       shippingLocation: data.shippingLocation,
@@ -169,10 +173,10 @@ export default function ItemFormInput({itemId, userId}: {itemId: string; userId:
       </div>
 
       <ItemCardLong {...itemDetail} />
-      <div className="flex w-full flex-col items-start space-y-3 px-5">
+      <div className="flex w-full flex-col items-center space-y-3 px-5">
         <div className="flex w-full items-center justify-between space-x-5">
-          <h3 className="w-2/3 text-sm font-semibold">Duration (Days)</h3>
-          <div className="flex w-1/3 items-center justify-start space-x-4">
+          <h3 className="w-3/4 text-sm font-semibold">Duration (Days)</h3>
+          <div className="flex w-1/4 items-center justify-start space-x-4">
             <Button
               onClick={() =>
                 decrementDuration(
@@ -202,8 +206,8 @@ export default function ItemFormInput({itemId, userId}: {itemId: string; userId:
         </div>
 
         <div className="flex w-full items-center justify-between space-x-5">
-          <h3 className="w-2/3 text-sm font-semibold">Quantity </h3>
-          <div className="flex w-1/3 items-center justify-start space-x-4">
+          <h3 className="w-3/4 text-sm font-semibold">Quantity </h3>
+          <div className="flex w-1/4 items-center justify-start space-x-4">
             <Button
               onClick={() =>
                 decrementQuantity(Number(itemDetail?.itemQuantity), newQuantity, setNewQuantity)

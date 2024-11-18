@@ -6,7 +6,6 @@ import useFetchRenteeTransaction from "@service/hooks/query/useFetchRenteeTransa
 // components
 import ActivityTabLoading from "./ActivityTabLoading";
 import ActivityCardLong from "./ActivityCardLong";
-import BackButton from "@components/hood.ui/BackButton";
 // types
 import {TransactionType} from "src/types/apiType";
 
@@ -30,8 +29,7 @@ export default function ActivityTab({userId}: {userId: string}) {
   if (isError) return <div>Error happen !!</div>;
 
   return (
-    <div>
-      <BackButton className="absolute left-5 top-5" path="/home" />
+    <>
       <Tabs defaultValue="on-going" className="w-full">
         <TabsList className="grid w-full grid-cols-3 bg-transparent">
           <TabsTrigger value="on-going" className="w-full md:text-base">
@@ -67,6 +65,6 @@ export default function ActivityTab({userId}: {userId: string}) {
           </div>
         </TabsContent>
       </Tabs>
-    </div>
+    </>
   );
 }

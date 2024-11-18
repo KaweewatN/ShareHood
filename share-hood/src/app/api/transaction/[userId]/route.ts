@@ -30,7 +30,7 @@ export async function GET(request: Request) {
       JOIN
         "User" ON "Transaction"."userID" = "User"."userID"
       JOIN 
-        "PersonalInfo" ON "User"."userID" = "PersonalInfo"."userID"
+        "PersonalInfo" ON "Item"."userID" = "PersonalInfo"."userID"
       WHERE 
         "Transaction"."userID" = ${userIdParam}
     `;

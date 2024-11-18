@@ -28,7 +28,8 @@ export async function POST(request: Request) {
       userID,
       transactionStatus,
       transactionDate,
-      transactionReturnDate,
+      itemArrivalDate,
+      itemReturnDate,
       paymentType,
       price,
       shippingLocation,
@@ -42,7 +43,8 @@ export async function POST(request: Request) {
       !userID ||
       !transactionStatus ||
       !transactionDate ||
-      !transactionReturnDate ||
+      !itemArrivalDate ||
+      !itemReturnDate ||
       !paymentType ||
       !price ||
       !shippingLocation ||
@@ -62,7 +64,8 @@ export async function POST(request: Request) {
           "userID",
           "transactionStatus",
           "transactionDate",
-          "transactionReturnDate",
+          "itemArrivalDate",
+          "itemReturnDate",
           "paymentType",
           "price",
           "shippingMethod",
@@ -74,7 +77,8 @@ export async function POST(request: Request) {
             ${userID},
             ${transactionStatus},
             NOW(),
-            ${transactionReturnDate},
+            ${itemArrivalDate},
+            ${itemReturnDate},
             ${paymentType},
             ${price},
             ${shippingMethod},

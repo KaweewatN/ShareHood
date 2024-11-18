@@ -16,7 +16,11 @@ export default function Menubar() {
         <li>
           <Link
             href="/home"
-            className={pathname === "/home" ? "text-defaultBgBlue" : "text-gray-600"}
+            className={
+              pathname === "/home" || pathname === "/browse"
+                ? "text-defaultBgBlue"
+                : "text-gray-600"
+            }
           >
             {Icons.Home("text-xl")}
           </Link>
@@ -31,8 +35,10 @@ export default function Menubar() {
         </li>
         <li>
           <Link
-            href="/activity"
-            className={pathname === "/activity" ? "text-defaultBgBlue" : "text-gray-600"}
+            href="/rentee/activity"
+            className={
+              pathname.includes("/rentee/activity") ? "text-defaultBgBlue" : "text-gray-600"
+            }
           >
             {Icons.Activity("text-2xl")}
           </Link>
