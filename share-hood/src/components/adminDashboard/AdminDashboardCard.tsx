@@ -1,11 +1,11 @@
 "use client";
 
-import {IconType} from "react-icons";
+import Icons from "@components/icons/icons";
 
 type AdminDashboardCardProps = {
   label: string;
   value: string;
-  icon: IconType;
+  icon: keyof typeof Icons; // Use the keys of the Icons object
   bgColor: string;
   iconColor: string;
   growth: string;
@@ -15,19 +15,19 @@ type AdminDashboardCardProps = {
 export default function AdminDashboardCard({
   label,
   value,
-  icon: Icon,
+  icon,
   bgColor,
   iconColor,
   growth,
   growthColor,
 }: AdminDashboardCardProps) {
   return (
-    <div className="flex w-full max-w-xs flex-col justify-between rounded-lg border bg-white p-6 shadow-md transition-shadow duration-200 hover:shadow-lg">
+    <div className="flex flex-col justify-between rounded-lg border bg-white p-6 shadow-md transition-shadow duration-200 hover:shadow-lg">
       {/* Top Section */}
       <div className="flex items-center space-x-4">
         {/* Icon Container */}
         <div className={`flex h-14 w-14 items-center justify-center rounded-full ${bgColor}`}>
-          <Icon className={`text-3xl ${iconColor}`} />
+          {Icons[icon](`text-3xl ${iconColor}`)}
         </div>
 
         {/* Text Section */}
