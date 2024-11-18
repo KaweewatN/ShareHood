@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, {useMemo} from "react";
 
 // icons
 import Icons from "@components/icons/icons";
@@ -16,30 +16,36 @@ interface NotificationItemProps {
 }
 
 function NotificationItem({title, message, timestamp, type}: NotificationItemProps) {
-  // Determine styles based on the notification type
-  const typeStyles = {
-    alert: {
-      bg: "bg-yellow-100",
-      text: "text-yellow-500",
-      icon: Icons.Bell(),
-    },
-    update: {
-      bg: "bg-blue-100",
-      text: "text-blue-500",
-      icon: Icons.Box(),
-    },
-    message: {
-      bg: "bg-green-100",
-      text: "text-green-500",
-      icon: Icons.Message(),
-    },
-  };
+  // Memoize the typeStyles object
+  const typeStyles = useMemo(
+    () => ({
+      alert: {
+        bg: "bg-yellow-100",
+        text: "text-yellow-500",
+        icon: Icons.Bell(),
+      },
+      update: {
+        bg: "bg-blue-100",
+        text: "text-blue-500",
+        icon: Icons.Box(),
+      },
+      message: {
+        bg: "bg-green-100",
+        text: "text-green-500",
+        icon: Icons.Message(),
+      },
+    }),
+    [],
+  );
+
+  // Destructure the styles for the current type
+  const {bg, text, icon} = typeStyles[type];
 
   return (
     <div className="flex items-start space-x-4 p-2">
       {/* Icon with dynamic color and background */}
-      <div className={`flex-shrink-0 ${typeStyles[type].bg} rounded-full p-2`}>
-        <div className={`${typeStyles[type].text}`}>{typeStyles[type].icon}</div>
+      <div className={`flex-shrink-0 ${bg} rounded-full p-2`}>
+        <div className={text}>{icon}</div>
       </div>
 
       {/* Text Content */}
@@ -54,4 +60,4 @@ function NotificationItem({title, message, timestamp, type}: NotificationItemPro
   );
 }
 
-export default NotificationItem;
+export default React.memo(NotificationItem);
