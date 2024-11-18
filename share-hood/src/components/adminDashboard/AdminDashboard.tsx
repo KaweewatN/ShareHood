@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo } from "react";
+import {useMemo} from "react";
 import AdminDashboardCard from "./AdminDashboardCard";
 import Icons from "@components/icons/icons";
 import ActivityLog from "./ActivityLog";
@@ -48,11 +48,6 @@ const analyticsData = [
 export default function AdminDashboard() {
   const cards = useMemo(() => {
     return analyticsData.map((data, index) => {
-      if (!(data.icon in Icons)) {
-        console.error(`Invalid icon key "${data.icon}" in analyticsData.`);
-        return null; // Skip rendering if the icon key is invalid
-      }
-
       return (
         <AdminDashboardCard
           key={index}
