@@ -1,3 +1,5 @@
+"use client";
+
 import ReviewCard from "@components/hood.ui/ReviewCard";
 import { ReviewType } from "../../types/apiType";
 
@@ -13,10 +15,11 @@ const sampleReview: ReviewType = {
   },
 };
 
-const App = () => (
-  <div>
-    <ReviewCard review={sampleReview} />
-  </div>
-);
-
-export default App;
+export default function LatestReview() {
+  return (
+    <div className="p-4">
+      <h3 className="mb-4 text-xl font-semibold text-gray-800">Latest Review</h3>
+      <ReviewCard review={sampleReview} />
+    </div>
+  );
+}

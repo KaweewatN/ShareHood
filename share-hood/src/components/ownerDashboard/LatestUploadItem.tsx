@@ -1,9 +1,7 @@
-// components/LatestUploadedItem.tsx
 "use client";
 
-import React from "react";
 import OwnerItemCard from "@components/hood.ui/OwnerItemCard"; // Adjust path if necessary
-import {OwnerItemType} from "../../types/apiType";
+import { OwnerItemType } from "../../types/apiType";
 
 const latestItem: OwnerItemType = {
   itemID: "001",
@@ -15,15 +13,11 @@ const latestItem: OwnerItemType = {
   ownerName: "Nipun Kharuehapaisarn",
 };
 
-const LatestUploadedItem: React.FC = () => {
+export default function LatestUploadedItem() {
   return (
-    <div className="mx-auto max-w-sm">
+    <div className="p-4">
       <h3 className="mb-4 text-xl font-semibold text-gray-800">Latest Uploaded Item</h3>
-
-      {/* Pass latestItem as props to OwnerItemCard */}
       <OwnerItemCard {...latestItem} />
     </div>
   );
-};
-
-export default LatestUploadedItem;
+}
