@@ -24,19 +24,17 @@ export default function ActivityCardLong(transaction: TransactionType) {
           <p className="text-xs text-gray-500 md:text-sm">
             {convertToDate(transaction?.transactionDate)}
           </p>
-          <p className="text-sm font-semibold text-defaultBlue md:text-base">
-            {transaction?.price} THB
-          </p>
+          <p className="text-sm font-semibold text-defaultBlue">{transaction?.price} THB</p>
         </div>
-        <p className="text-sm font-medium md:text-base">{transaction?.itemName}</p>
+        <p className="text-sm font-semibold text-neutral-900">{transaction?.itemName}</p>
         <div className="flex space-x-2 text-xs">
           <p className="flex items-center space-x-1 text-defaultBlue">
             <span>{Icons.Users("text-gray-400")}</span>
-            <span className="md:text-base">{transaction?.ownerName}</span>
+            <span className="text-sm">{transaction?.ownerName}</span>
           </p>
           <p className="flex items-center space-x-1 text-defaultBlue">
             <span>{Icons.Tag("text-gray-400")}</span>
-            <span className="md:text-base">{transaction?.category}</span>
+            <span className="text-sm">{transaction?.category}</span>
           </p>
         </div>
         <p

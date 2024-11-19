@@ -99,15 +99,17 @@ export interface TransactionType {
   itemID: string;
   transactionStatus: string;
   transactionDate: string;
-  transactionReturnDate: string;
+  itemReturnDate: string;
   paymentType: string;
   price: number;
   shippingLocation: string;
   itemRentedDuration: number;
   quantity: number;
   shippingMethod: string;
+  itemArrivalDate: string;
   itemName: string;
   itemImage: string;
+  itemPrice: number;
   ownerName: string;
   category: string;
 }
