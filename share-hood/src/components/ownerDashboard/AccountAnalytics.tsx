@@ -9,7 +9,7 @@ type AnalyticsItem = {
   growth: string;
   growthColor: string;
   bgColor: string;
-  iconColor: string; 
+  iconColor: string;
 };
 
 const analyticsData: AnalyticsItem[] = [
@@ -53,24 +53,19 @@ const analyticsData: AnalyticsItem[] = [
 
 export default function AccountAnalytics() {
   return (
-    <div className="p-6 sm:p-8 lg:p-12">
+    <>
       {/* Header */}
-      <div className="mb-6 flex items-center justify-between">
+      <div className="mb-6 flex w-full items-center justify-between px-3">
         <h3 className="text-xl font-semibold text-gray-800">Account Analytics</h3>
         <p className="text-sm text-gray-500">Last 28 days</p>
       </div>
 
       {/* Analytics Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-8 gap-x-24">
+      <div className="grid w-full grid-cols-1 gap-y-8 px-10 md:grid-cols-2 md:gap-x-10">
         {analyticsData.map((data, index) => (
           <div
             key={index}
             className="flex flex-col justify-between rounded-lg bg-white p-6 shadow-md transition-shadow duration-200 hover:shadow-lg"
-            style={{
-              minWidth: "16rem", // Minimum width for consistent card size
-              maxWidth: "24rem", // Maximum width to adapt to larger screens
-              width: "100%", // Dynamic width to fill grid space
-            }}
           >
             {/* Icon and Text Section */}
             <div className="flex items-center space-x-5">
@@ -86,7 +81,7 @@ export default function AccountAnalytics() {
 
               {/* Text Section */}
               <div className="flex-1">
-                <h4 className="text-sm font-medium text-gray-600 truncate">{data.label}</h4>
+                <h4 className="truncate text-sm font-medium text-gray-600">{data.label}</h4>
                 <p className="mt-1 text-3xl font-bold text-gray-900">{data.value}</p>
               </div>
             </div>
@@ -98,6 +93,6 @@ export default function AccountAnalytics() {
           </div>
         ))}
       </div>
-    </div>
+    </>
   );
 }

@@ -1,7 +1,7 @@
 "use client";
 
-import OwnerItemCard from "@components/hood.ui/OwnerItemCard"; // Adjust path if necessary
-import { OwnerItemType } from "../../types/apiType";
+import OwnerItemCard from "@components/ownerDashboard/OwnerItemCard"; // Adjust path if necessary
+import {OwnerItemType} from "src/types/apiType";
 
 const latestItem: OwnerItemType = {
   itemID: "001",
@@ -15,7 +15,7 @@ const latestItem: OwnerItemType = {
 
 export default function LatestUploadedItem() {
   return (
-    <div className="p-4">
+    <div className="w-full p-4 md:px-16">
       <h3 className="mb-4 text-xl font-semibold text-gray-800">Latest Uploaded Item</h3>
       <OwnerItemCard {...latestItem} />
     </div>

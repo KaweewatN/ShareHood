@@ -1,7 +1,7 @@
 "use client";
 
-import ReviewCard from "@components/hood.ui/ReviewCard";
-import { ReviewType } from "../../types/apiType";
+import ReviewCard from "@components/ownerDashboard/ReviewCard";
+import {ReviewType} from "src/types/apiType";
 
 const sampleReview: ReviewType = {
   reviewID: "123",
@@ -17,7 +17,7 @@ const sampleReview: ReviewType = {
 
 export default function LatestReview() {
   return (
-    <div className="p-4">
+    <div className="w-full p-4">
       <h3 className="mb-4 text-xl font-semibold text-gray-800">Latest Review</h3>
       <ReviewCard review={sampleReview} />
     </div>

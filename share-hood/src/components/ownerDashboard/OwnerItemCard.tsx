@@ -4,19 +4,13 @@
 import React from "react";
 import Image from "next/image";
 import {FaChartBar, FaHeart, FaStar, FaTag} from "react-icons/fa";
-import {OwnerItemType} from "../../types/apiType";
+import {OwnerItemType} from "src/types/apiType";
 import CategoryTag from "@components/hood.ui/CategoryTag"; // Adjust path if necessary
 
-const OwnerItemCard: React.FC<OwnerItemType> = ({
-  itemImage,
-  itemName,
-  category,
-  itemPrice,
-  itemStatus,
-}) => {
+function OwnerItemCard({itemImage, itemName, category, itemPrice, itemStatus}: OwnerItemType) {
   return (
-    <div className="mx-auto max-w-sm">
-      <div className="flex flex-col space-y-6 rounded-lg border bg-white p-6 shadow-lg">
+    <div className="mx-auto w-full md:w-4/6">
+      <div className="flex w-full flex-col space-y-6 rounded-lg border bg-white p-6 shadow-lg">
         {/* Top Section: Image and Details */}
         <div className="flex items-start space-x-5">
           {/* Product Image */}
@@ -66,6 +60,6 @@ const OwnerItemCard: React.FC<OwnerItemType> = ({
       </div>
     </div>
   );
-};
+}
 
 export default OwnerItemCard;
