@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import useFetchData from "@service/hooks/useFetchData";
 import {ItemType} from "../../types/apiType";
 
@@ -20,7 +21,11 @@ export default function HomeCardRecomConatiner() {
           Array.from({length: 2}).map((_, index) => <ItemCardLongLoading key={index} />)
         ) : (
           <div className="flex w-full flex-col space-y-3">
-            {items?.map((item: ItemType, index: number) => <ItemCardLong key={index} {...item} />)}
+            {items?.map((item: ItemType, index: number) => (
+              <Link key={index} href={`/item/${item.itemID}`}>
+                <ItemCardLong key={index} {...item} />
+              </Link>
+            ))}
           </div>
         )}
       </div>

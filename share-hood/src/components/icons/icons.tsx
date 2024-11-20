@@ -1,6 +1,7 @@
 import {FaHeadphones, FaTag} from "react-icons/fa6";
 import {IoShirtSharp} from "react-icons/io5";
 import {MdSubscriptions, MdFilterAlt} from "react-icons/md";
+import {HiDotsVertical} from "react-icons/hi";
 import {
   FaCar,
   FaUser,
@@ -27,7 +28,7 @@ import {
 } from "react-icons/fa";
 import {GiConverseShoe} from "react-icons/gi";
 import {PiHighHeelFill, PiListMagnifyingGlass} from "react-icons/pi";
-import {RiNotification3Line, RiNotification3Fill} from "react-icons/ri";
+import {RiNotification3Line, RiNotification3Fill, RiDeleteBin6Line} from "react-icons/ri";
 
 const Icons = {
   headphones: (className?: string) => <FaHeadphones className={className} />,
@@ -63,6 +64,8 @@ const Icons = {
   Box: (className?: string) => <FaBox className={className} />,
   Message: (className?: string) => <FaComment className={className} />,
   Info: (className?: string) => <FaInfoCircle className={className} />,
+  VerticalDots: (className?: string) => <HiDotsVertical className={className} />,
+  Delete: (className?: string) => <RiDeleteBin6Line className={className} />,
 };
 
 export default Icons;
