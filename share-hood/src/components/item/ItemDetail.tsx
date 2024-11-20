@@ -2,7 +2,6 @@
 
 import {useState} from "react";
 import {useRouter} from "next/navigation";
-import Image from "next/image";
 import useFetchItemDetail from "@service/hooks/query/useFetchItemDetail";
 import {ReviewType} from "src/types/apiType";
 import Icons from "@components/icons/icons";

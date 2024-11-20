@@ -9,7 +9,6 @@ import sql from "src/libs/db/db";
 
 // Logger
 import {getLogger} from "@service/logger/logger";
-import {fi, sq} from "date-fns/locale";
 
 export async function GET(request: Request) {
   try {

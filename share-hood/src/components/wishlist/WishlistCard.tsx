@@ -7,7 +7,6 @@ import {WishlistType} from "src/types/apiType";
 import {EXAMPLE_ITEM_IMAGES} from "src/constants/pageData";
 
 import DeleteWistlistDropDown from "./DeleteWistlistDropDown";
-import {QueryObserverResult} from "@tanstack/react-query";
 
 interface WishlistCardProps extends WishlistType {
   userID: string;
