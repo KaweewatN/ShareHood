@@ -6,8 +6,10 @@ import LatestReview from "@components/ownerDashboard/LatestReview";
 // Page Component
 export default function Page() {
   return (
-    <div className="mx-auto flex flex-col items-center space-y-8">
-      <ProfileHeader firstName="Arocha" lastName="lalala" />
+    <div className="mx-auto mt-5 flex flex-col items-center space-y-8">
+      <div className="px-5">
+        <ProfileHeader firstName="Arocha" lastName="lalala" />
+      </div>
       <AccountAnalytics />
       <LatestUploadedItem />
       <LatestReview />

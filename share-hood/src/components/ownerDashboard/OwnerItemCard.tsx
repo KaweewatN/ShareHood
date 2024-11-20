@@ -9,7 +9,7 @@ import CategoryTag from "@components/hood.ui/CategoryTag"; // Adjust path if nec
 
 function OwnerItemCard({itemImage, itemName, category, itemPrice, itemStatus}: OwnerItemType) {
   return (
-    <div className="mx-auto w-full md:w-4/6">
+    <div className="w-full md:w-4/6">
       <div className="flex w-full flex-col space-y-6 rounded-lg border bg-white p-6 shadow-lg">
         {/* Top Section: Image and Details */}
         <div className="flex items-start space-x-5">
