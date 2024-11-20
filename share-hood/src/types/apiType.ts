@@ -5,12 +5,47 @@ import {USER, ITEM_STATUS} from "../constants/constVariable";
 type ItemStatusType = z.infer<typeof ITEM_STATUS>;
 type UserRole = z.infer<typeof USER>;
 
+export interface PersonalInfoType {
+  firstName: string;
+  lastName: string;
+  phone: string;
+  dateOfBirth: string;
+}
+
+export interface AddressType {
+  addressId: string;
+  addressLine: string;
+  subProvince: string;
+  province: string;
+  zip: string;
+}
+
+export interface PaymentType {
+  paymentId: string | null;
+  cardNumber: string | null;
+  cardName: string | null;
+  cardExp: string | null;
+  cardCvv: string | null;
+}
+
 export interface UserType {
   userID: string;
-  password: string;
   email: string;
-  role: UserRole;
-  verified: boolean;
+  role: string;
+  password: string;
+  personalInfo: PersonalInfoType;
+  address: AddressType;
+  payment: PaymentType;
+}
+
+export interface CreateUserInputType {
+  password: string | Promise<string>;
+  email: string;
+  emailVerified: boolean;
+  firstName: string;
+  lastName: string;
+  phone: string;
+  dateOfBirth: string;
 }
 export interface ReviewType {
   reviewID: string;
@@ -76,19 +111,41 @@ export interface OwnerItemType {
 
 export interface NotificationType {
   notificationID: string;
-  title: string;
-  description: string;
-  dateCreated: string;
-  status: string;
+  notificationHeader: string;
+  notificationDetails: string;
+  notificationTimestamp: string;
+  notificationType: string;
 }
 
 export interface WishlistType {
-  wishlistID: string;
+  wishListID: string;
   userID: string;
-  itemID: string;
+  item_ID: string;
   dateAdded: string;
   itemName: string;
   itemPrice: number;
+  itemImage: string;
   category: string;
   ownerName: string;
+}
+
+export interface TransactionType {
+  transactionID: string;
+  userID: string;
+  itemID: string;
+  transactionStatus: string;
+  transactionDate: string;
+  itemReturnDate: string;
+  paymentType: string;
+  price: number;
+  shippingLocation: string;
+  itemRentedDuration: number;
+  quantity: number;
+  shippingMethod: string;
+  itemArrivalDate: string;
+  itemName: string;
+  itemImage: string;
+  itemPrice: number;
+  ownerName: string;
+  category: string;
 }

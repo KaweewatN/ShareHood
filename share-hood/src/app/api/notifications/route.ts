@@ -3,7 +3,7 @@ import {NextResponse} from "next/server";
 
 // Files
 import {StatusCode} from "src/constants/statusCode";
-import {NotificationType} from "../../../types/apiType";
+import {NotificationType} from "src/types/apiType";
 
 // DB
 import sql from "src/libs/db/db";
@@ -13,7 +13,9 @@ import {getLogger} from "@service/logger/logger";
 
 export async function GET(request: Request) {
   try {
-    const data = await sql<NotificationType[]>`SELECT * FROM "Notification"`;
+    const data = await sql<
+      NotificationType[]
+    >`SELECT * FROM "Notification" ORDER BY "notificationTimestamp" DESC`;
     getLogger("GET", request.url, "info", `data: ${JSON.stringify(data).replace(/"/g, " ")}`);
     return NextResponse.json(data, {status: StatusCode.SUCCESS_OK.code});
   } catch (error: unknown) {
@@ -26,21 +28,26 @@ export async function GET(request: Request) {
 
 export async function POST(request: Request) {
   try {
-    const {notificationID, title, description, status}: NotificationType = await request.json();
+    const {
+      notificationID,
+      notificationHeader,
+      notificationDetails,
+      notificationType,
+    }: NotificationType = await request.json();
 
     const data = await sql<NotificationType[]>`
         INSERT INTO "Notification" (
           "notificationID",
-          "title",
-          "description",
-          "dateCreated",
-          "status"
+          "notificationHeader",
+          "notificationDetails",
+          "notificationTimestamp",
+          "notificationType"
         ) VALUES (
           ${notificationID},
-          ${title},
-          ${description},
+          ${notificationHeader},
+          ${notificationDetails},
           NOW(),
-          ${status}
+          ${notificationType}
         )
       `;
     getLogger("POST", request.url, "info", `data: ${JSON.stringify(data).replace(/"/g, " ")}`);
@@ -51,5 +58,7 @@ export async function POST(request: Request) {
       {error: error instanceof Error ? error.message : "An unknown error occurred"},
       {status: StatusCode.ERROR_BAD_REQUEST.code},
     );
+  } finally {
+    await sql.end();
   }
 }

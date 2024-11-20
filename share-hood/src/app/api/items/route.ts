@@ -3,7 +3,7 @@ import {NextResponse} from "next/server";
 
 // Files
 import {StatusCode} from "src/constants/statusCode";
-import {ItemType} from "../../../types/apiType";
+import {ItemType} from "src/types/apiType";
 
 // DB
 import sql from "src/libs/db/db";
@@ -44,7 +44,6 @@ export async function GET(request: Request) {
 export async function POST(request: Request) {
   try {
     const {
-      itemID,
       userID,
       itemName,
       itemDescription,
@@ -61,7 +60,6 @@ export async function POST(request: Request) {
 
     const result = await sql<ItemType[]>`
       INSERT INTO "Item" (
-        "itemID",
         "userID",
         "itemName",
         "itemDescription",
@@ -71,11 +69,10 @@ export async function POST(request: Request) {
         "category",
         "itemReturnDuration",
         "dateAdded",
-        "pickupLocation"
-        "pickUpDate",
-        "ItemImage"
+        "pickupLocation",
+        "pickupDate",
+        "itemImage"
       ) VALUES (
-        ${itemID},
         ${userID},
         ${itemName},
         ${itemDescription},
@@ -85,8 +82,8 @@ export async function POST(request: Request) {
         ${category},
         ${itemReturnDuration},
         ${dateAdded},
-        ${pickupLocation ?? null}
-        ${pickupDate ?? null}
+        ${pickupLocation ?? null},
+        ${pickupDate ?? null},
         ${itemImage ?? null}
       )
       RETURNING *;

@@ -11,13 +11,13 @@ import sql from "src/libs/db/db";
 import {getLogger} from "@service/logger/logger";
 
 // Types
-import {WishlistType} from "../../../../types/apiType";
+import {WishlistType} from "src/types/apiType";
 
 export async function GET(request: Request) {
   try {
-    // Const url = new URL(request.url);
-    // Const userID = url.pathname.split("/").pop();
-    const userID = "d33b09e0-6bf7-4f66-be1d-a8fe059ff9e2";
+    const url = new URL(request.url);
+    const userID = url.pathname.split("/").pop();
+    const itemID = url.searchParams.get("itemID");
     if (!userID) {
       return NextResponse.json(
         {error: "User ID is missing"},
@@ -25,17 +25,21 @@ export async function GET(request: Request) {
       );
     }
 
-    const data = await sql<WishlistType[]>`
-      SELECT w.*, 
-             CONCAT(p."firstName", ' ', p."lastName") AS "ownerName",
-             i."itemName", 
-             i."itemPrice", 
-             i."category"
-             FROM "Wishlist" w 
-             JOIN "Item" i ON w."item_ID" = i."itemID" -- Use item_ID here
-             JOIN "User" u ON i."userID" = u."userID" 
-             JOIN "PersonalInfo" p ON u."userID" = p."userID"  
-             WHERE w."userID" = ${userID}`;
+    const query = sql<WishlistType[]>`
+        SELECT w.*, 
+              CONCAT(p."firstName", ' ', p."lastName") AS "ownerName",
+              i."itemName", 
+              i."itemPrice", 
+              i."itemImage",
+              i."category"
+        FROM "Wishlist" w 
+        JOIN "Item" i ON w."item_ID" = i."itemID"
+        JOIN "User" u ON i."userID" = u."userID" 
+        JOIN "PersonalInfo" p ON u."userID" = p."userID"  
+        WHERE w."userID" = ${userID}
+    ${itemID ? sql`AND i."itemID" = ${itemID}` : sql``}`;
+
+    const data = await query;
 
     getLogger("GET", request.url, "info", `data: ${JSON.stringify(data).replace(/"/g, " ")}`);
 
@@ -50,25 +54,30 @@ export async function GET(request: Request) {
 
 export async function POST(request: Request) {
   try {
-    const {wishlistID, userID, itemID}: WishlistType = await request.json();
+    const {wishListID, userID, item_ID}: WishlistType = await request.json();
+    const dateAdded = new Date().toISOString(); // Get the current date and time in ISO format
 
     const result = await sql<WishlistType[]>`
       INSERT INTO "Wishlist" (
-        "wishlistID",
+        "wishListID",
         "userID",
-        "itemID",
+        "item_ID",
         "dateAdded"
       ) VALUES (
-        ${wishlistID},
+        ${wishListID},
         ${userID},
-        ${itemID},
-        NOW()
+        ${item_ID},
+        ${dateAdded}
       )
     `;
+
     getLogger("POST", request.url, "info", `result: ${JSON.stringify(result).replace(/"/g, " ")}`);
 
-    return NextResponse.json(result, {status: StatusCode.SUCCESS_CREATED.code});
+    return NextResponse.json("Insert to wishlist successfully", {
+      status: StatusCode.SUCCESS_CREATED.code,
+    });
   } catch (error: unknown) {
+    getLogger("POST", request.url, "error", `error: ${error}`);
     return NextResponse.json(
       {error: error instanceof Error ? error.message : "An unknown error occurred"},
       {status: StatusCode.ERROR_BAD_REQUEST.code},
@@ -78,22 +87,31 @@ export async function POST(request: Request) {
 
 export async function DELETE(request: Request) {
   try {
-    const {wishlistID}: WishlistType = await request.json();
     const url = new URL(request.url);
     const userIDUrl = url.pathname.split("/").pop();
+    const wishListID = url.searchParams.get("wishlistID");
 
-    if (!userIDUrl) {
+    if (!userIDUrl || userIDUrl === "undefined") {
       return NextResponse.json(
         {error: "User ID is missing"},
         {status: StatusCode.ERROR_BAD_REQUEST.code},
       );
     }
 
-    const result = await sql<WishlistType[]>`
+    if (!wishListID || wishListID === "undefined") {
+      return NextResponse.json(
+        {error: "WishList ID is missing"},
+        {status: StatusCode.ERROR_BAD_REQUEST.code},
+      );
+    }
+
+    await sql<WishlistType[]>`
       DELETE FROM "Wishlist"
-      WHERE "wishlistID" = ${wishlistID} AND "userID" = ${userIDUrl}
+      WHERE "wishListID" = ${wishListID} AND "userID" = ${userIDUrl}
     `;
-    return NextResponse.json(result, {status: StatusCode.SUCCESS_OK.code});
+    return NextResponse.json(`Successfully delete wishlist ID: ${wishListID} `, {
+      status: StatusCode.SUCCESS_OK.code,
+    });
   } catch (error: unknown) {
     return NextResponse.json(
       {error: error instanceof Error ? error.message : "An unknown error occurred"},

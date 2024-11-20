@@ -4,6 +4,7 @@ import {Inter} from "next/font/google";
 import "./globals.css";
 
 import ReactQueryProvider from "src/libs/providers/ReactQueryProvider";
+import NextAuthProvider from "@libs/providers/NextAuthProvider";
 
 const inter = Inter({subsets: ["latin"]});
 
@@ -20,11 +21,13 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <ReactQueryProvider>
-          <div className="bg-defaultBackground mx-auto min-h-screen max-w-screen-sm">
-            {children}
-          </div>
-        </ReactQueryProvider>
+        <NextAuthProvider>
+          <ReactQueryProvider>
+            <div className="bg-defaultBackground mx-auto min-h-screen max-w-screen-sm">
+              {children}
+            </div>
+          </ReactQueryProvider>
+        </NextAuthProvider>
       </body>
     </html>
   );

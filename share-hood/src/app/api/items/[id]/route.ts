@@ -63,51 +63,21 @@ export async function GET(request: Request) {
 
 export async function PUT(request: Request) {
   try {
-    const {pathname} = new URL(request.url);
-    const itemIDParam = pathname.split("/").pop();
+    const {itemID, decrementValue} = await request.json();
 
-    const {
-      userID,
-      itemName,
-      itemDescription,
-      itemPrice,
-      itemQuantity,
-      itemStatus,
-      category,
-      itemReturnDuration,
-      dateAdded,
-      pickupLocation,
-      pickupDate,
-      itemImage,
-    }: ItemTypeInitial = await request.json();
-
-    if (!itemIDParam) {
+    if (!itemID || !decrementValue) {
       return NextResponse.json(
-        {error: "Invalid item ID"},
+        {error: "Missing required fields"},
         {status: StatusCode.ERROR_BAD_REQUEST.code},
       );
     }
-
-    const result = await sql<ItemTypeInitial[]>`
+    const result = await sql`
       UPDATE "Item"
-      SET "userID" = ${userID},
-          "itemName" = ${itemName},
-          "itemDescription" = ${itemDescription},
-          "itemPrice" = ${itemPrice},
-          "itemQuantity" = ${itemQuantity},
-          "itemStatus" = ${itemStatus},
-          "category" = ${category},
-          "itemReturnDuration" = ${itemReturnDuration},
-          "dateAdded" = ${dateAdded},
-          "pickupLocation" = ${pickupLocation ?? null},
-          "pickUpDate" = ${pickupDate ?? null},
-          "itemImage" = ${itemImage ?? null}
-      WHERE "itemID" = ${itemIDParam}
-      RETURNING *`;
+      SET "itemQuantity" = "itemQuantity" - ${decrementValue}
+      WHERE "itemID" = ${itemID}
+    `;
 
-    getLogger("PUT", request.url, "info", `result: ${JSON.stringify(result).replace(/"/g, " ")}`);
-
-    return NextResponse.json(result, {status: StatusCode.SUCCESS_OK.code});
+    return NextResponse.json(`Update Item Success ${result}`, {status: StatusCode.SUCCESS_OK.code});
   } catch (error: unknown) {
     return NextResponse.json(
       {error: error instanceof Error ? error.message : "An unknown error occurred"},

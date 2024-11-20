@@ -12,11 +12,15 @@ export default function Menubar() {
 
   return (
     <nav className="fixed bottom-0 left-1/2 z-50 w-full max-w-screen-sm -translate-x-1/2 transform">
-      <ul className="flex w-full items-center justify-around bg-white p-5">
+      <ul className="shadow-t-lg flex w-full items-center justify-around bg-white p-5">
         <li>
           <Link
             href="/home"
-            className={pathname === "/home" ? "text-defaultBgBlue" : "text-gray-600"}
+            className={
+              pathname === "/home" || pathname === "/browse"
+                ? "text-defaultBgBlue"
+                : "text-gray-600"
+            }
           >
             {Icons.Home("text-xl")}
           </Link>
@@ -31,8 +35,10 @@ export default function Menubar() {
         </li>
         <li>
           <Link
-            href="/activity"
-            className={pathname === "/activity" ? "text-defaultBgBlue" : "text-gray-600"}
+            href="/rentee/activity"
+            className={
+              pathname.includes("/rentee/activity") ? "text-defaultBgBlue" : "text-gray-600"
+            }
           >
             {Icons.Activity("text-2xl")}
           </Link>
