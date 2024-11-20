@@ -20,11 +20,7 @@ export default function DeleteWistlistDropDown({
   wishlistID: string;
   userID: string;
 }) {
-  const {
-    mutate: deleteWishlist,
-    isError,
-    isSuccess,
-  } = useDeleteWishlist({
+  const {mutate: deleteWishlist} = useDeleteWishlist({
     userId: userID,
     wishlistId: wishlistID,
     onSuccess: () => {
