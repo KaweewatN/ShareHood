@@ -47,7 +47,6 @@ export interface CreateUserInputType {
   phone: string;
   dateOfBirth: string;
 }
-
 export interface ReviewType {
   reviewID: string;
   reviewRating: number;
@@ -56,6 +55,7 @@ export interface ReviewType {
   users: {
     userID: string;
     reviewerName: string;
+    reviewerImage?: string; // Optional image path for reviewer
   };
 }
 
@@ -97,6 +97,16 @@ export interface ItemType {
   itemImage: string;
   ownerName: string;
   reviews?: ReviewType[];
+}
+
+export interface OwnerItemType {
+  itemID: string;
+  itemName: string;
+  itemImage: string;
+  itemPrice: number;
+  category: string;
+  itemStatus: string;
+  ownerName: string;
 }
 
 export interface NotificationType {
