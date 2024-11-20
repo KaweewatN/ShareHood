@@ -9,7 +9,6 @@ import sql from "src/libs/db/db";
 
 // Logger
 import {getLogger} from "@service/logger/logger";
-import {fi, sq} from "date-fns/locale";
 
 export async function GET(request: Request) {
   try {
@@ -26,7 +25,7 @@ export async function GET(request: Request) {
     LEFT JOIN "PersonalInfo" p ON u."userID" = p."userID" 
     LEFT JOIN "Address" a ON u."userID" = a."userID"
     LEFT JOIN "Payment" pay ON u."userID" = pay."userID"
-    WHERE u."userID" = ${userIDParam} AND u."role" = 'Owner'`;
+    WHERE u."userID" = ${userIDParam}`;
 
     const result = data.map((user) => ({
       userID: user.userID,
@@ -65,28 +64,7 @@ export async function GET(request: Request) {
       {error: error instanceof Error ? error.message : "An unknown error occurred"},
       {status: StatusCode.ERROR_BAD_REQUEST.code},
     );
-  }
-}
-
-export async function PUT(request: Request) {
-  try {
-    const {pathname} = new URL(request.url);
-    const userIDParam = pathname.split("/").pop();
-
-    if (!userIDParam) {
-      return NextResponse.json(
-        {error: "User ID parameter is missing"},
-        {status: StatusCode.ERROR_BAD_REQUEST.code},
-      );
-    }
-
-    await sql`UPDATE "User" SET "role" = 'Owner' WHERE "userID" = ${userIDParam}`;
-
-    return NextResponse.json("Update to owner succeed", {status: StatusCode.SUCCESS_OK.code});
-  } catch (error: unknown) {
-    return NextResponse.json(
-      {error: error instanceof Error ? error.message : "An unknown error occurred"},
-      {status: StatusCode.ERROR_INTERNAL_SERVER.code},
-    );
+  } finally {
+    sql.end();
   }
 }

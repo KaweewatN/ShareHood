@@ -1,6 +1,7 @@
 "use client";
 
 // main
+import {useState} from "react";
 import {SubmitHandler, useForm} from "react-hook-form";
 import {zodResolver} from "@hookform/resolvers/zod";
 import {signIn} from "next-auth/react";
@@ -19,6 +20,7 @@ import {Input} from "@components/shad.ui/input";
 import {Checkbox} from "@components/shad.ui/checkbox";
 import DefaultButton from "@components/hood.ui/DefaultButton";
 import {Button} from "@components/shad.ui/button";
+import {PasswordInput} from "@components/shad.ui/password-input";
 
 // types
 import {SignInFormZod} from "../../types/form/authenticateZod";
@@ -82,7 +84,7 @@ export default function SignInForm() {
               <FormItem className="w-full">
                 <FormLabel>Password</FormLabel>
                 <FormControl>
-                  <Input placeholder="Password" type="password" {...field} />
+                  <PasswordInput placeholder="Password" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>

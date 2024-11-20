@@ -16,6 +16,7 @@ import {
 import {Input} from "@components/shad.ui/input";
 import {Checkbox} from "@components/shad.ui/checkbox";
 import DefaultButton from "@components/hood.ui/DefaultButton";
+import {PasswordInput} from "@components/shad.ui/password-input";
 
 // hooks
 import useMutationCreateUser from "@service/hooks/mutation/useMutationCreateUser";
@@ -168,7 +169,7 @@ export default function SignUpForm() {
               <FormItem className="w-full">
                 <FormLabel>Password</FormLabel>
                 <FormControl>
-                  <Input placeholder="Password" type="password" {...field} />
+                  <PasswordInput placeholder="Password" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -183,7 +184,7 @@ export default function SignUpForm() {
               <FormItem className="w-full">
                 <FormLabel>Confirm Password</FormLabel>
                 <FormControl>
-                  <Input placeholder="Confirm Password" type="password" {...field} />
+                  <PasswordInput placeholder="Confirm Password" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -197,7 +198,7 @@ export default function SignUpForm() {
               htmlFor="remember"
               className="inline-block font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
             >
-              Agree with{" "}
+              Agree with
               <span className="inline text-xs text-defaultBlue hover:underline">
                 Terms and Conditions
               </span>

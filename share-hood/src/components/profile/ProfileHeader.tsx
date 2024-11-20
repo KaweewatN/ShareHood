@@ -3,7 +3,7 @@
 import React from "react";
 import Image from "next/image";
 
-function ProfileHeader() {
+function ProfileHeader({name, email}: {name: string; email: string}) {
   return (
     <div className="relative mt-6 flex flex-col items-center">
       <div className="relative h-20 w-20">
@@ -17,8 +17,8 @@ function ProfileHeader() {
           ✏️
         </button>
       </div>
-      <h2 className="mt-3 text-lg font-semibold">Nipun Kharuehapaisarn</h2>
-      <p className="text-gray-500">nipunk0258@gmail.com</p>
+      <h2 className="mt-3 text-lg font-semibold">{name}</h2>
+      <p className="text-gray-500">{email}</p>
     </div>
   );
 }

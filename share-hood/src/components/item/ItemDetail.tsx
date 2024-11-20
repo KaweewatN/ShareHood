@@ -6,7 +6,6 @@ import Image from "next/image";
 import useFetchItemDetail from "@service/hooks/query/useFetchItemDetail";
 import {ReviewType} from "src/types/apiType";
 import Icons from "@components/icons/icons";
-import BackButton from "@components/hood.ui/BackButton";
 import {Button} from "@components/shad.ui/button";
 import DefaultButton from "@components/hood.ui/DefaultButton";
 import PickupCard from "./PickupCard";
@@ -28,7 +27,11 @@ export default function ItemDetail({itemId}: {itemId: string}) {
   };
 
   if (isLoading) {
-    return <div className="loaderDot"></div>;
+    return (
+      <div className="flex w-full justify-center">
+        <div className="loaderDot"></div>
+      </div>
+    );
   }
 
   if (error) {
@@ -41,17 +44,12 @@ export default function ItemDetail({itemId}: {itemId: string}) {
 
   return (
     <div className="flex w-full flex-col items-center">
-      <BackButton className="absolute left-5 top-5" path="/browse" />
-      <div className="mb-2 h-80 w-80">
-        <Image
-          src={itemDetail.itemImage || "/default-image.jpg"}
-          alt={itemDetail.itemName || "Item Image"}
-          width={300}
-          height={300}
-          className="rounded-lg"
-        />
-      </div>
-      <div className="w-full space-y-4 px-2">
+      <div
+        className="mt-2 h-64 w-11/12 rounded-md bg-cover bg-center md:w-10/12"
+        style={{backgroundImage: `url(${itemDetail.itemImage || "/default-image.jpg"})`}}
+        aria-label={itemDetail.itemName || "Item Image"}
+      ></div>
+      <div className="mt-5 w-full space-y-4 px-2">
         <div className="flex w-full items-center justify-between">
           <p className="text-semibold text-lg">{itemDetail.itemName}</p>
           <p className="inline-flex">

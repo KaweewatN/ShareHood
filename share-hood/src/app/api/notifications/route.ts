@@ -3,7 +3,7 @@ import {NextResponse} from "next/server";
 
 // Files
 import {StatusCode} from "src/constants/statusCode";
-import {NotificationType} from "../../../types/apiType";
+import {NotificationType} from "src/types/apiType";
 
 // DB
 import sql from "src/libs/db/db";
@@ -58,5 +58,7 @@ export async function POST(request: Request) {
       {error: error instanceof Error ? error.message : "An unknown error occurred"},
       {status: StatusCode.ERROR_BAD_REQUEST.code},
     );
+  } finally {
+    await sql.end();
   }
 }

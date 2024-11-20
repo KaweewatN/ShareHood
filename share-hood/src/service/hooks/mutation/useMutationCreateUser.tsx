@@ -9,7 +9,12 @@ type useMutationCreateUserProps = {
 
 const useMutationCreateUser = ({role, onSuccess, onError}: useMutationCreateUserProps) => {
   return useMutation({
-    mutationFn: (userData: any) => axios.post(`api/users/${role}`, userData),
+    mutationFn: (userData: any) =>
+      axios.post(`api/users/${role}`, userData, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }),
     onSuccess,
     onError,
   });

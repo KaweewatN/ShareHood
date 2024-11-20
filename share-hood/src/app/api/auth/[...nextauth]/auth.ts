@@ -98,7 +98,7 @@ export async function checkRole(): Promise<string> {
   if (SessionUser?.role === "Admin") {
     return "Admin";
   }
-  if (SessionUser?.role !== "Owner") {
+  if (SessionUser?.role === "Owner") {
     return "Owner";
   } else {
     return "Rentee";
