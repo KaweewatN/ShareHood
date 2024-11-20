@@ -2,6 +2,7 @@ import React from "react";
 import type {Metadata} from "next";
 import {Inter} from "next/font/google";
 import "./globals.css";
+import {Toaster} from "@components/shad.ui/sonner";
 
 import ReactQueryProvider from "src/libs/providers/ReactQueryProvider";
 import NextAuthProvider from "@libs/providers/NextAuthProvider";
@@ -23,9 +24,10 @@ export default async function RootLayout({
       <body className={inter.className}>
         <NextAuthProvider>
           <ReactQueryProvider>
-            <div className="bg-defaultBackground mx-auto min-h-screen max-w-screen-sm">
+            <main className="bg-defaultBackground mx-auto min-h-screen max-w-screen-sm">
               {children}
-            </div>
+            </main>
+            <Toaster />
           </ReactQueryProvider>
         </NextAuthProvider>
       </body>
