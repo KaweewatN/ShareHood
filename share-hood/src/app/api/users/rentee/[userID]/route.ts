@@ -17,10 +17,14 @@ export async function GET(request: Request) {
     if (!userIDParam) {
       throw new Error("User ID parameter is missing");
     }
-    const data = await sql<any[]>`SELECT * FROM "User" u  
-    JOIN "PersonalInfo" p ON u."userID" = p."userID" 
-    JOIN "Address" a ON u."userID" = a."userID"
-    JOIN "Payment" pay ON u."userID" = pay."userID"
+    const data = await sql<any[]>`SELECT u."userID" as "userID", u."email", u."role", u."password", 
+    p."firstName", p."lastName", p."phone", p."dateOfBirth",
+    a."addressID", a."addressLine", a."subProvince", a."province", a."zip",
+    pay."paymentID", pay."cardNumber", pay."cardHolderName", pay."expirationDate", pay."cvv"
+    FROM "User" u  
+    LEFT JOIN "PersonalInfo" p ON u."userID" = p."userID" 
+    LEFT JOIN "Address" a ON u."userID" = a."userID"
+    LEFT JOIN "Payment" pay ON u."userID" = pay."userID"
     WHERE u."userID" = ${userIDParam} AND u."role" = 'Rentee'`;
 
     const result = data.map((user) => ({

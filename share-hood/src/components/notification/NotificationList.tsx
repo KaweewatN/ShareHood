@@ -14,8 +14,8 @@ function NotificationList() {
   return (
     <>
       {isLoading ? (
-        <div className="w-full pt-10">
-          <p>Loading..</p>
+        <div className="flex w-full items-center justify-center pt-10">
+          <div className="loaderDot"></div>
         </div>
       ) : (
         <div className="mt-8 flex flex-col items-start space-y-5">

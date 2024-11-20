@@ -18,7 +18,7 @@ export default function AuthenTabs() {
           </p>
         </div>
         <Tabs defaultValue="signin">
-          <TabsList className="grid w-full grid-cols-2">
+          <TabsList className="grid w-full grid-cols-2 bg-slate-200 data-[state=active]:bg-slate-50 data-[state=active]:shadow-sm">
             <TabsTrigger value="signin" className="rounded-l-lg">
               Sign in
             </TabsTrigger>

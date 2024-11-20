@@ -54,8 +54,8 @@ export async function checkRole(): Promise<string> {
   }
 }
 
-// check user id
-export async function checkUserID(): Promise<string> {
+// get user id
+export async function getUserID(): Promise<string> {
   const session = await getServerAuthSession();
   if (!session) {
     throw new Error("No session found");
