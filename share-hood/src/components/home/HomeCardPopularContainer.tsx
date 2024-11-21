@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import useFetchData from "@service/hooks/useFetchData";
 import {ItemType} from "../../types/apiType";
 
@@ -25,7 +26,11 @@ export default function HomeCardContainer() {
         </div>
       ) : (
         <div className="mt-3 flex w-full space-x-3 overflow-x-auto overflow-y-hidden">
-          {items?.map((item: ItemType, index: number) => <ItemCardDefault key={index} {...item} />)}
+          {items?.map((item: ItemType, index: number) => (
+            <Link key={index} href={`/item/${item.itemID}`}>
+              <ItemCardDefault key={index} {...item} />
+            </Link>
+          ))}
         </div>
       )}
     </div>

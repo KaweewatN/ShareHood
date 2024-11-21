@@ -1,6 +1,7 @@
 import {FaHeadphones, FaTag} from "react-icons/fa6";
 import {IoShirtSharp} from "react-icons/io5";
 import {MdSubscriptions, MdFilterAlt} from "react-icons/md";
+import {HiDotsVertical} from "react-icons/hi";
 import {
   FaCar,
   FaUser,
@@ -18,12 +19,21 @@ import {
   FaClock,
   FaChartLine,
   FaUserFriends,
+  FaCog,
+  FaCreditCard,
+  FaQuestionCircle,
+  FaEnvelope,
+  FaSignOutAlt,
+  FaExchangeAlt,
+  FaBell,
+  FaComment,
+  FaInfoCircle,
   FaExclamationCircle,
   FaCheckCircle,
 } from "react-icons/fa";
 import {GiConverseShoe} from "react-icons/gi";
 import {PiHighHeelFill, PiListMagnifyingGlass} from "react-icons/pi";
-import {RiNotification3Line, RiNotification3Fill} from "react-icons/ri";
+import {RiNotification3Line, RiNotification3Fill, RiDeleteBin6Line} from "react-icons/ri";
 
 const Icons = {
   headphones: (className?: string) => <FaHeadphones className={className} />,
@@ -53,8 +63,20 @@ const Icons = {
   clock: (className?: string) => <FaClock className={className} />,
   chartLine: (className?: string) => <FaChartLine className={className} />,
   userFriends: (className?: string) => <FaUserFriends className={className} />,
-  error: (className?: string) => <FaExclamationCircle className={className} />,
-  check: (className?: string) => <FaCheckCircle className={className} />,
+  Exchange: (className?: string) => <FaExchangeAlt className={className} />,
+  Cog: (className?: string) => <FaCog className={className} />,
+  CreditCard: (className?: string) => <FaCreditCard className={className} />,
+  QuestionCircle: (className?: string) => <FaQuestionCircle className={className} />,
+  Signout: (className?: string) => <FaSignOutAlt className={className} />,
+  Envelope: (className?: string) => <FaEnvelope className={className} />,
+  Bell: (className?: string) => <FaBell className={className} />,
+  Box: (className?: string) => <FaBox className={className} />,
+  Message: (className?: string) => <FaComment className={className} />,
+  Info: (className?: string) => <FaInfoCircle className={className} />,
+  VerticalDots: (className?: string) => <HiDotsVertical className={className} />,
+  Delete: (className?: string) => <RiDeleteBin6Line className={className} />,
+  Exclamation: (className?: string) => <FaExclamationCircle className={className} />,
+  Check: (className?: string) => <FaCheckCircle className={className} />,
 };
 
 export default Icons;
