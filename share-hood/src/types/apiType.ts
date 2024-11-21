@@ -128,3 +128,24 @@ export interface WishlistType {
   category: string;
   ownerName: string;
 }
+
+export interface TransactionType {
+  transactionID: string;
+  userID: string;
+  itemID: string;
+  transactionStatus: string;
+  transactionDate: string;
+  itemReturnDate: string;
+  paymentType: string;
+  price: number;
+  shippingLocation: string;
+  itemRentedDuration: number;
+  quantity: number;
+  shippingMethod: string;
+  itemArrivalDate: string;
+  itemName: string;
+  itemImage: string;
+  itemPrice: number;
+  ownerName: string;
+  category: string;
+}
