@@ -28,6 +28,8 @@ import {
   FaBell,
   FaComment,
   FaInfoCircle,
+  FaExclamationCircle,
+  FaCheckCircle,
 } from "react-icons/fa";
 import {GiConverseShoe} from "react-icons/gi";
 import {PiHighHeelFill, PiListMagnifyingGlass} from "react-icons/pi";
@@ -73,6 +75,8 @@ const Icons = {
   Info: (className?: string) => <FaInfoCircle className={className} />,
   VerticalDots: (className?: string) => <HiDotsVertical className={className} />,
   Delete: (className?: string) => <RiDeleteBin6Line className={className} />,
+  Exclamation: (className?: string) => <FaExclamationCircle className={className} />,
+  Check: (className?: string) => <FaCheckCircle className={className} />,
 };
 
 export default Icons;
