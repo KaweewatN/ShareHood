@@ -25,7 +25,11 @@ export function ProfilePage({userId, role}: {userId: string; role: string}) {
       <ProfileHeader name={fullName ?? ""} email={dataFormatted?.email ?? ""} />
       <div className="mt-6 flex w-full flex-col space-y-3 p-2">
         {(role === "Owner" || role === "Admin") && (
-          <ProfileMenuItem label="Switch to Owner" icon={Icons.Exchange()} href="/owner/home" />
+          <ProfileMenuItem
+            label="Switch to Owner"
+            icon={Icons.Exchange()}
+            href={`/${role.toLowerCase()}`}
+          />
         )}
         <ProfileMenuItem label="Personal details" icon={Icons.User()} href="/profile" />
         <ProfileMenuItem label="Settings" icon={Icons.Cog()} href="/settings" />

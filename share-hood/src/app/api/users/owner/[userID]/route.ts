@@ -17,7 +17,9 @@ export async function GET(request: Request) {
     if (!userIDParam) {
       throw new Error("User ID parameter is missing");
     }
-    const data = await sql<any[]>`SELECT u."userID" as "userID", u."email", u."role", u."password", 
+    const data = await sql<
+      any[]
+    >`SELECT u."userID" as "userID", u."email", u."role", u."password", u."emailVerified",
     p."firstName", p."lastName", p."phone", p."dateOfBirth",
     a."addressID", a."addressLine", a."subProvince", a."province", a."zip",
     pay."paymentID", pay."cardNumber", pay."cardHolderName", pay."expirationDate", pay."cvv"
@@ -30,8 +32,9 @@ export async function GET(request: Request) {
     const result = data.map((user) => ({
       userID: user.userID,
       email: user.email,
-      role: user.role,
       password: user.password,
+      role: user.role,
+      verified: user.emailVerified,
       personalInfo: {
         firstName: user.firstName,
         lastName: user.lastName,

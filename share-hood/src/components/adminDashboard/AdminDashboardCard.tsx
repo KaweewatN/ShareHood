@@ -34,7 +34,7 @@ export default function AdminDashboardCard({
 
         {/* Text Section */}
         <div className="flex-1">
-          <h4 className="truncate text-sm font-semibold text-gray-600 md:text-base">{label}</h4>
+          <h4 className="text-sm font-semibold text-gray-600 md:text-base">{label}</h4>
           <p className="text-xl font-bold text-gray-900 md:text-3xl">{value}</p>
         </div>
       </div>

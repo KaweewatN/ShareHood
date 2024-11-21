@@ -29,6 +29,7 @@ export interface PaymentType {
 }
 
 export interface UserType {
+  length: number;
   userID: string;
   email: string;
   role: string;
@@ -82,6 +83,7 @@ export interface ItemTypeInitial {
 }
 
 export interface ItemType {
+  length: number;
   itemID: string;
   userID: string;
   itemName: string;
@@ -130,6 +132,7 @@ export interface WishlistType {
 }
 
 export interface TransactionType {
+  length: number;
   transactionID: string;
   userID: string;
   itemID: string;
