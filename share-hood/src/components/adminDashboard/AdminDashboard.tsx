@@ -64,15 +64,15 @@ export default function AdminDashboard() {
   }, []);
 
   return (
-    <div className="min-h-screen space-y-8 p-6 sm:p-8 lg:p-12">
+    <div className="min-h-screen space-y-7">
       {/* Header Section */}
       <div>
         <h1 className="text-3xl font-bold text-gray-900">Welcome back, Nipun</h1>
-        <h2 className="mt-1 text-xl font-semibold text-gray-700">Admin Dashboard</h2>
       </div>
+      <h2 className="mt-1 text-xl font-semibold text-gray-700">Admin Dashboard</h2>
 
       {/* Responsive Grid for Dashboard Cards */}
-      <div className="grid grid-cols-2 gap-6">
+      <div className="grid grid-cols-2 gap-x-3 gap-y-6">
         {cards.filter((card) => card !== null)} {/* Filter out invalid cards */}
       </div>
 

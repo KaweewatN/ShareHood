@@ -1,11 +1,9 @@
-"use client";
-
 import AdminDashboard from "@components/adminDashboard/AdminDashboard";
 
 export default function AdminDashboardPage() {
   return (
-    <main className="min-h-screen">
-      <div className="container mx-auto p-4 sm:p-6 md:p-8">
+    <main className="min-h-screen w-full">
+      <div className="container mx-auto p-2 md:p-4">
         <AdminDashboard />
       </div>
     </main>

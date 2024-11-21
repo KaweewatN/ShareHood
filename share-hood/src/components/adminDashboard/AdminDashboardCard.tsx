@@ -26,14 +26,16 @@ export default function AdminDashboardCard({
       {/* Top Section */}
       <div className="flex items-center space-x-4">
         {/* Icon Container */}
-        <div className={`flex h-14 w-14 items-center justify-center rounded-full ${bgColor}`}>
-          {Icons[icon](`text-3xl ${iconColor}`)}
+        <div
+          className={`flex h-10 w-10 items-center justify-center rounded-full p-3 md:h-14 md:w-14 ${bgColor}`}
+        >
+          {Icons[icon](`text-2xl ${iconColor}`)}
         </div>
 
         {/* Text Section */}
         <div className="flex-1">
-          <h4 className="truncate text-base font-medium text-gray-600">{label}</h4>
-          <p className="mt-1 text-3xl font-bold text-gray-900">{value}</p>
+          <h4 className="truncate text-sm font-semibold text-gray-600 md:text-base">{label}</h4>
+          <p className="text-xl font-bold text-gray-900 md:text-3xl">{value}</p>
         </div>
       </div>
 

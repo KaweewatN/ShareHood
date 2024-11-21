@@ -18,6 +18,8 @@ import {
   FaClock,
   FaChartLine,
   FaUserFriends,
+  FaExclamationCircle,
+  FaCheckCircle,
 } from "react-icons/fa";
 import {GiConverseShoe} from "react-icons/gi";
 import {PiHighHeelFill, PiListMagnifyingGlass} from "react-icons/pi";
@@ -51,6 +53,8 @@ const Icons = {
   clock: (className?: string) => <FaClock className={className} />,
   chartLine: (className?: string) => <FaChartLine className={className} />,
   userFriends: (className?: string) => <FaUserFriends className={className} />,
+  error: (className?: string) => <FaExclamationCircle className={className} />,
+  check: (className?: string) => <FaCheckCircle className={className} />,
 };
 
 export default Icons;
