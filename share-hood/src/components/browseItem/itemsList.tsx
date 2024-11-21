@@ -29,7 +29,7 @@ export default function ItemsList() {
     isLoading,
     refetch,
   } = useFetchData<ItemType[]>({
-    queryKey: "fetchItems",
+    queryKey: `items-${tag}`,
     apiPath,
   });
 
