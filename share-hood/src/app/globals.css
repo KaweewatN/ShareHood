@@ -85,11 +85,11 @@ body {
   font-weight: bold;
   text-transform: uppercase;
   color: #0000;
-  -webkit-text-stroke: 1px #9c35dc;
+  -webkit-text-stroke: 1px #be6eef;
   background:
-    radial-gradient(0.71em at 50% 1em, #9c35dc 99%, #0000 101%) calc(50% - 1em) 1em/2em 200%
+    radial-gradient(0.71em at 50% 1em, #be6eef 99%, #0000 101%) calc(50% - 1em) 1em/2em 200%
       repeat-x text,
-    radial-gradient(0.71em at 50% -0.5em, #9c35dc 99%, #9c35dc 101%) 50% 1.5em/2em 200% repeat-x
+    radial-gradient(0.71em at 50% -0.5em, #be6eef 99%, #be6eef 101%) 50% 1.5em/2em 200% repeat-x
       text;
   animation:
     l10-0 0.8s linear infinite alternate,

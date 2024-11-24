@@ -1,4 +1,4 @@
-import {FaHeadphones, FaTag} from "react-icons/fa6";
+import {FaHeadphones, FaTag, FaPencil} from "react-icons/fa6";
 import {IoShirtSharp} from "react-icons/io5";
 import {IoMdAddCircle} from "react-icons/io";
 import {MdSubscriptions, MdFilterAlt} from "react-icons/md";
@@ -81,6 +81,7 @@ const Icons = {
   Check: (className?: string) => <FaCheckCircle className={className} />,
   Add: (className?: string) => <IoMdAddCircle className={className} />,
   Bag: (className?: string) => <FaBagShopping className={className} />,
+  Pencil: (className?: string) => <FaPencil className={className} />,
 };
 
 export default Icons;

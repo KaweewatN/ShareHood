@@ -95,7 +95,9 @@ export default function Menubar() {
               <Link
                 href="/owner/items"
                 className={
-                  pathname === "/owner/items" ? "mb-1 text-defaultBgBlue" : "text-gray-600"
+                  pathname === "/owner/items" || pathname.includes("/owner/item-detail")
+                    ? "mb-1 text-defaultBgBlue"
+                    : "text-gray-600"
                 }
               >
                 {Icons.Bag("text-xl")}

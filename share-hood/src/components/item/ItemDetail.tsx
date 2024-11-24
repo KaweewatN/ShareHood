@@ -46,22 +46,22 @@ export default function ItemDetail({itemId}: {itemId: string}) {
   return (
     <div className="flex w-full flex-col items-center">
       <div
-        className="mt-2 h-64 w-11/12 rounded-md bg-cover bg-center md:w-10/12"
+        className="mt-2 h-64 w-full rounded-md bg-cover bg-center md:h-80"
         style={{backgroundImage: `url(${itemDetail.itemImage || "/default-image.jpg"})`}}
         aria-label={itemDetail.itemName || "Item Image"}
       ></div>
-      <div className="mt-5 w-full space-y-4 px-2">
+      <div className="mt-5 w-full space-y-4 px-2 md:space-y-6">
         <div className="flex w-full items-center justify-between">
-          <p className="text-semibold text-lg">{itemDetail.itemName}</p>
+          <p className="text-lg font-semibold md:text-xl">{itemDetail.itemName}</p>
           <p className="inline-flex">
-            <span className="text-defaultBlue">{itemDetail.itemPrice} THB</span>
+            <span className="font-medium text-defaultBlue">{itemDetail.itemPrice} THB</span>
             <span className="text-black">&nbsp;/ Day</span>
           </p>
         </div>
         <div className="flex items-center space-x-5">
           <p className="inline-flex items-baseline space-x-1">
             <span className="text-gray-500">{Icons?.Users()}</span>
-            <span className="text-defaultBlue">{itemDetail.ownerName}</span>
+            <span className="font-medium text-defaultBlue">{itemDetail.ownerName}</span>
           </p>
           <p className={`${itemStatusColor(itemDetail?.itemStatus)} flex items-center space-x-1`}>
             <span>{Icons.Info()}</span>

@@ -18,26 +18,26 @@ export default function OwnerItemDisplay(item: ItemType) {
         />
       </div>
       <div className="flex flex-col space-y-2">
-        <p className="text-base font-medium md:text-lg">{item.itemName}</p>
+        <p className="text-base font-medium">{item.itemName}</p>
         <div className="flex space-x-2 text-xs md:space-x-4">
           <p className="flex items-center space-x-1 font-medium text-defaultBlue">
             <span>{Icons.Tag("text-gray-400")}</span>
-            <span className="md:text-base">{item.category}</span>
+            <span className="md:text-sm">{item.category}</span>
           </p>
           <p
             className={`flex items-center space-x-1 font-medium ${item.itemStatus === "Available" ? "text-green-600" : item.itemStatus === "Out of stock" ? "text-yellow-500" : "text-red-600"}`}
           >
             <span>{Icons.Info()}</span>
-            <span className="md:text-base">{item.itemStatus}</span>
+            <span className="md:text-sm">{item.itemStatus}</span>
           </p>
           <p className="flex items-center space-x-1 font-medium">
-            <span className="md:text-base">Quantity: </span>
-            <span className="text-defaultBlue md:text-base">{item.itemQuantity}</span>
+            <span className="md:text-sm">Quantity: </span>
+            <span className="text-defaultBlue md:text-sm">{item.itemQuantity}</span>
           </p>
         </div>
         <div className="flex flex-col text-xs font-medium text-gray-400">
-          <p className="md:text-base">Price</p>
-          <p className="md:text-base">
+          <p className="md:text-sm">Price</p>
+          <p className="md:text-sm">
             <span className="text-defaultBlue">{item.itemPrice} THB</span> /day
           </p>
         </div>
