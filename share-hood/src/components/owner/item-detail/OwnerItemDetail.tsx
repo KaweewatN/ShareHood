@@ -9,7 +9,6 @@ import {Avatar, AvatarFallback, AvatarImage} from "@components/shad.ui/avatar";
 import {convertToDate} from "@service/functions/convertToDate";
 import {itemStatusColor} from "@service/functions/itemStatusColor";
 import OwnerTransactionCard from "./OwnerTransactionCard";
-import {tr} from "date-fns/locale";
 
 export default function OwnerItemDetail({userId, itemId}: {userId: string; itemId: string}) {
   const {data: itemDetail, isLoading, error} = useFetchItemDetail({itemId});
