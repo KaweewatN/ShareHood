@@ -13,7 +13,7 @@ export default function BackButton({path, className}: BackButtonProps) {
   return (
     <div className={className}>
       <Button
-        className="flex h-10 w-10 items-center justify-center rounded-full shadow-none"
+        className="cursoe-po inter flex h-10 w-10 items-center justify-center rounded-full shadow-none"
         onClick={() => router.push(path)}
       >
         <svg

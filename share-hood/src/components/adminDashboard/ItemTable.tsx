@@ -32,7 +32,6 @@ export default function ItemTable() {
               <th className="p-4 text-sm font-semibold text-gray-600">Return Duration</th>
               <th className="p-4 text-sm font-semibold text-gray-600">Date Added</th>
               <th className="p-4 text-sm font-semibold text-gray-600">Pickup Location</th>
-              <th className="p-4 text-sm font-semibold text-gray-600">Pickup Date</th>
               <th className="p-4 text-sm font-semibold text-gray-600">Owner Name</th>
               <th className="p-4 text-sm font-semibold text-gray-600">Item Image</th>
             </tr>
@@ -54,9 +53,7 @@ export default function ItemTable() {
                     {new Date(item.dateAdded).toLocaleString()}
                   </td>
                   <td className="whitespace-nowrap p-4">{item.pickupLocation}</td>
-                  <td className="whitespace-nowrap p-4">
-                    {item.pickupDate ? new Date(item.pickupDate).toLocaleString() : "N/A"}
-                  </td>
+
                   <td className="whitespace-nowrap p-4">{item.ownerName}</td>
                   <td className="whitespace-nowrap p-4">
                     <Image

@@ -8,7 +8,7 @@ import {EXAMPLE_ITEM_IMAGES} from "src/constants/pageData";
 
 export default function ItemCardLong(item: ItemType | WishlistType) {
   return (
-    <div className="flex w-full cursor-pointer space-x-3 rounded-lg border p-3 shadow-sm">
+    <div className="flex w-full cursor-pointer space-x-3 rounded-lg border p-3 shadow-sm hover:shadow-md">
       <div className="relative h-24 w-28 md:h-28 md:w-32">
         <Image
           src={"itemImage" in item ? item.itemImage : EXAMPLE_ITEM_IMAGES}

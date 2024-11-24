@@ -14,7 +14,7 @@ export default function ProfileHeader({
       <div className="flex items-center">
         {/* Profile Image */}
         <Avatar className="h-3/12 w-3/12">
-          <AvatarImage src="/images/Default-LINE-moon.JPG" />
+          <AvatarImage src="/images/Nipun.jpg" />
           <AvatarFallback>CN</AvatarFallback>
         </Avatar>
 

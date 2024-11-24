@@ -9,7 +9,7 @@ import {TransactionStatusColor} from "@service/functions/transactionStatusColor"
 
 export default function ActivityCardLong(transaction: TransactionType) {
   return (
-    <div className="flex w-full cursor-pointer space-x-3 rounded-lg border p-3 shadow-sm">
+    <div className="flex w-full cursor-pointer space-x-3 rounded-lg border p-3 shadow-sm hover:shadow-md">
       <div className="relative h-24 w-48 md:h-28 md:w-52">
         <Image
           src={"itemImage" in transaction ? transaction.itemImage : EXAMPLE_ITEM_IMAGES}

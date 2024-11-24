@@ -83,7 +83,7 @@ export default function RenteeTransactionDetail({
         <div className="flex w-full items-center justify-center">
           <ShippingDetailCard
             transactionDate={dataFormatted?.transactionDate}
-            shippingType={dataFormatted?.shippingType}
+            shippingType={dataFormatted?.shippingMethod}
             shippingLocation={dataFormatted?.shippingLocation}
           />
         </div>

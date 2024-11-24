@@ -17,6 +17,7 @@ export async function GET(request: Request) {
     // Assuming the URL structure is /api/transaction/:userId
     const userId = pathSegments[pathSegments.length - 1];
     const transactionId = url.searchParams.get("transactionId");
+    const itemId = url.searchParams.get("itemId");
 
     if (!userId || userId === "undefined") {
       throw new Error("User ID parameter is missing");
@@ -31,8 +32,8 @@ export async function GET(request: Request) {
           "Item"."itemName",
           "Item"."itemImage",
           "Item"."itemPrice",
-          "PersonalInfo"."firstName" || ' ' || "PersonalInfo"."lastName" AS "ownerName",
-          "Item"."category"
+          "Item"."category",
+          "PersonalInfo"."firstName" || ' ' || "PersonalInfo"."lastName" AS "ownerName"
         FROM 
           "Transaction" 
         JOIN 
@@ -44,6 +45,27 @@ export async function GET(request: Request) {
         WHERE 
           "Transaction"."userID" = ${userId} AND "Transaction"."transactionID" = ${transactionId}
       `;
+    } else if (itemId) {
+      // Fetch all transactions for the item
+      data = await sql<TransactionType[]>`
+        SELECT 
+          "Transaction".*, 
+          "Item"."itemName",
+          "Item"."itemImage",
+          "Item"."category",
+          "PersonalInfo"."firstName" || ' ' || "PersonalInfo"."lastName" AS "renteeName",
+          "User"."image" AS "renteeImage"
+        FROM 
+          "Transaction" 
+        JOIN 
+          "Item" ON "Transaction"."itemID" = "Item"."itemID"
+        JOIN
+          "User" ON "Transaction"."userID" = "User"."userID"
+        JOIN 
+          "PersonalInfo" ON "Item"."userID" = "PersonalInfo"."userID"
+        WHERE 
+          "Transaction"."itemID" = ${itemId}
+      `;
     } else {
       // Fetch all transactions for the user
       data = await sql<TransactionType[]>`
@@ -51,8 +73,8 @@ export async function GET(request: Request) {
           "Transaction".*, 
           "Item"."itemName",
           "Item"."itemImage",
-          "PersonalInfo"."firstName" || ' ' || "PersonalInfo"."lastName" AS "ownerName",
-          "Item"."category"
+          "Item"."category",
+          "PersonalInfo"."firstName" || ' ' || "PersonalInfo"."lastName" AS "ownerName"
         FROM 
           "Transaction" 
         JOIN 

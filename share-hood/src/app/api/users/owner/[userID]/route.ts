@@ -70,6 +70,7 @@ export async function GET(request: Request) {
   }
 }
 
+// update to owner
 export async function PUT(request: Request) {
   try {
     const {pathname} = new URL(request.url);

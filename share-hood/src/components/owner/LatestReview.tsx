@@ -1,6 +1,6 @@
 "use client";
 
-import ReviewCard from "@components/ownerDashboard/ReviewCard";
+import ReviewCard from "@components/owner/ReviewCard";
 import {ReviewType} from "src/types/apiType";
 
 const sampleReview: ReviewType = {

@@ -1,19 +1,16 @@
 "use client";
 
 import React from "react";
-import Link from "next/link";
 
 interface ProfileMenuItemProps {
-  href?: string;
   label: string;
   icon: JSX.Element;
   onClick?: () => void;
 }
 
-function ProfileMenuItem({href, label, icon, onClick}: ProfileMenuItemProps) {
+function ProfileMenuItem({label, icon, onClick}: ProfileMenuItemProps) {
   return (
-    <Link
-      href={href ?? "#"}
+    <div
       className="flex w-full items-center justify-between rounded-lg p-4 hover:bg-gray-100"
       onClick={onClick}
     >
@@ -22,7 +19,7 @@ function ProfileMenuItem({href, label, icon, onClick}: ProfileMenuItemProps) {
         <span className="text-gray-800">{label}</span>
       </div>
       <span>&gt;</span>
-    </Link>
+    </div>
   );
 }
 

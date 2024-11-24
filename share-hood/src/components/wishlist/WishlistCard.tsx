@@ -25,7 +25,7 @@ export default function WishlistCard({userID, ...item}: WishlistCardProps) {
         />
       </div>
       <div className="mt-2 flex w-full flex-col space-y-1">
-        <p className="flex items-center text-[0.9rem] font-semibold md:text-base">
+        <p className="flex items-center text-[0.9rem] font-medium md:text-base">
           <span className="text-pink-600">{Icons.HeartFill()}</span>&nbsp;
           {item.itemName}
         </p>

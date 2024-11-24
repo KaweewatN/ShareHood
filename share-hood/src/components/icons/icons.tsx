@@ -1,5 +1,6 @@
-import {FaHeadphones, FaTag} from "react-icons/fa6";
+import {FaHeadphones, FaTag, FaPencil} from "react-icons/fa6";
 import {IoShirtSharp} from "react-icons/io5";
+import {IoMdAddCircle} from "react-icons/io";
 import {MdSubscriptions, MdFilterAlt} from "react-icons/md";
 import {HiDotsVertical} from "react-icons/hi";
 import {
@@ -34,6 +35,7 @@ import {
 import {GiConverseShoe} from "react-icons/gi";
 import {PiHighHeelFill, PiListMagnifyingGlass} from "react-icons/pi";
 import {RiNotification3Line, RiNotification3Fill, RiDeleteBin6Line} from "react-icons/ri";
+import {FaBagShopping} from "react-icons/fa6";
 
 const Icons = {
   headphones: (className?: string) => <FaHeadphones className={className} />,
@@ -77,6 +79,9 @@ const Icons = {
   Delete: (className?: string) => <RiDeleteBin6Line className={className} />,
   Exclamation: (className?: string) => <FaExclamationCircle className={className} />,
   Check: (className?: string) => <FaCheckCircle className={className} />,
+  Add: (className?: string) => <IoMdAddCircle className={className} />,
+  Bag: (className?: string) => <FaBagShopping className={className} />,
+  Pencil: (className?: string) => <FaPencil className={className} />,
 };
 
 export default Icons;

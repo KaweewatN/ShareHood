@@ -1,10 +1,10 @@
 import {authenticateOwner} from "src/app/api/auth/[...nextauth]/auth";
 import {redirect} from "next/navigation";
 
-import ProfileHeader from "@components/ownerDashboard/Profileheader";
-import AccountAnalytics from "@components/ownerDashboard/AccountAnalytics";
-import LatestUploadedItem from "@components/ownerDashboard/LatestUploadItem";
-import LatestReview from "@components/ownerDashboard/LatestReview";
+import ProfileHeader from "@components/owner/Profileheader";
+import AccountAnalytics from "@components/owner/AccountAnalytics";
+import LatestUploadedItem from "@components/owner/LatestUploadItem";
+import LatestReview from "@components/owner/LatestReview";
 
 export default async function Page() {
   await authenticateOwner().catch(() => redirect("/home"));
