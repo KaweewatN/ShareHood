@@ -54,7 +54,6 @@ export async function POST(request: Request) {
       itemReturnDuration,
       dateAdded,
       pickupLocation,
-      pickupDate,
       itemImage,
     }: ItemType = await request.json();
 
@@ -70,25 +69,23 @@ export async function POST(request: Request) {
         "itemReturnDuration",
         "dateAdded",
         "pickupLocation",
-        "pickupDate",
         "itemImage"
       ) VALUES (
         ${userID},
         ${itemName},
-        ${itemDescription},
+        ${itemDescription ?? null},
         ${itemPrice},
         ${itemQuantity},
         ${itemStatus},
         ${category},
-        ${itemReturnDuration},
+        ${itemReturnDuration ?? null},
         ${dateAdded},
         ${pickupLocation ?? null},
-        ${pickupDate ?? null},
         ${itemImage ?? null}
       )
       RETURNING *;
     `;
-    getLogger("POST", request.url, "info", `result: ${JSON.stringify(result).replace(/"/g, " ")}`);
+    // getLogger("POST", request.url, "info", `result: ${JSON.stringify(result).replace(/"/g, " ")}`);
 
     return NextResponse.json(result, {status: StatusCode.SUCCESS_OK.code});
   } catch (error: unknown) {

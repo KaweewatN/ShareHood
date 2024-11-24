@@ -1,6 +1,7 @@
 "use client";
 
 // main
+import {useTransition} from "react";
 import {SubmitHandler, useForm} from "react-hook-form";
 import {zodResolver} from "@hookform/resolvers/zod";
 import {signIn} from "next-auth/react";
@@ -27,6 +28,7 @@ import {SignInFormZodType} from "../../types/form/authenticateZod";
 
 export default function SignInForm() {
   const router = useRouter();
+  const [isPending, startTransition] = useTransition();
   const form = useForm<SignInFormZodType>({
     resolver: zodResolver(SignInFormZod), // revalidate the form schema
     defaultValues: {
@@ -36,23 +38,25 @@ export default function SignInForm() {
   });
 
   const handleSubmit: SubmitHandler<SignInFormZodType> = async (data) => {
-    try {
-      const result = await signIn("credentials", {
-        redirect: false,
-        email: data.email,
-        password: data.password,
-      });
+    startTransition(async () => {
+      try {
+        const result = await signIn("credentials", {
+          redirect: false,
+          email: data.email,
+          password: data.password,
+        });
 
-      if (result?.error) {
-        alert("Something went wrong, please try again");
-      } else {
-        alert("Sign in success");
-        router.push("/home");
+        if (result?.error) {
+          alert("Something went wrong, please try again");
+        } else {
+          alert("Sign in success");
+          router.push("/home");
+        }
+      } catch (error) {
+        alert("Sign in failed, please change your email or password");
+        throw new Error(`Sign-in failed: ${error}`);
       }
-    } catch (error) {
-      alert("Sign in failed, please change your email or password");
-      throw new Error(`Sign-in failed: ${error}`);
-    }
+    });
   };
   return (
     <Form {...form}>
@@ -104,7 +108,11 @@ export default function SignInForm() {
             Forget password?
           </Button>
         </div>
-        <DefaultButton label="Sign In" type="submit" />
+        <DefaultButton
+          label={isPending ? "Signing In..." : "Sign In"}
+          type="submit"
+          disabled={isPending}
+        />
       </form>
     </Form>
   );

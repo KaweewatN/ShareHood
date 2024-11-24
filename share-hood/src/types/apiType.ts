@@ -64,21 +64,21 @@ export interface ItemTypeInitial {
   itemID: string;
   userID: string;
   itemName: string;
-  itemDescription: string;
+  itemDescription?: string;
   itemPrice: number;
   itemQuantity: number;
   itemStatus: ItemStatusType;
   category: string;
-  itemReturnDuration: string;
+  itemReturnDuration?: string;
   dateAdded: string;
   pickupLocation?: string;
-  pickupDate?: string;
+  deliverDate?: string;
   itemImage?: string;
   ownerName: string;
   reviewID: string;
   reviewRating: string;
   reviewComment: number;
-  reviewerUserID?: string;
+  reviewerUserID: string;
   reviewerName?: string;
 }
 
@@ -87,15 +87,14 @@ export interface ItemType {
   itemID: string;
   userID: string;
   itemName: string;
-  itemDescription: string;
+  itemDescription?: string;
   itemPrice: number;
   itemQuantity: number;
   itemStatus: ItemStatusType;
   category: string;
-  itemReturnDuration: string;
+  itemReturnDuration?: string;
   dateAdded: string;
   pickupLocation?: string;
-  pickupDate?: string;
   itemImage: string;
   ownerName: string;
   reviews?: ReviewType[];

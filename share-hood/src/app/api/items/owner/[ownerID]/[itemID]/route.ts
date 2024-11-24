@@ -20,7 +20,6 @@ export async function PUT(request: Request) {
       itemReturnDuration,
       dateAdded,
       pickupLocation,
-      pickupDate,
       itemImage,
     }: ItemTypeInitial = await request.json();
 
@@ -35,15 +34,14 @@ export async function PUT(request: Request) {
         UPDATE "Item"
         SET "userID" = ${userID},
             "itemName" = ${itemName},
-            "itemDescription" = ${itemDescription},
-            "itemPrice" = ${itemPrice},
-            "itemQuantity" = ${itemQuantity},
-            "itemStatus" = ${itemStatus},
-            "category" = ${category},
-            "itemReturnDuration" = ${itemReturnDuration},
-            "dateAdded" = ${dateAdded},
+            "itemDescription" = ${itemDescription ?? ""},
+            "itemPrice" = ${itemPrice ?? 0},
+            "itemQuantity" = ${itemQuantity ?? 0},
+            "itemStatus" = ${itemStatus ?? ""},
+            "category" = ${category ?? ""},
+            "itemReturnDuration" = ${itemReturnDuration ?? ""},
+            "dateAdded" = ${dateAdded ?? new Date().toISOString()},
             "pickupLocation" = ${pickupLocation ?? null},
-            "pickUpDate" = ${pickupDate ?? null},
             "itemImage" = ${itemImage ?? null}
         WHERE "itemID" = ${itemIDParam}
         RETURNING *`;

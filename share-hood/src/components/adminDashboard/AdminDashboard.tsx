@@ -51,7 +51,7 @@ const analyticsData = [
     bgColor: "bg-green-100",
     iconColor: "text-green-500",
     growthColor: "text-green-500",
-    column: "completedtransactioncount",
+    column: "confirmtransactioncount",
     path: "/admin/transactions-completed",
   },
 ];
@@ -62,6 +62,7 @@ export default function AdminDashboard({userId}: {userId: string}) {
   const {data: adminRaw, isLoading: isLoadingAdmin} = useFetchUserByID(userId, "admin");
   const admin = Array.isArray(adminRaw) ? adminRaw[0] : null;
   const adminSummary = Array.isArray(adminSummaryRaw) ? adminSummaryRaw[0] : null;
+  // const privellage = sql`SELECT * FROM user WHERE user_id = ${userId}`;
 
   if (isLoadingAdminSUmmary || isLoadingAllUsers || isLoadingAdmin) {
     return (

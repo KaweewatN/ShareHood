@@ -1,6 +1,6 @@
 "use client";
 
-import OwnerItemCard from "@components/ownerDashboard/OwnerItemCard"; // Adjust path if necessary
+import OwnerItemCard from "@components/owner/OwnerItemCard"; // Adjust path if necessary
 import {OwnerItemType} from "src/types/apiType";
 
 const latestItem: OwnerItemType = {

@@ -1,6 +1,7 @@
 "use client";
 
 // main
+
 import {SubmitHandler, useForm} from "react-hook-form";
 import {zodResolver} from "@hookform/resolvers/zod";
 
@@ -17,6 +18,7 @@ import {Input} from "@components/shad.ui/input";
 import {Checkbox} from "@components/shad.ui/checkbox";
 import DefaultButton from "@components/hood.ui/DefaultButton";
 import {PasswordInput} from "@components/shad.ui/password-input";
+import {DatePicker} from "@components/hood.ui/DatePicker";
 
 // hooks
 import useMutationCreateUser from "@service/hooks/mutation/useMutationCreateUser";
@@ -25,7 +27,6 @@ import useMutationCreateUser from "@service/hooks/mutation/useMutationCreateUser
 import {SignUpFormZod} from "src/types/form/authenticateZod";
 import {SignUpFormZodType} from "src/types/form/authenticateZod";
 import {CreateUserInputType} from "src/types/apiType";
-import {DatePicker} from "@components/hood.ui/DatePicker";
 
 export default function SignUpForm() {
   const form = useForm<SignUpFormZodType>({
@@ -91,7 +92,7 @@ export default function SignUpForm() {
           render={({field}) => {
             return (
               <FormItem className="w-full">
-                <FormLabel>Firstname</FormLabel>
+                <FormLabel>First name</FormLabel>
                 <FormControl>
                   <Input placeholder="John" type="label" {...field} />
                 </FormControl>
@@ -106,7 +107,7 @@ export default function SignUpForm() {
           render={({field}) => {
             return (
               <FormItem className="w-full">
-                <FormLabel>Lastname</FormLabel>
+                <FormLabel>Last name</FormLabel>
                 <FormControl>
                   <Input placeholder="Doe" type="label" {...field} />
                 </FormControl>
@@ -121,7 +122,7 @@ export default function SignUpForm() {
           render={({field}) => {
             return (
               <FormItem className="w-full">
-                <FormLabel {...field}>Birthdate</FormLabel>
+                <FormLabel {...field}>Birth date</FormLabel>
                 <br></br>
                 <FormControl>
                   <DatePicker />

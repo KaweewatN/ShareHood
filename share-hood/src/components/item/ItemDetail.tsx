@@ -1,13 +1,12 @@
 "use client";
 
-import {useState} from "react";
+import {useState, useTransition} from "react";
 import {useRouter} from "next/navigation";
 import useFetchItemDetail from "@service/hooks/query/useFetchItemDetail";
 import {ReviewType} from "src/types/apiType";
 import Icons from "@components/icons/icons";
 import {Button} from "@components/shad.ui/button";
 import DefaultButton from "@components/hood.ui/DefaultButton";
-import PickupCard from "./PickupCard";
 import DeliveryCard from "./DeliveryCard";
 import {Avatar, AvatarFallback, AvatarImage} from "@components/shad.ui/avatar";
 import {convertToDate} from "@service/functions/convertToDate";
@@ -17,12 +16,15 @@ import {incrementQuantity, decrementQuantity} from "@service/functions/quantityC
 
 export default function ItemDetail({itemId}: {itemId: string}) {
   const router = useRouter();
+  const [isPending, startTransition] = useTransition();
   const {data: itemDetail, isLoading, error} = useFetchItemDetail({itemId});
   const [quantity, setQuantity] = useState(1);
   const [duration, setDuration] = useState(1);
 
   const navigateToItemForm = () => {
-    router.push(`/item/${itemId}/form?duration=${duration}&quantity=${quantity}`);
+    startTransition(() => {
+      router.push(`/item/${itemId}/form?duration=${duration}&quantity=${quantity}`);
+    });
   };
 
   if (isLoading) {
@@ -71,15 +73,9 @@ export default function ItemDetail({itemId}: {itemId: string}) {
         <hr />
 
         <h3 className="text-lg font-semibold">Pickup</h3>
-        {itemDetail?.pickupLocation && itemDetail?.pickupDate && (
+        {itemDetail?.pickupLocation && (
           <div className="flex space-x-3">
             <DeliveryCard price={39} />
-            {itemDetail?.pickupLocation && itemDetail?.pickupDate && (
-              <PickupCard
-                pickupLocation={itemDetail?.pickupLocation || null}
-                pickupDate={itemDetail?.pickupDate || undefined}
-              />
-            )}
           </div>
         )}
 
@@ -137,12 +133,13 @@ export default function ItemDetail({itemId}: {itemId: string}) {
 
         <div className="py-4">
           <DefaultButton
-            label="Order now"
+            label={isPending ? "Loading..." : "Order Now"}
             onClick={navigateToItemForm}
             disabled={
               itemDetail?.itemQuantity === 0 ||
               itemDetail?.itemStatus === "Unavailable" ||
-              itemDetail?.itemStatus === "Out of stock"
+              itemDetail?.itemStatus === "Out of stock" ||
+              isPending
             }
           />
         </div>

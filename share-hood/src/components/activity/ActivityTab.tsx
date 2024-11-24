@@ -16,6 +16,7 @@ export default function ActivityTab({userId}: {userId: string}) {
     ? data.filter(
         (transaction: TransactionType) =>
           transaction.transactionStatus === "Order Confirmed" ||
+          transaction.transactionStatus === "Sent to delivery" ||
           transaction.transactionStatus === "Shipping",
       )
     : [];

@@ -77,6 +77,38 @@ body {
   }
 }
 
+/* Loader */
+.loaderOwner {
+  width: fit-content;
+  font-size: 40px;
+  font-family: system-ui, sans-serif;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #0000;
+  -webkit-text-stroke: 1px #9c35dc;
+  background:
+    radial-gradient(0.71em at 50% 1em, #9c35dc 99%, #0000 101%) calc(50% - 1em) 1em/2em 200%
+      repeat-x text,
+    radial-gradient(0.71em at 50% -0.5em, #9c35dc 99%, #9c35dc 101%) 50% 1.5em/2em 200% repeat-x
+      text;
+  animation:
+    l10-0 0.8s linear infinite alternate,
+    l10-1 4s linear infinite;
+}
+.loaderOwner:before {
+  content: "ShareHood";
+}
+@keyframes l10-0 {
+  to {
+    background-position-x: 50%, calc(50% + 1em);
+  }
+}
+@keyframes l10-1 {
+  to {
+    background-position-y: -0.5em, 0;
+  }
+}
+
 /* Loader 2 */
 .loaderDot {
   height: 30px;

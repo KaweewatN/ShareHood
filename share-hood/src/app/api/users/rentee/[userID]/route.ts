@@ -32,9 +32,8 @@ export async function GET(request: Request) {
     const result = data.map((user) => ({
       userID: user.userID,
       email: user.email,
-      password: user.password,
       role: user.role,
-      verified: user.emailVerified,
+      password: user.password,
       personalInfo: {
         firstName: user.firstName,
         lastName: user.lastName,
@@ -62,6 +61,72 @@ export async function GET(request: Request) {
     getLogger("GET", request.url, "info", `data: ${JSON.stringify(data).replace(/"/g, " ")}`);
 
     return NextResponse.json(result, {status: StatusCode.SUCCESS_OK.code});
+  } catch (error: unknown) {
+    return NextResponse.json(
+      {error: error instanceof Error ? error.message : "An unknown error occurred"},
+      {status: StatusCode.ERROR_BAD_REQUEST.code},
+    );
+  }
+}
+
+export async function PUT(request: Request) {
+  try {
+    const {pathname} = new URL(request.url);
+    const userIDParam = pathname.split("/").pop();
+    if (!userIDParam) {
+      throw new Error("User ID parameter is missing");
+    }
+
+    const {
+      personalInfo: {firstName, lastName, phone, dateOfBirth},
+      address: {addressLine, subProvince, province, zip},
+    } = await request.json();
+
+    if (
+      !userIDParam ||
+      !firstName ||
+      !lastName ||
+      !phone ||
+      !dateOfBirth ||
+      !addressLine ||
+      !subProvince ||
+      !province ||
+      !zip
+    ) {
+      return NextResponse.json(
+        {error: "Missing required fields"},
+        {status: StatusCode.ERROR_BAD_REQUEST.code},
+      );
+    }
+
+    const result = await sql.begin(async (sql) => {
+      const personalInfoUpdate = await sql`
+        UPDATE "PersonalInfo"
+        SET
+          "firstName" = ${firstName},
+          "lastName" = ${lastName},
+          "phone" = ${phone},
+          "dateOfBirth" = ${dateOfBirth}
+        WHERE "userID" = ${userIDParam}
+        RETURNING *;
+      `;
+
+      const addressUpdate = await sql`
+        UPDATE "Address"
+        SET
+          "addressLine" = ${addressLine},
+          "subProvince" = ${subProvince},
+          "province" = ${province},
+          "zip" = ${zip}
+        WHERE "userID" = ${userIDParam}
+        RETURNING *;
+      `;
+
+      return {personalInfoUpdate, addressUpdate};
+    });
+    return NextResponse.json(`Update user successfully, ${result}`, {
+      status: StatusCode.SUCCESS_OK.code,
+    });
   } catch (error: unknown) {
     return NextResponse.json(
       {error: error instanceof Error ? error.message : "An unknown error occurred"},
