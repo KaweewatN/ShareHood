@@ -40,7 +40,7 @@ export default function Menubar() {
             className={
               (role === "rentee"
                 ? pathname === "/home" || pathname === "/browse" || pathname.includes("/item")
-                : pathname === `/${role}`) || pathname === "/browse"
+                : pathname.includes(`/${role}`)) || pathname === "/browse"
                 ? "text-defaultBgBlue"
                 : "text-gray-600"
             }
