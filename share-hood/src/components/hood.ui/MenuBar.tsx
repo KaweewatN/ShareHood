@@ -38,11 +38,13 @@ export default function Menubar() {
           <Link
             href={role === "rentee" ? "/home" : `/${role}`}
             className={
-              (role === "rentee"
+              role === "rentee"
                 ? pathname === "/home" || pathname === "/browse" || pathname.includes("/item")
-                : pathname.includes(`/${role}`)) || pathname === "/browse"
-                ? "text-defaultBgBlue"
-                : "text-gray-600"
+                  ? "text-defaultBgBlue"
+                  : "text-gray-600"
+                : pathname === "/owner" || pathname === "/admin"
+                  ? "text-defaultBgBlue"
+                  : "text-gray-600"
             }
           >
             {Icons.Home("text-xl")}
