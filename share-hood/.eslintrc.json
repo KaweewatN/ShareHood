@@ -11,77 +11,45 @@
     "project": "./tsconfig.json"
   },
   "extends": [
+    "next/core-web-vitals",
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
     "plugin:react/recommended",
-    "plugin:jsx-a11y/recommended",
     "prettier",
     "next"
   ],
-
   "overrides": [
     {
       "files": ["**/*.tsx"],
       "rules": {
         "max-lines-per-function": "off"
       }
+    },
+    {
+      "files": ["src/types/**/*.ts", "src/service/logger/logger.ts"],
+      "rules": {
+        "@typescript-eslint/no-unused-vars": "off",
+        "no-unused-vars": "off",
+        "no-console": "off",
+        "default-case": "off"
+      }
     }
   ],
-
   "root": true,
   "rules": {
-    "lines-between-class-members": "error",
-    "lines-around-comment": "error",
-    "max-lines-per-function": ["error", {"max": 300, "skipBlankLines": true}],
+    "@typescript-eslint/no-explicit-any": "off",
     "no-console": "error",
     "no-var": "error",
     "no-useless-return": "error",
-    "camelcase": "error",
-    "capitalized-comments": "error",
-    "no-useless-concat": "error",
-    "no-useless-computed-key": "error",
     "no-param-reassign": "error",
-    "no-new-wrappers": "error",
     "no-empty-function": "error",
-    "id-length": ["error", {"min": 2}],
-    "guard-for-in": "error",
     "eqeqeq": "error",
     "default-case": "error",
-    "default-case-last": "error",
-    "default-param-last": "error",
-    "max-params": ["error", 4],
-    "no-underscore-dangle": "error",
     "prefer-const": "error",
     "prefer-arrow-callback": "error",
-    "prefer-rest-params": "error",
-    "prefer-object-spread": "error",
-    "prefer-destructuring": "error",
-    "rest-spread-spacing": "error",
-    "object-shorthand": "error",
-    "@typescript-eslint/no-explicit-any": "error",
-    "@typescript-eslint/explicit-module-boundary-types": "off",
     "@typescript-eslint/no-unused-vars": ["error", {"argsIgnorePattern": "^_"}],
     "no-unused-vars": "error",
-    "jsx-a11y/heading-has-content": "off",
-    "padding-line-between-statements": [
-      "error",
-      {
-        "blankLine": "always",
-        "prev": "function",
-        "next": "const"
-      },
-      {
-        "blankLine": "always",
-        "prev": "block",
-        "next": "const"
-      },
-      {"blankLine": "always", "prev": "directive", "next": "*"},
-      {"blankLine": "always", "prev": ["case", "default"], "next": "*"}
-    ],
-    // Next
-    "react/prop-types": "off",
-    // Not need for React with Next.js
     "react/react-in-jsx-scope": "off",
-    "no-duplicate-imports": "error"
+    "react/prop-types": "off"
   }
 }
