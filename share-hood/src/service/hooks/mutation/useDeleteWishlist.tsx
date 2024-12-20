@@ -15,8 +15,7 @@ const useDeleteWishlist = ({
   onError,
 }: useMutationCreateTransactionProps) => {
   return useMutation({
-    mutationFn: () =>
-      axios.delete(`http://localhost:3000/api/wishlist/${userId}?wishlistID=${wishlistId}`),
+    mutationFn: () => axios.delete(`/api/wishlist/${userId}?wishlistID=${wishlistId}`),
     onSuccess,
     onError,
   });

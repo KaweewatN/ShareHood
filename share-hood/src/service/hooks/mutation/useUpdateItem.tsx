@@ -10,7 +10,7 @@ type useUpdateItemProps = {
 const useUpdateItem = ({onSuccess, onError, itemId}: useUpdateItemProps) => {
   return useMutation({
     mutationFn: (newData: any) =>
-      axios.put(`http://localhost:3000/api/items/${itemId}`, newData, {
+      axios.put(`/api/items/${itemId}`, newData, {
         headers: {
           "Content-Type": "application/json",
         },

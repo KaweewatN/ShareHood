@@ -9,7 +9,7 @@ type useCreateItemProps = {
 
 const useCreateItem = ({onSuccess, onError}: useCreateItemProps) => {
   return useMutation({
-    mutationFn: (ItemData: ItemType) => axios.post(`http://localhost:3000/api/items`, ItemData),
+    mutationFn: (ItemData: ItemType) => axios.post(`/api/items`, ItemData),
     onSuccess,
     onError,
   });

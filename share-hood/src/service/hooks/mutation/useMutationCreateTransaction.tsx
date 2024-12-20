@@ -8,8 +8,7 @@ type useMutationCreateTransactionProps = {
 
 const useMutationCreateTransaction = ({onSuccess, onError}: useMutationCreateTransactionProps) => {
   return useMutation({
-    mutationFn: (transactionData: any) =>
-      axios.post(`http://localhost:3000/api/transaction`, transactionData),
+    mutationFn: (transactionData: any) => axios.post(`/api/transaction`, transactionData),
     onSuccess,
     onError,
   });

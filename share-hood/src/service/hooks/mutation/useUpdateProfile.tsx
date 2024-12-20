@@ -10,7 +10,7 @@ type useUpdateProfileProps = {
 const useUpdateProfile = ({onSuccess, onError, userId}: useUpdateProfileProps) => {
   return useMutation({
     mutationFn: (newData: any) =>
-      axios.put(`http://localhost:3000/api/users/rentee/${userId}`, newData, {
+      axios.put(`/api/users/rentee/${userId}`, newData, {
         headers: {
           "Content-Type": "application/json",
         },

@@ -9,8 +9,7 @@ type useCreateWishlistProps = {
 
 const useCreateWishlist = ({onSuccess, onError, userId}: useCreateWishlistProps) => {
   return useMutation({
-    mutationFn: (wishlist: any) =>
-      axios.post(`http://localhost:3000/api/wishlist/${userId}`, wishlist),
+    mutationFn: (wishlist: any) => axios.post(`/api/wishlist/${userId}`, wishlist),
     onSuccess,
     onError,
   });

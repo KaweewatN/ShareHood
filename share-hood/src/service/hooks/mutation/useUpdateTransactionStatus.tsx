@@ -14,15 +14,11 @@ const useUpdateTransactionStatus = ({
 }: useUpdateTransactionStatusProps) => {
   return useMutation({
     mutationFn: (newData: any) =>
-      axios.put(
-        `http://localhost:3000/api/transaction/owner?transactionId=${transactionId}`,
-        newData,
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
+      axios.put(`/api/transaction/owner?transactionId=${transactionId}`, newData, {
+        headers: {
+          "Content-Type": "application/json",
         },
-      ),
+      }),
     onSuccess,
     onError,
   });
