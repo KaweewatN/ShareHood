@@ -20,7 +20,7 @@ export default function HomeCardContainer() {
       <p className="text-left font-semibold text-black">Popular Items</p>
       {isLoading ? (
         <div className="mt-3 flex w-full space-x-3 overflow-x-auto overflow-y-hidden">
-          {Array.from({length: 3}).map((_, index) => (
+          {Array.from({length: 4}).map((_, index) => (
             <ItemCardDefaultLoading key={index} />
           ))}
         </div>
