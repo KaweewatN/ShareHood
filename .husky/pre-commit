@@ -1,0 +1,4 @@
+cd share-hood
+npm run prettier:format
+npm run prettier:check
+npm run lint:fix
