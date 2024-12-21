@@ -19,6 +19,7 @@ import {
 import {Input} from "@components/shad.ui/input";
 import DefaultButton from "@components/hood.ui/DefaultButton";
 import {Avatar, AvatarFallback, AvatarImage} from "@components/shad.ui/avatar";
+import {toast} from "sonner";
 // types
 import {userInfoSchema, userInfoZodType} from "src/types/form/personalInfoZod";
 import {convertToDate} from "@service/functions/convertToDate";
@@ -34,10 +35,10 @@ export default function PersonalInfoForm({userId, role}: {userId: string; role: 
   const {mutate: updateProfile} = useUpdateProfile({
     userId,
     onSuccess: () => {
-      alert("Profile updated successfully");
+      toast.success("Profile updated successfully");
     },
     onError: () => {
-      alert("Profile update failed");
+      toast.error("Profile update failed");
     },
   });
 

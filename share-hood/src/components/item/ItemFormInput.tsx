@@ -36,6 +36,8 @@ import {
   SelectGroup,
   SelectLabel,
 } from "src/components/shad.ui/select";
+import {toast} from "sonner";
+
 // functions
 import {incrementDuration, decrementDuration} from "@service/functions/durationCounter";
 import {incrementQuantity, decrementQuantity} from "@service/functions/quantityCounter";
@@ -65,11 +67,11 @@ export default function ItemFormInput({itemId, userId}: {itemId: string; userId:
     isSuccess: isCreateTransactionSuccess,
   } = useMutationCreateTransaction({
     onSuccess: () => {
-      alert("Transaction created successfully");
+      toast.success("Transaction created successfully");
       router.push("/rentee/activity");
     },
     onError: () => {
-      alert("Error creating Transaction (please change some value(s) and try again)");
+      toast.error("Error creating Transaction (please change some value(s) and try again)");
     },
   });
   const {
@@ -79,10 +81,10 @@ export default function ItemFormInput({itemId, userId}: {itemId: string; userId:
   } = useUpdateItem({
     itemId,
     onSuccess: () => {
-      alert("Quantity update successfully");
+      toast.success("Quantity update successfully");
     },
     onError: () => {
-      alert("Quantity update failed");
+      toast.error("Quantity update failed");
     },
   });
 

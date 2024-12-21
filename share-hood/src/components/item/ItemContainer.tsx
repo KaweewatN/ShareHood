@@ -8,6 +8,7 @@ import useFetchWishlistById from "@service/hooks/query/useFetchWishlistById";
 import useDeleteWishlist from "@service/hooks/mutation/useDeleteWishlist";
 import useCreateWishlist from "@service/hooks/mutation/useCreateWishlist";
 import {v4 as uuidv4} from "uuid";
+import {toast} from "sonner";
 
 export default function ItemContainer({itemId, userId}: {itemId: string; userId: string}) {
   const {data, refetch} = useFetchWishlistById(itemId, userId);
@@ -16,10 +17,10 @@ export default function ItemContainer({itemId, userId}: {itemId: string; userId:
   const {mutate: createWishlist} = useCreateWishlist({
     userId: userId,
     onSuccess: () => {
-      alert("Successfully added to wishlist");
+      toast.success("Successfully added to wishlist");
     },
     onError: () => {
-      alert("Error adding to wishlist");
+      toast.error("Error adding to wishlist");
     },
   });
 
@@ -27,10 +28,10 @@ export default function ItemContainer({itemId, userId}: {itemId: string; userId:
     userId: userId,
     wishlistId: dataFormatted ? dataFormatted.wishListID : "",
     onSuccess: () => {
-      alert("Wishlist deleted successfully");
+      toast.success("Wishlist deleted successfully");
     },
     onError: () => {
-      alert("Error deleting wishlist");
+      toast.error("Error deleting wishlist");
     },
   });
   const [isWishlist, setIsWishlist] = useState<boolean>(dataFormatted ? true : false);

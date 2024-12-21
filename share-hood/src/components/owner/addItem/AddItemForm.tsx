@@ -32,6 +32,7 @@ import {
 import {Input} from "@components/shad.ui/input";
 import {Label} from "@components/shad.ui/label";
 import {Checkbox} from "@components/shad.ui/checkbox";
+import {toast} from "sonner";
 
 // types
 import {AddItemZod, AddItemZodType} from "src/types/form/addItemZod";
@@ -42,11 +43,11 @@ export default function AddItemForm({userId}: {userId: string}) {
   const [isPending, startTransition] = useTransition();
   const {mutate: createItem} = useCreateItem({
     onSuccess: () => {
-      alert("Item is added successfully");
+      toast.success("Item is added successfully");
       router.push("/owner/items");
     },
     onError: () => {
-      alert("Error adding Item (please change some value(s) and try again)");
+      toast.error("Error adding Item (please change some value(s) and try again)");
     },
   });
 

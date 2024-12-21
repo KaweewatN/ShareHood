@@ -27,7 +27,7 @@ export default function DeleteWistlistDropDown({
       toast.success("Wishlist deleted successfully"); // This is not working
     },
     onError: () => {
-      alert("Error deleting wishlist");
+      toast.error("Error deleting wishlist");
     },
   });
   return (

@@ -26,6 +26,8 @@ import {
   SelectLabel,
 } from "src/components/shad.ui/select";
 import DefaultButton from "@components/hood.ui/DefaultButton";
+import {toast} from "sonner";
+
 //hooks
 import useFetchOwnerItemTransactionById from "@service/hooks/query/owner/useFetchOwnerItemTransactionById";
 import useUpdateTransactionStatus from "@service/hooks/mutation/useUpdateTransactionStatus";
@@ -42,10 +44,10 @@ export default function ItemTransactionDetail({transactionId}: {transactionId: s
   const {mutate: updateTransaction} = useUpdateTransactionStatus({
     transactionId,
     onSuccess: () => {
-      alert("Transaction updated successfully");
+      toast.success("Transaction updated successfully");
     },
     onError: () => {
-      alert("Error updating transaction:");
+      toast.error("Error updating transaction:");
     },
   });
 

@@ -18,6 +18,7 @@ import {Checkbox} from "@components/shad.ui/checkbox";
 import DefaultButton from "@components/hood.ui/DefaultButton";
 import {PasswordInput} from "@components/shad.ui/password-input";
 import {DatePicker} from "@components/hood.ui/DatePicker";
+import {toast} from "sonner";
 
 // hooks
 import useMutationCreateUser from "@service/hooks/mutation/useMutationCreateUser";
@@ -60,10 +61,10 @@ export default function SignUpForm() {
   } = useMutationCreateUser({
     role: "rentee",
     onSuccess: () => {
-      alert("User created successfully, please sign in");
+      toast.success("User created successfully, please sign in");
     },
     onError: () => {
-      alert("Error creating user (please change some value(s) and try again)");
+      toast.error("Error creating user (please change some value(s) and try again)");
     },
   });
 

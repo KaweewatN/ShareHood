@@ -21,6 +21,7 @@ import {Checkbox} from "@components/shad.ui/checkbox";
 import DefaultButton from "@components/hood.ui/DefaultButton";
 import {Button} from "@components/shad.ui/button";
 import {PasswordInput} from "@components/shad.ui/password-input";
+import {toast} from "sonner";
 
 // types
 import {SignInFormZod} from "../../types/form/authenticateZod";
@@ -47,9 +48,9 @@ export default function SignInForm() {
         });
 
         if (result?.error) {
-          alert("Something went wrong, please try again");
+          toast.error("Something went wrong, please try again");
         } else {
-          alert("Sign in success");
+          toast.success("Sign in success");
           router.push("/home");
         }
       } catch (error) {
