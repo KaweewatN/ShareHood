@@ -61,7 +61,7 @@ export default function AccountAnalytics() {
       </div>
 
       {/* Analytics Grid */}
-      <div className="grid w-full grid-cols-1 gap-y-8 px-10 md:grid-cols-2 md:gap-x-10">
+      <div className="grid w-full grid-cols-1 gap-y-8 px-5 md:grid-cols-2 md:gap-x-10 md:px-10">
         {analyticsData.map((data, index) => (
           <div
             key={index}
