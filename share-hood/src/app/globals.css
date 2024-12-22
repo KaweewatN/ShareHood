@@ -96,7 +96,7 @@ body {
     l10-1 4s linear infinite;
 }
 .loaderOwner:before {
-  content: "ShareHood Owner";
+  content: "ShareHood";
 }
 @keyframes l10-0 {
   to {
@@ -116,18 +116,18 @@ body {
   font-weight: bold;
   text-transform: uppercase;
   color: #0000;
-  -webkit-text-stroke: 1px #be6eef;
+  -webkit-text-stroke: 1px #ef8490;
   background:
-    radial-gradient(0.71em at 50% 1em, #be6eef 99%, #0000 101%) calc(50% - 1em) 1em/2em 200%
+    radial-gradient(0.71em at 50% 1em, #ef8490 99%, #0000 101%) calc(50% - 1em) 1em/2em 200%
       repeat-x text,
-    radial-gradient(0.71em at 50% -0.5em, #be6eef 99%, #be6eef 101%) 50% 1.5em/2em 200% repeat-x
+    radial-gradient(0.71em at 50% -0.5em, #ef8490 99%, #ef8490 101%) 50% 1.5em/2em 200% repeat-x
       text;
   animation:
     l10-0 0.8s linear infinite alternate,
     l10-1 4s linear infinite;
 }
 .loaderAdmin:before {
-  content: "ShareHood Admin";
+  content: "ShareHood";
 }
 @keyframes l10-0 {
   to {
