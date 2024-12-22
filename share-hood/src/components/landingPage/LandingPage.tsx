@@ -3,7 +3,7 @@
 import {useState} from "react";
 import {useRouter} from "next/navigation";
 import Image from "next/image";
-import Thumbnail from "public/images/sharehood_logo.png";
+import Thumbnail from "public/logo/sharehood_logo.png";
 
 export default function LandingPage() {
   const [path, setPath] = useState("");
