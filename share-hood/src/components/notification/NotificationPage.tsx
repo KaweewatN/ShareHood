@@ -6,7 +6,7 @@ import BackButton from "@components/hood.ui/BackButton";
 
 function NotificationPage() {
   return (
-    <div className="px-5 py-10">
+    <div className="px-5 py-5">
       {/* Header */}
       <header className="relative w-full">
         <BackButton path="/home" className="absolute -top-1" />

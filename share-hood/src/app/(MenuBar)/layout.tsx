@@ -15,7 +15,7 @@ export default async function RootLayout({
   return (
     <>
       <Menubar />
-      <main className="flex w-full flex-col items-center space-y-8 overflow-hidden px-6 pb-24 pt-10">
+      <main className="flex w-full flex-col items-center space-y-8 overflow-hidden px-6 pb-24 pt-3">
         {children}
       </main>
     </>

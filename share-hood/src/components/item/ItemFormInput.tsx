@@ -176,7 +176,7 @@ export default function ItemFormInput({itemId, userId}: {itemId: string; userId:
 
       <ItemCardLong {...itemDetail} />
       <div className="flex w-full flex-col items-center space-y-3 px-5">
-        <div className="flex w-full items-center justify-between space-x-5">
+        <div className="flex w-full items-center justify-between">
           <h3 className="w-3/4 text-sm font-semibold">Duration (Days)</h3>
           <div className="flex w-1/4 items-center justify-start space-x-4">
             <Button
@@ -187,7 +187,7 @@ export default function ItemFormInput({itemId, userId}: {itemId: string; userId:
                   setNewDuration,
                 )
               }
-              className="text-md rounded-lg border-2 px-2 py-1 text-defaultBlue shadow-none"
+              className="text-md rounded-lg border-2 border-slate-100 px-2 py-1 text-defaultBlue shadow-none"
             >
               -
             </Button>
@@ -200,7 +200,7 @@ export default function ItemFormInput({itemId, userId}: {itemId: string; userId:
                   setNewDuration,
                 )
               }
-              className="text-md rounded-lg border-2 px-2 py-1 text-defaultBlue shadow-none"
+              className="text-md rounded-lg border-2 border-slate-100 px-2 py-1 text-defaultBlue shadow-none"
             >
               +
             </Button>
@@ -214,7 +214,7 @@ export default function ItemFormInput({itemId, userId}: {itemId: string; userId:
               onClick={() =>
                 decrementQuantity(Number(itemDetail?.itemQuantity), newQuantity, setNewQuantity)
               }
-              className="text-md rounded-lg border-2 px-2 py-1 text-defaultBlue shadow-none"
+              className="text-md rounded-lg border-2 border-slate-100 px-2 py-1 text-defaultBlue shadow-none"
             >
               -
             </Button>
@@ -223,7 +223,7 @@ export default function ItemFormInput({itemId, userId}: {itemId: string; userId:
               onClick={() =>
                 incrementQuantity(Number(itemDetail?.itemQuantity), newQuantity, setNewQuantity)
               }
-              className="text-md rounded-lg border-2 px-2 py-1 text-defaultBlue shadow-none"
+              className="text-md rounded-lg border-2 border-slate-100 px-2 py-1 text-defaultBlue shadow-none"
             >
               +
             </Button>

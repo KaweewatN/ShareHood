@@ -23,7 +23,7 @@ export default function ItemCardLong(item: ItemType | WishlistType) {
         <div className="flex space-x-2 text-xs">
           <p className="flex items-center space-x-1 text-defaultBlue">
             <span>{Icons.Users("text-gray-400")}</span>
-            <span className="md:text-sm">{item.ownerName}</span>
+            <span className="md:text-sm">{item.ownerName.split(" ")[0]}</span>
           </p>
           <p className="flex items-center space-x-1 text-defaultBlue">
             <span>{Icons.Tag("text-gray-400")}</span>

@@ -1,5 +1,5 @@
 import React from "react";
-import type {Metadata} from "next";
+import {startImage} from "@libs/pwa/startImage";
 import {Inter} from "next/font/google";
 import "./globals.css";
 import {Toaster} from "@components/shad.ui/sonner";
@@ -9,9 +9,19 @@ import NextAuthProvider from "@libs/providers/NextAuthProvider";
 
 const inter = Inter({subsets: ["latin"]});
 
-export const metadata: Metadata = {
+export const metadata = {
   title: "Sharehood",
   description: "Sharehood is a platform for sharing items",
+  icons: {
+    icon: [{url: "/logo/app-logo.png", sizes: "196x196", type: "image/png"}],
+    apple: [{url: "/logo/app-logo.png"}],
+  },
+  appleTouchIcon: "/logo/app-logo.png",
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "black-translucent",
+    startupImage: startImage,
+  },
 };
 
 export default async function RootLayout({
